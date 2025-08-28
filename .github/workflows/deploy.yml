@@ -1,32 +1,36 @@
-name: Deploy Hugo site to Pages          # 워크플로우 이름. Actions 탭에서 표시됨.
+name: Deploy Hugo site to Pages
 
-on:                                      # 트리거(언제 실행할지)
+on:
   push:
-    branches: [ "main" ]                 # main 브랜치에 푸시될 때 자동 실행
-  workflow_dispatch:                     # Actions 탭에서 수동 실행 버튼 노출
+    branches: [ "main" ]
+  workflow_dispatch:
 
-permissions:                             # 이 워크플로우에 부여할 권한(권장: 최소 권한)
-  contents: read                         # 소스 코드를 읽을 권한
-  pages: write                           # GitHub Pages에 쓸 권한(배포)
-  id-token: write                        # OIDC 토큰 발급 권한(배포 액션이 필요로 함)
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-concurrency:                             # 동시에 동일 워크플로우가 돌면 충돌/중복 배포 방지
-  group: "pages"                         # 동시 실행 제어 그룹 이름
-  cancel-in-progress: true               # 새 실행이 시작되면 이전 실행 취소
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
-jobs:                                    # 실제 작업(Job) 정의. build → deploy 두 단계
+jobs:
   build:
-    runs-on: ubuntu-latest               # 실행 러너. GitHub가 제공하는 최신 우분투 이미지
-    steps:                               # 스텝은 순차 실행
+    runs-on: ubuntu-latest
+    steps:
+      # 1) 소스 체크아웃
       - name: Checkout
-        uses: actions/checkout@v4        # 리포지토리 코드 체크아웃(가져오기)
+        uses: actions/checkout@v4
 
+      # 2) Hugo Extended 설치 (SCSS 파이프라인 지원)
       - name: Setup Hugo (extended)
-        uses: peaceiris/actions-hugo@v3  # Hugo 설치용 공식 액션(extended 옵션 포함)
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'         # Hugo 버전(원하면 고정 버전으로 지정 가능)
-          extended: true                 # SCSS 등 확장 기능 지원 버전
+          hugo-version: 'latest'    # 원하면 고정 버전으로
+          extended: true
 
+      # 3) Dart Sass Embedded 설치 (폴더 그대로 + PATH 추가)
+      #    ※ dart-sass-embedded는 Ubuntu 24.04 APT에 없음 → 릴리스 tar.gz 사용
       - name: Install Dart Sass Embedded (linux-x64)
         run: |
           set -euxo pipefail
@@ -34,46 +38,48 @@ jobs:                                    # 실제 작업(Job) 정의. build → 
           url="https://github.com/sass/dart-sass-embedded/releases/download/${ver}/sass_embedded-${ver}-linux-x64.tar.gz"
 
           curl -fSL "$url" -o /tmp/sass_embedded.tgz
-          # 파일 유형 확인(디버깅용)
-          file /tmp/sass_embedded.tgz
-
-          # 압축 해제 후 바이너리만 배치
           tar -xzf /tmp/sass_embedded.tgz -C /tmp
-          sudo mv /tmp/sass_embedded/dart-sass-embedded /usr/local/bin/
-          sudo chmod +x /usr/local/bin/dart-sass-embedded
 
-          # 동작 확인
-          /usr/local/bin/dart-sass-embedded --version
+          # 폴더 통째로 보존 (상대경로 의존 때문에 반드시 폴더째 필요)
+          sudo mv /tmp/sass_embedded /opt/dart-sass-embedded
 
-          
+          # 이 디렉터리를 PATH에 추가 (심볼릭 링크 대신 디렉터리 PATH 권장)
+          echo "/opt/dart-sass-embedded" >> "$GITHUB_PATH"
+
+          # 동작 확인 (같은 폴더 안의 보조 파일 접근 가능해야 함)
+          dart-sass-embedded --version
+
+      # 4) Hugo Modules 캐시
       - name: Cache Hugo Modules
-        uses: actions/cache@v4           # 모듈/의존성 캐시로 빌드 시간 단축
+        uses: actions/cache@v4
         with:
-          path: |                        # 캐시할 경로
-            ~/.cache/hugo_mod            # Hugo Modules 캐시 디렉토리
-            **/go.sum                    # 모듈 해시(키 생성에 사용)
+          path: |
+            ~/.cache/hugo_mod
+            **/go.sum
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod') }}
-                                         # 캐시 키: OS + go.mod 해시 기반
           restore-keys: ${{ runner.os }}-hugomod-
-                                         # 완전 일치 키가 없으면 프리픽스로 복구 시도
 
+      # (선택) 환경 진단 로그
+      - name: Hugo env
+        run: hugo env
+
+      # 5) 빌드
       - name: Build
-        run: hugo --minify               # 정적 사이트 빌드. 결과물은 기본적으로 ./public
+        run: hugo --minify
 
+      # 6) Pages 아티팩트 업로드(전용 액션)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
-                                         # GitHub Pages 전용 아티팩트 업로드 액션
         with:
-          path: ./public                 # 배포할 정적 파일 경로(빌드 결과물)
+          path: ./public
 
   deploy:
-    needs: build                         # build 잡이 성공해야 deploy 실행
+    needs: build
     runs-on: ubuntu-latest
     environment:
-      name: github-pages                 # Pages 전용 환경. 배포 URL이 여기에 걸림
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-                                         # 아래 deploy 스텝의 출력(page_url)을 환경 URL로 등록
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment                   # 이 스텝의 출력을 참조하기 위해 ID 부여
-        uses: actions/deploy-pages@v4    # Pages로 실제 배포(아티팩트를 웹에 반영)
+        id: deployment
+        uses: actions/deploy-pages@v4
