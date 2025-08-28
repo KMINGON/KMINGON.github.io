@@ -27,11 +27,24 @@ jobs:                                    # 실제 작업(Job) 정의. build → 
           hugo-version: 'latest'         # Hugo 버전(원하면 고정 버전으로 지정 가능)
           extended: true                 # SCSS 등 확장 기능 지원 버전
 
-      - name: Install Dart Sass Embedded
+      - name: Install Dart Sass Embedded (linux-x64)
         run: |
-          curl -L https://github.com/sass/dart-sass-embedded/releases/download/1.77.5/sass_embedded-1.77.5-linux-x64.tar.gz -o sass_embedded.tar.gz
-          sudo tar -xzf sass_embedded.tar.gz -C /usr/local/bin
+          set -euxo pipefail
+          ver=1.62.1
+          url="https://github.com/sass/dart-sass-embedded/releases/download/${ver}/sass_embedded-${ver}-linux-x64.tar.gz"
+
+          curl -fSL "$url" -o /tmp/sass_embedded.tgz
+          # 파일 유형 확인(디버깅용)
+          file /tmp/sass_embedded.tgz
+
+          # 압축 해제 후 바이너리만 배치
+          tar -xzf /tmp/sass_embedded.tgz -C /tmp
+          sudo mv /tmp/sass_embedded/dart-sass-embedded /usr/local/bin/
+          sudo chmod +x /usr/local/bin/dart-sass-embedded
+
+          # 동작 확인
           /usr/local/bin/dart-sass-embedded --version
+
           
       - name: Cache Hugo Modules
         uses: actions/cache@v4           # 모듈/의존성 캐시로 빌드 시간 단축
