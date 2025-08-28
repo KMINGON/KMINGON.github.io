@@ -26,30 +26,31 @@ jobs:
       - name: Setup Hugo (extended)
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'    # 원하면 고정 버전으로
+          hugo-version: 'latest'     # 필요 시 '0.149.0'처럼 고정 가능
           extended: true
 
-      # 3) Dart Sass Embedded 설치 (폴더 그대로 + PATH 추가)
-      #    ※ dart-sass-embedded는 Ubuntu 24.04 APT에 없음 → 릴리스 tar.gz 사용
+      # 3) Dart Sass Embedded 설치 (폴더 보존 + 절대경로 검증)
       - name: Install Dart Sass Embedded (linux-x64)
         run: |
           set -euxo pipefail
+
           ver=1.62.1
           url="https://github.com/sass/dart-sass-embedded/releases/download/${ver}/sass_embedded-${ver}-linux-x64.tar.gz"
 
           curl -fSL "$url" -o /tmp/sass_embedded.tgz
           tar -xzf /tmp/sass_embedded.tgz -C /tmp
 
-          # 폴더 통째로 보존 (상대경로 의존 때문에 반드시 폴더째 필요)
+          # 폴더 통째 보존(상대 경로 의존성 존재)
           sudo mv /tmp/sass_embedded /opt/dart-sass-embedded
+          sudo chmod +x /opt/dart-sass-embedded/dart-sass-embedded
 
-          # 이 디렉터리를 PATH에 추가 (심볼릭 링크 대신 디렉터리 PATH 권장)
-          echo "/opt/dart-sass-embedded" >> "$GITHUB_PATH"
+          # PATH 전파(다음 스텝부터 유효)
+          echo /opt/dart-sass-embedded >> "$GITHUB_PATH"
 
-          # 동작 확인 (같은 폴더 안의 보조 파일 접근 가능해야 함)
-          dart-sass-embedded --version
+          # 같은 스텝에서는 PATH 전파가 안 되므로 "절대경로"로 즉시 검증
+          /opt/dart-sass-embedded/dart-sass-embedded --version
 
-      # 4) Hugo Modules 캐시
+      # 4) Hugo Modules 캐시(속도 최적화)
       - name: Cache Hugo Modules
         uses: actions/cache@v4
         with:
@@ -59,15 +60,15 @@ jobs:
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod') }}
           restore-keys: ${{ runner.os }}-hugomod-
 
-      # (선택) 환경 진단 로그
+      # 5) 환경 출력(디버깅 도움)
       - name: Hugo env
         run: hugo env
 
-      # 5) 빌드
+      # 6) 빌드
       - name: Build
         run: hugo --minify
 
-      # 6) Pages 아티팩트 업로드(전용 액션)
+      # 7) Pages 아티팩트 업로드(전용 액션)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -77,9 +78,4 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      name: github-p
