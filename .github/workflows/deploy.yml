@@ -18,32 +18,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1) Checkout
+      # 1) 소스 체크아웃
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2) Setup Hugo (extended)
+      # 2) Hugo Extended 설치 (SCSS 파이프라인 지원)
       - name: Setup Hugo (extended)
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: 'latest'        # 필요 시 고정 버전으로
           extended: true
 
-      # 3) Install Dart Sass Embedded (linux-x64)
-      - name: Install Dart Sass Embedded (linux-x64)
+      # 3) Dart Sass (CLI) 설치  ────> HUGO v0.114.0+는 이걸 우선 사용
+      #    snap은 Actions에서 동작하지 않으므로, 릴리스 tar.gz를 받아 PATH 등록
+      - name: Install Dart Sass (CLI)
         run: |
           set -euxo pipefail
-          ver=1.62.1
-          url="https://github.com/sass/dart-sass-embedded/releases/download/${ver}/sass_embedded-${ver}-linux-x64.tar.gz"
-          curl -fSL "$url" -o /tmp/sass_embedded.tgz
-          tar -xzf /tmp/sass_embedded.tgz -C /tmp
-          sudo mv /tmp/sass_embedded /opt/dart-sass-embedded
-          sudo chmod +x /opt/dart-sass-embedded/dart-sass-embedded
-          echo /opt/dart-sass-embedded >> "$GITHUB_PATH"
-          # 같은 스텝에서는 PATH 전파가 안 되므로 절대경로로 검증
-          /opt/dart-sass-embedded/dart-sass-embedded --version
 
-      # 4) Cache Hugo Modules
+          # Hugo가 요구하는 최소 버전: >= 1.63.0
+          # 안정 버전 예시(원하면 최신으로 교체 가능)
+          ver="1.77.6"
+          url="https://github.com/sass/dart-sass/releases/download/${ver}/dart-sass-${ver}-linux-x64.tar.gz"
+
+          curl -fSL "$url" -o /tmp/dart-sass.tgz
+          tar -xzf /tmp/dart-sass.tgz -C /tmp
+
+          # 폴더 그대로 보존(실행파일: /tmp/dart-sass/sass, 기타 동반 파일 포함)
+          sudo rm -rf /opt/dart-sass
+          sudo mv /tmp/dart-sass /opt/dart-sass
+          sudo chmod +x /opt/dart-sass/sass
+
+          # PATH 전파(다음 스텝부터 유효)
+          echo /opt/dart-sass >> "$GITHUB_PATH"
+
+          # 같은 스텝에서는 PATH 전파가 안 되므로 절대경로로 즉시 검증
+          /opt/dart-sass/sass --version
+
+      # 4) Hugo Modules 캐시(속도 최적화)
       - name: Cache Hugo Modules
         uses: actions/cache@v4
         with:
@@ -53,15 +64,15 @@ jobs:
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod') }}
           restore-keys: ${{ runner.os }}-hugomod-
 
-      # 5) (Optional) env 출력
+      # 5) (선택) 환경 확인: 어떤 트랜스파일러가 잡혔는지 확인 가능
       - name: Hugo env
         run: hugo env
 
-      # 6) Build
+      # 6) 빌드(배포용)
       - name: Build
         run: hugo --minify
 
-      # 7) Upload Pages artifact (전용 액션)
+      # 7) Pages 아티팩트 업로드(전용 액션)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -72,7 +83,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      # 아래 URL은 deploy 스텝의 출력 사용. 구문/ID 일치 필수!
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
