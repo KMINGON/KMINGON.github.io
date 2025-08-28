@@ -1,3 +1,51 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://KMINGON.github.io/'
+languageCode = 'ko-kr'
+title = '보안 연구 노트'
+
+[module]
+  # uncomment line below for temporary local development of module
+  # replacements = "github.com/lxndrblz/anatole -> ../../anatole"
+  [[module.imports]]
+    path = "github.com/lxndrblz/anatole"
+    disable = false
+
+
+[params]
+title = "KMINGON's Lab"   # 사이드바 타이틀(사이트 title과 별개)
+author = "KMINGON"
+description = "Study · CTF · Project 기록"
+profilePicture = "images/SSC_20240806100040.jpg"
+mainSections = ["note", "project", "review"]  # 홈에 3개 섹션 글 모두 노출
+readMore = true # 가볍게 요약 정렬
+
+
+[[params.socialIcons]]
+icon = "fab fa-github"
+title = "GitHub"
+url = "https://github.com/KMINGON"
+
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    identifier = "home"
+    url = "/"
+    weight = 10
+
+  [[menu.main]]
+    name = "Note"
+    identifier = "note"
+    url = "/note/"
+    weight = 20
+
+  [[menu.main]]
+    name = "Project"
+    identifier = "project"
+    url = "/project/"
+    weight = 30
+
+  [[menu.main]]
+    name = "Review"
+    identifier = "review"
+    url = "/review/"
+    weight = 40

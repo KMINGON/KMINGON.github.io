@@ -1,0 +1,60 @@
+name: Deploy Hugo site to Pages          # 워크플로우 이름. Actions 탭에서 표시됨.
+
+on:                                      # 트리거(언제 실행할지)
+  push:
+    branches: [ "main" ]                 # main 브랜치에 푸시될 때 자동 실행
+  workflow_dispatch:                     # Actions 탭에서 수동 실행 버튼 노출
+
+permissions:                             # 이 워크플로우에 부여할 권한(권장: 최소 권한)
+  contents: read                         # 소스 코드를 읽을 권한
+  pages: write                           # GitHub Pages에 쓸 권한(배포)
+  id-token: write                        # OIDC 토큰 발급 권한(배포 액션이 필요로 함)
+
+concurrency:                             # 동시에 동일 워크플로우가 돌면 충돌/중복 배포 방지
+  group: "pages"                         # 동시 실행 제어 그룹 이름
+  cancel-in-progress: true               # 새 실행이 시작되면 이전 실행 취소
+
+jobs:                                    # 실제 작업(Job) 정의. build → deploy 두 단계
+  build:
+    runs-on: ubuntu-latest               # 실행 러너. GitHub가 제공하는 최신 우분투 이미지
+    steps:                               # 스텝은 순차 실행
+      - name: Checkout
+        uses: actions/checkout@v4        # 리포지토리 코드 체크아웃(가져오기)
+
+      - name: Setup Hugo (extended)
+        uses: peaceiris/actions-hugo@v3  # Hugo 설치용 공식 액션(extended 옵션 포함)
+        with:
+          hugo-version: 'latest'         # Hugo 버전(원하면 고정 버전으로 지정 가능)
+          extended: true                 # SCSS 등 확장 기능 지원 버전
+
+      - name: Cache Hugo Modules
+        uses: actions/cache@v4           # 모듈/의존성 캐시로 빌드 시간 단축
+        with:
+          path: |                        # 캐시할 경로
+            ~/.cache/hugo_mod            # Hugo Modules 캐시 디렉토리
+            **/go.sum                    # 모듈 해시(키 생성에 사용)
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod') }}
+                                         # 캐시 키: OS + go.mod 해시 기반
+          restore-keys: ${{ runner.os }}-hugomod-
+                                         # 완전 일치 키가 없으면 프리픽스로 복구 시도
+
+      - name: Build
+        run: hugo --minify               # 정적 사이트 빌드. 결과물은 기본적으로 ./public
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+                                         # GitHub Pages 전용 아티팩트 업로드 액션
+        with:
+          path: ./public                 # 배포할 정적 파일 경로(빌드 결과물)
+
+  deploy:
+    needs: build                         # build 잡이 성공해야 deploy 실행
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages                 # Pages 전용 환경. 배포 URL이 여기에 걸림
+      url: ${{ steps.deployment.outputs.page_url }}
+                                         # 아래 deploy 스텝의 출력(page_url)을 환경 URL로 등록
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment                   # 이 스텝의 출력을 참조하기 위해 ID 부여
+        uses: actions/deploy-pages@v4    # Pages로 실제 배포(아티팩트를 웹에 반영)
