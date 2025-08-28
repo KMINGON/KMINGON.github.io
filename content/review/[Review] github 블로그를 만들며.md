@@ -1,6 +1,6 @@
 +++
 date = '2025-08-29T03:00:36+09:00'
-draft = true
+draft = false
 title = '[Review] Github 블로그 시작'
 summary = "총명불여둔필(聰明不如鈍筆) - '흐릿한 잉크가 진한 기억보다 강하다'"
 toc = true
