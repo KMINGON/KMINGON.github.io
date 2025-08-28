@@ -18,39 +18,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1) 소스 체크아웃
+      # 1) Checkout
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2) Hugo Extended 설치 (SCSS 파이프라인 지원)
+      # 2) Setup Hugo (extended)
       - name: Setup Hugo (extended)
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'     # 필요 시 '0.149.0'처럼 고정 가능
+          hugo-version: 'latest'
           extended: true
 
-      # 3) Dart Sass Embedded 설치 (폴더 보존 + 절대경로 검증)
+      # 3) Install Dart Sass Embedded (linux-x64)
       - name: Install Dart Sass Embedded (linux-x64)
         run: |
           set -euxo pipefail
-
           ver=1.62.1
           url="https://github.com/sass/dart-sass-embedded/releases/download/${ver}/sass_embedded-${ver}-linux-x64.tar.gz"
-
           curl -fSL "$url" -o /tmp/sass_embedded.tgz
           tar -xzf /tmp/sass_embedded.tgz -C /tmp
-
-          # 폴더 통째 보존(상대 경로 의존성 존재)
           sudo mv /tmp/sass_embedded /opt/dart-sass-embedded
           sudo chmod +x /opt/dart-sass-embedded/dart-sass-embedded
-
-          # PATH 전파(다음 스텝부터 유효)
           echo /opt/dart-sass-embedded >> "$GITHUB_PATH"
-
-          # 같은 스텝에서는 PATH 전파가 안 되므로 "절대경로"로 즉시 검증
+          # 같은 스텝에서는 PATH 전파가 안 되므로 절대경로로 검증
           /opt/dart-sass-embedded/dart-sass-embedded --version
 
-      # 4) Hugo Modules 캐시(속도 최적화)
+      # 4) Cache Hugo Modules
       - name: Cache Hugo Modules
         uses: actions/cache@v4
         with:
@@ -60,15 +53,15 @@ jobs:
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod') }}
           restore-keys: ${{ runner.os }}-hugomod-
 
-      # 5) 환경 출력(디버깅 도움)
+      # 5) (Optional) env 출력
       - name: Hugo env
         run: hugo env
 
-      # 6) 빌드
+      # 6) Build
       - name: Build
         run: hugo --minify
 
-      # 7) Pages 아티팩트 업로드(전용 액션)
+      # 7) Upload Pages artifact (전용 액션)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -78,4 +71,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: github-p
+      name: github-pages
+      # 아래 URL은 deploy 스텝의 출력 사용. 구문/ID 일치 필수!
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
