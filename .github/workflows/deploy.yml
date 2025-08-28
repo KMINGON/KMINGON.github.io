@@ -29,9 +29,9 @@ jobs:                                    # 실제 작업(Job) 정의. build → 
 
       - name: Install Dart Sass Embedded
         run: |
-          sudo apt-get update
-          sudo apt-get install -y dart-sass-embedded
-          dart-sass-embedded --version
+          curl -L https://github.com/sass/dart-sass-embedded/releases/download/1.77.5/sass_embedded-1.77.5-linux-x64.tar.gz -o sass_embedded.tar.gz
+          sudo tar -xzf sass_embedded.tar.gz -C /usr/local/bin
+          /usr/local/bin/dart-sass-embedded --version
           
       - name: Cache Hugo Modules
         uses: actions/cache@v4           # 모듈/의존성 캐시로 빌드 시간 단축
