@@ -2,8 +2,12 @@
 date = '2025-08-29T04:47:52+09:00'
 draft = false
 title = '[Note] 브라우저의 인코딩 해석 규칙 분석'
+summary = "HTML Parser, URL Parser 의 동작 방식을 표준 문서를 통해 확인하고, 인코딩·이스케이프 방식을 통한 필터링 우회 방법을 분석해보았다."
+toc = true
 tags = ["Web", "XSS", "HTML Parser", "URL Parser"]
 +++
+
+---
 
 ## 문자열 필터링 우회
 

@@ -2,7 +2,7 @@
 date = '2025-08-29T03:00:36+09:00'
 draft = false
 title = '[Review] Github 블로그 시작'
-summary = "'흐릿한 잉크가 진한 기억보다 강하다'"
+summary = "'흐릿한 잉크가 진한 기억보다 강하다' 내가 블로그를 시작하게 된 이유와 제작 과정 리뷰"
 toc = true
 tags = ["Hugo", "SSG", "Git"]
 +++

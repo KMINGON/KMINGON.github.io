@@ -1,8 +1,13 @@
 +++
 date = '2025-08-29T19:59:06+09:00'
-draft = true
+draft = false
 title = '[Note] CSP Nonce 우회 방법 분석'
+summary = "브라우저의 보안 정책에 대해 알아보고, 그 중 CSP의 Nonce를 우회하기 위한 다양한 방법을 시도해보았다."
+toc = true
+tags = ["Web", "XSS", "CSP", "Nonce"]
 +++
+
+---
 
 ## 브라우저 보안 정책
 브라우저의 보안 정책에는 다양한 종류가 존재한다. 그중 대표적인 것이 SOP, CORS, CSP이다.
@@ -40,6 +45,8 @@ CSP의 `script-src`에 Nonce가 설정되어 있을 때 이를 우회해 XSS 스
 3. **Meta 태그 기반 CSP**  
    CSP를 HTTP 응답 헤더가 아닌 `<meta http-equiv="Content-Security-Policy">` 태그로 설정한 경우, 캐싱 정책에 따라 특정 응답이 고정된 상태로 재사용될 수 있다.  
    이때 HTML 문서나 리소스가 캐시되면 공격자는 동일한 nonce 값을 반복적으로 얻어낼 수 있어 보안에 취약해진다.
+
+---
 
 ## 의문 제기
 
