@@ -12,7 +12,7 @@ XSS 우회 기법을 공부하다 보면 `\u`, `\x`, `%`, `&#` 등 다양한 인
 
 ---
 
-## 1. 기본 사실: HTML Entity로 우회가 가능하다?
+## 기본 사실: HTML Entity로 우회가 가능하다?
 일반적으로 알려진 기법 중 하나는 **HTML Entity Encoding**을 속성 값에 삽입하는 것이다.  
 예를 들어 `srcdoc="<s&#63;ript>..."`처럼 속성 값에서 `&#...;`로 문자를 치환하면 필터를 우회할 수 있다.  
 
@@ -21,7 +21,7 @@ XSS 우회 기법을 공부하다 보면 `\u`, `\x`, `%`, `&#` 등 다양한 인
 
 ---
 
-## 2. 의문 확인: 태그/속성 이름에서의 동작
+## 의문 확인: 태그/속성 이름에서의 동작
 실제로 `<s&#x63;ript>` 같은 태그를 넣어 보면, `&#x63;`이 `c`로 변환되지 않고 그대로 출력된다.  
 하지만 `<&#x73;cript>`를 넣으면 결과 화면에는 `<script>`처럼 보인다.  
 이 차이는 어디서 오는 걸까?
@@ -36,7 +36,7 @@ XSS 우회 기법을 공부하다 보면 `\u`, `\x`, `%`, `&#` 등 다양한 인
 
 ---
 
-## 3. 새로운 의문: URL Encoding과 특수문자는 왜 통하나?
+## 새로운 의문: URL Encoding과 특수문자는 왜 통하나?
 다음으로 `<iframe src="javasc%09ript:%66%65%74%63%68..">` 같은 코드를 보자. `%NN`은 URL Encoding 문자이다.  
 보통 HTML 파서는 URL 디코딩을 하지 않는데, 왜 이런 입력이 결국 `javasc{TAB}ript:fetch`로 인식될까?  
 또한 `javasc{TAB}ript:`처럼 TAB, LF, CR 문자를 넣어도 문제없이 `javascript:`로 동작하기도 한다.
@@ -58,7 +58,7 @@ HTML 파서는 문서를 토큰화하여 DOM 트리를 구성할 뿐이지만 [H
 
 ---
 
-## 4. 또 다른 의문: Script 데이터에서는 왜 엔티티가 안 먹히지?
+## 또 다른 의문: Script 데이터에서는 왜 엔티티가 안 먹히지?
 `<script>` 내부에서 `&#x61;lert(1)`을 써 보면 동작하지 않는다.  
 이유는 [HTML Standard - Script data state](https://html.spec.whatwg.org/multipage/parsing.html#script-data-state) 규칙 때문이다.
 - Script data 상태에서는 `&`가 문자 참조로 전환되지 않고 그냥 문자로 처리된다.  
@@ -66,7 +66,7 @@ HTML 파서는 문서를 토큰화하여 DOM 트리를 구성할 뿐이지만 [H
 
 ---
 
-## 5. 최종 정리
+## 최종 정리
 내가 확인한 내용을 정리하면 다음과 같다:
 
 - **HTML Entity Encoding**  
@@ -79,7 +79,7 @@ HTML 파서는 문서를 토큰화하여 DOM 트리를 구성할 뿐이지만 [H
 즉, 우회의 핵심은 현재 문자열이 어떤 파서 상태에 놓여 있는지 알고, 각 파서의 파싱 규칙을 이용하는 것이다.
 
 >참고자료  
->https://url.spec.whatwg.org/  
->https://html.spec.whatwg.org/multipage/urls-and-fetching.html  
->https://html.spec.whatwg.org/multipage/parsing.html  
->https://html.spec.whatwg.org/dev/semantics.html
+>[WHATWG URL Standard](https://url.spec.whatwg.org/)  
+>[WHATWG HTML Standard: URLs and Fetching](https://html.spec.whatwg.org/multipage/urls-and-fetching.html)  
+>[WHATWG HTML Standard: Parsing](https://html.spec.whatwg.org/multipage/parsing.html)  
+[WHATWG HTML Standard: Semantics](https://html.spec.whatwg.org/dev/semantics.html)
