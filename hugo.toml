@@ -15,7 +15,7 @@ title = "KMINGON's Lab"   # 사이드바 타이틀(사이트 title과 별개)
 author = "KMINGON"
 description = "나의 학습 기록실"
 profilePicture = "images/SSC_20240806100040.jpg"
-mainSections = ["note", "project", "review"]  # 홈에 3개 섹션 글 모두 노출
+mainSections = ["note", "review"]  # 홈에 2개 섹션 글 모두 노출, 이후 project 섹션 추가 예정
 readMore = true # 가볍게 요약 정렬
 
 
@@ -38,11 +38,11 @@ url = "https://github.com/KMINGON"
     url = "/note/"
     weight = 20
 
-  [[menu.main]]
-    name = "Project"
-    identifier = "project"
-    url = "/project/"
-    weight = 30
+#  [[menu.main]]
+#    name = "Project"
+#    identifier = "project"
+#    url = "/project/"
+#    weight = 30
 
   [[menu.main]]
     name = "Review"
