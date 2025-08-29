@@ -13,7 +13,7 @@ title = '보안 연구 노트'
 [params]
 title = "KMINGON's Lab"   # 사이드바 타이틀(사이트 title과 별개)
 author = "KMINGON"
-description = "Study · CTF · Project 기록"
+description = "나의 학습 기록실"
 profilePicture = "images/SSC_20240806100040.jpg"
 mainSections = ["note", "project", "review"]  # 홈에 3개 섹션 글 모두 노출
 readMore = true # 가볍게 요약 정렬
@@ -49,3 +49,7 @@ url = "https://github.com/KMINGON"
     identifier = "review"
     url = "/review/"
     weight = 40
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
