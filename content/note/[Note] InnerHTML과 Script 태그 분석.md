@@ -1,9 +1,16 @@
-# InnerHTML과 Script 태그 분석
++++
+date = '2025-10-16T01:39:26+09:00'
+draft = false
+title = '[Note] InnerHTML과 Script 태그 분석'
+summary = "`<script>` 태그의 실행 과정과 브라우저의 스크립트 처리 메커니즘을 분석해보았다."
+toc = true
+tags = ["Web", "DOM-XSS", "CSP", "HTML"]
++++
 
 ## 들어가며
 
 이 글은 [Dreamhack DOM XSS](https://dreamhack.io/wargame/challenges/438) 문제를 풀던 중 발생한 의문과, 그 의문을 명세를 통해 검증·해소한 과정을 정리한 것이다.
-주요 주제는 \<script\> 태그의 실행 과정과 브라우저의 스크립트 처리 메커니즘이다.
+주요 주제는 `<script>` 태그의 실행 과정과 브라우저의 스크립트 처리 메커니즘이다.
 
 ---
 ## 문제 제기
@@ -53,7 +60,7 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 
 위 코드는 hash fragment 를 `<script>` 태그의 내용으로 받아와 태그 전체를 삽입하는 코드이다.
 
-![image.png](/static/note/3-1.png)
+![image.png](/note/3-1.png)
 
 결과적으로 개발자 도구에서는 `<script>` 태그가 정상적으로 삽입되었지만,
 코드는 실행되지 않았다.
@@ -75,7 +82,7 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 
 `InnerHTML`로 `<script>` 의 내용을 변경했을 때 실행이 된다면 `alert(1)` 이 실행되어야 할 것이다.
 
-![image.png](/static/note/3-2.png)
+![image.png](/note/3-2.png)
 
 이 경우에는 기존 `<script>`에 `alert(1)`을 삽입했으나,
 역시 실행되지 않았다.
@@ -84,8 +91,7 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 
 ## 명세를 통한 검증
 
-위 두 실험 결과를 비교하면, **비어 있던 `<script>` 요소의 내용이 InnerHTML로 갱신**될 때만 실행이 발생한다는 점을 추측할 수 있다.
-
+위 두 실험 결과를 비교하면, **비어 있던 `<script>` 요소의 내용이 InnerHTML로 갱신**될 때만 실행이 발생한다는 점을 추측할 수 있다.  
 이 현상은 HTML 명세의 스크립트 실행 준비 단계(prepare a script) 에 정의되어 있다.
 
 ### Script 실행 준비 과정
@@ -103,16 +109,14 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 ### parser-inserted 플래그
 
 HTML 파서에 의해 삽입된 `<script>` 요소는 `parser document` 상태가 `non-null`로 설정되며,
-이 경우 해당 스크립트를 “parser-inserted”라고 부른다.
-
+이 경우 해당 스크립트를 “parser-inserted”라고 부른다.  
 즉, **HTML 파서가 직접 삽입한 스크립트인지, 혹은 JS로 동적으로 생성된 스크립트**인지를 구분하는 역할이다.
 
 ### was-parser-inserted 플래그
 
 `was-parser-inserted`는 원래의 `parser-inserted` 값을 복사한 것으로,
 파서에 의해 삽입된 스크립트가 **비어있거나 실행에 실패했을 때,
-후에 수정되어 실행될 가능성**을 보존하기 위한 장치이다.
-
+후에 수정되어 실행될 가능성**을 보존하기 위한 장치이다.  
 즉, 한 번 파서가 삽입했지만 **아직 실행되지 않은 스크립트**는
 후에 내용이 바뀌면 실행될 수 있다.
 
@@ -154,6 +158,8 @@ HTML 파서에 의해 삽입된 `<script>` 요소는 `parser document` 상태가
 두 번째 스크립트가 `outer-script`의 내용을 변경하면
 그 즉시 `outer-script`가 실행되고,
 내부에 새로 삽입된 `inner-script`도 순서대로 실행된다.
+
+---
 
 ## 실험 결과 해석
 
