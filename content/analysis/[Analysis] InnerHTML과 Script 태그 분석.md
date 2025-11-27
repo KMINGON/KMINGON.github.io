@@ -1,7 +1,7 @@
 +++
 date = '2025-10-16T01:39:26+09:00'
 draft = false
-title = '[Note] InnerHTML과 Script 태그 분석'
+title = '[Analysis] InnerHTML과 Script 태그 분석'
 summary = "`<script>` 태그의 실행 과정과 브라우저의 스크립트 처리 메커니즘을 분석해보았다."
 toc = true
 tags = ["Web", "DOM-XSS", "CSP", "HTML"]

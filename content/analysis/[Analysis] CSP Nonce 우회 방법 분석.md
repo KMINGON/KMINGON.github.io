@@ -1,7 +1,7 @@
 +++
 date = '2025-08-29T19:59:06+09:00'
 draft = false
-title = '[Note] CSP Nonce 우회 방법 분석'
+title = '[Analysis] CSP Nonce 우회 방법 분석'
 summary = "브라우저의 보안 정책에 대해 알아보고, 그 중 CSP의 Nonce를 우회하기 위한 다양한 방법을 시도해보았다."
 toc = true
 tags = ["Web", "XSS", "CSP", "Nonce"]
