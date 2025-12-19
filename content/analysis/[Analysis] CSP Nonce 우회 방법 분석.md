@@ -123,6 +123,8 @@ Dangling Markup Injection은 `<tag attr="`처럼 닫히지 않은 속성을 삽�
 
 그러나 만약 Dangling Markup Injection으로 `<script>`와 `nonce` 속성을 감싸는 것이 가능하고, 동시에 CSS Injection을 통해 해당 속성 값을 외부로 유출할 수 있다면, 이 두 기법을 조합하여 CTF 문제에서처럼 CSP Nonce 기반 XSS를 재현하는 것도 이론적으로는 가능하다.
 
+---
+
 >참고자료  
 >[W3C Content Security Policy Level 3](https://www.w3.org/TR/CSP3/)  
 >[WHATWG HTML Standard: Parsing](https://html.spec.whatwg.org/multipage/parsing.html)  

@@ -82,6 +82,8 @@ HTML 파서는 문서를 토큰화하여 DOM 트리를 구성할 뿐이지만 [H
 
 즉, 우회의 핵심은 현재 문자열이 어떤 파서 상태에 놓여 있는지 알고, 각 파서의 파싱 규칙을 이용하는 것이다.
 
+---
+
 >참고자료  
 >[WHATWG URL Standard](https://url.spec.whatwg.org/)  
 >[WHATWG HTML Standard: URLs and Fetching](https://html.spec.whatwg.org/multipage/urls-and-fetching.html)  

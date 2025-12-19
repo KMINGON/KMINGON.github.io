@@ -226,19 +226,18 @@ HTML 파서에 의해 삽입된 `<script>` 요소는 `parser document` 상태가
 “동적으로 생성된 스크립트”로 보기 애매하다.
 
 관련 명세에서는 이에 대한 명확한 정의를 찾기 어렵다.
-따라서 필자는 다음과 같이 **가설적 결론**을 내렸다.
+따라서 나는 다음과 같이 **가설적 결론**을 내렸다.
 
->`nonce`를 가진 신뢰된 스크립트가 `InnerHTML`을 통해
+`nonce`를 가진 신뢰된 스크립트가 `InnerHTML`을 통해
 기존 `<script>`의 **Children changed steps**을 트리거했고,
 이 과정에서 브라우저는 실행 컨텍스트를 신뢰된 스크립트의 맥락으로 처리했을 가능성이 높다.
 
 ---
 
-## 참고자료
-
-- https://www.w3.org/TR/CSP3/#strict-dynamic-usage
-- https://content-security-policy.com/strict-dynamic/
-- https://github.com/cure53/XSSChallengeWiki/wiki/H5SC-Minichallenge-3:-%22Sh*t,-it%27s-CSP!%22#107-bytes
-- https://html.spec.whatwg.org/#parser-inserted
-- https://www.w3.org/TR/CSP3/#strict-dynamic-usage
-- https://www.w3.org/TR/2014/REC-html5-20141028/scripting-1.html
+>참고자료  
+> https://www.w3.org/TR/CSP3/#strict-dynamic-usage
+> https://content-security-policy.com/strict-dynamic/
+> [https://github.com/cure53/XSSChallengeWiki/wiki/H5SC-Minichallenge-3:-%22Sh*t,-it%27s-CSP!%22#107-bytes](https://github.com/cure53/XSSChallengeWiki/wiki/H5SC-Minichallenge-3:-%22Sh*t,-it%27s-CSP!%22#107-bytes)
+> https://html.spec.whatwg.org/#parser-inserted
+> https://www.w3.org/TR/CSP3/#strict-dynamic-usage
+> https://www.w3.org/TR/2014/REC-html5-20141028/scripting-1.html
