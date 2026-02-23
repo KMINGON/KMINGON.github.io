@@ -24,9 +24,9 @@ jobs:
 
       # 2) Hugo Extended (SCSS 파이프라인 지원)
       - name: Setup Hugo (extended)
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.149.0'
           extended: true
 
       # 3) Dart Sass (CLI) 설치 ─ Hugo v0.114.0+ 권장 방식
