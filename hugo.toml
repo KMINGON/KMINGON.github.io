@@ -15,7 +15,7 @@ title = "RTCat's Lab"   # 사이드바 타이틀(사이트 title과 별개)
 author = "RTCat"
 description = "보안 학습 과정에서 얻은 인사이트 저장소"
 profilePicture = "images/4.png"
-mainSections = ["note", "analysis", "review"]  # 홈에 2개 섹션 글 모두 노출, 이후 project 섹션 추가 예정
+mainSections = ["note", "analysis", "review"]  # 홈에 3개 섹션 글 노출
 readMore = true # 가볍게 요약 정렬
 gtagId = "G-GGY59YGHKJ"
 
@@ -49,6 +49,12 @@ url = "https://github.com/KMINGON"
     identifier = "review"
     url = "/review/"
     weight = 40
+    
+  # [[menu.main]]
+  #   name = "Rookies"
+  #   identifier = "rookies"
+  #   url = "/rookies/"
+  #   weight = 50
 
 [taxonomies]
   category = "categories"

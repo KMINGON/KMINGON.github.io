@@ -1,7 +1,7 @@
 +++
 date = '2026-01-18T16:08:33+09:00'
 draft = false
-title = '[Review] SK Shieldus Rookies Wargame Write-Up'
+title = '[Rookies] SK Shieldus Rookies Wargame Write-Up'
 summary = "보안 교육 과정 중 진행된 Wargame에서 개인적으로 기억에 남거나 흥미로웠던 문제들을 중심으로 풀이 과정 리뷰"
 toc = true
 tags = ["Quine SQL Injection", "SQL Injection", "UNION SQL Injection", "md5 Raw Hash", "Basic Auth", "PHP Session", "LFI"]
