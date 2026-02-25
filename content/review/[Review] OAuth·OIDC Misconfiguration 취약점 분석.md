@@ -89,7 +89,7 @@ Salt Labs의 [Oh-Auth — Abusing OAuth to take over millions of accounts](https
 
 실제로 2025년 하반기에 진행한 버그바운티에서도 3개 서비스에서 동일한 취약점을 발견해 제보했다.
 
-당시 프로젝트에서 확인한 취약점과 일부 시나리오는 [OWASP Seoul Chapter 2025년 7월 세미나](https://owasp.org/www-chapter-seoul/#div-pastevents) 세미나 발표에서 다룬 바 있다.  
+당시 프로젝트에서 확인한 취약점과 일부 시나리오는 [OWASP Seoul Chapter 2025년 7월 세미나 - 주제#1 : 해커들이 좋아하는 인증 환경은 따로 있다?](https://owasp.org/www-chapter-seoul/#div-pastevents) 세미나 발표에서 다룬 바 있다.  
 다만 해당 발표는 취약점 자체보다 자동화 진단 도구에 초점을 두었으므로, 본 글에서는 Salt Labs 사례를 바탕으로 이 취약점이 계정 탈취로 이어지는 과정을 구체적인 공격 시나리오 중심으로 분석한다.
 
 ### 공격 시나리오 분석
