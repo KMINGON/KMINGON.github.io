@@ -33,9 +33,9 @@ url = "https://github.com/KMINGON"
     weight = 10
 
   [[menu.main]]
-    name = "Note"
-    identifier = "note"
-    url = "/note/"
+    name = "Review"
+    identifier = "review"
+    url = "/review/"
     weight = 20
 
   [[menu.main]]
@@ -45,9 +45,9 @@ url = "https://github.com/KMINGON"
     weight = 30
 
   [[menu.main]]
-    name = "Review"
-    identifier = "review"
-    url = "/review/"
+    name = "Note"
+    identifier = "note"
+    url = "/note/"
     weight = 40
     
   # [[menu.main]]
