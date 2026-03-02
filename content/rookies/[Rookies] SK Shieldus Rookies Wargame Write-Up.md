@@ -1,7 +1,7 @@
 +++
 date = '2026-01-18T16:08:33+09:00'
 draft = false
-title = '[Rookies] SK Shieldus Rookies Wargame Write-Up'
+title = '[Rookies] Rookies Wargame Write-Up'
 summary = "보안 교육 과정 중 진행된 Wargame에서 개인적으로 기억에 남거나 흥미로웠던 문제들을 중심으로 풀이 과정 리뷰"
 toc = true
 tags = ["Quine SQL Injection", "SQL Injection", "UNION SQL Injection", "md5 Raw Hash", "Basic Auth", "PHP Session", "LFI"]
@@ -13,7 +13,7 @@ tags = ["Quine SQL Injection", "SQL Injection", "UNION SQL Injection", "md5 Raw 
 
 이 글은 SK Shieldus Rookies 생성형AI 활용 사이버보안 전문가 양성과정 28기 교육과정 중 진행했던 Wargame 에 대한 후기이다.
 
-본 Wargame은 교육 목적의 비공식 CTF였지만, 전체 문제를 해결하며 풀이 과정을 정리할 수 있었다. 풀이 결과를 기준으로 교육생 간 순위가 집계되었으며, 최종적으로 1위를 기록했다.
+본 Wargame은 보안 컨설팅 과목 진행 중 잠시 진행했던 교육 목적의 비공식 CTF였지만, 전체 문제를 해결하며 풀이 과정을 정리할 수 있었다. 풀이 결과를 기준으로 교육생 간 순위가 집계되었으며, 최종적으로 1위를 기록했다.
 
 일부 문제는 동기 교육생과의 논의를 통해 해결했으며, 협업을 통한 문제 접근 역시 의미 있는 학습 요소였다고 생각한다.
 
