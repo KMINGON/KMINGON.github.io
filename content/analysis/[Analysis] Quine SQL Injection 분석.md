@@ -2,7 +2,7 @@
 date = '2026-01-17T19:06:29+09:00'
 draft = false
 title = '[Analysis] Quine SQL Injection 분석'
-summary = "Quine SQL Injection의 페이로드를 분석하고, 해당 기법이 왜 그리고 어떻게 동작하는지 이해해 보았다."
+summary = "Quine SQL Injection의 페이로드를 분석하고, 해당 기법이 왜 그리고 어떻게 동작하는지 분석"
 toc = true
 tags = ["Quine SQL Injection", "SQL Injection", "Quine's Pardox", "UNION SQL Injection"]
 +++

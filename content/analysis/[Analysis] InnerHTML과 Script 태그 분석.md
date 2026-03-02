@@ -2,7 +2,7 @@
 date = '2025-10-16T01:39:26+09:00'
 draft = false
 title = '[Analysis] InnerHTML과 Script 태그 분석'
-summary = "`<script>` 태그의 실행 과정과 브라우저의 스크립트 처리 메커니즘을 분석해보았다."
+summary = "`<script>` 태그의 실행 과정과 브라우저의 스크립트 처리 메커니즘을 분석"
 toc = true
 tags = ["Web", "DOM-XSS", "CSP", "HTML"]
 +++
@@ -91,7 +91,7 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 
 ## 명세를 통한 검증
 
-위 두 실험 결과를 비교하면, **비어 있던 `<script>` 요소의 내용이 InnerHTML로 갱신**될 때만 실행이 발생한다는 점을 추측할 수 있다.  
+위 두 실험 결과를 비교하면, 비어 있던 `<script>` 요소의 내용이 InnerHTML로 갱신될 때만 실행이 발생한다는 점을 추측할 수 있다.  
 이 현상은 HTML 명세의 스크립트 실행 준비 단계(prepare a script) 에 정의되어 있다.
 
 ### Script 실행 준비 과정
@@ -101,8 +101,8 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 
 명세에 따르면 스크립트 실행에는 다음 두 조건이 중요하다.
 
-1. **parser가 삽입한 script**여야 한다.
-2. **아직 실행되지 않은 script**여야 한다.
+1. parser가 삽입한 script여야 한다.
+2. 아직 실행되지 않은 script여야 한다.
 
 이 과정에서 parser-inserted, was-parser-inserted, already started 등의 상태 플래그가 사용된다.
 
@@ -110,20 +110,20 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 
 HTML 파서에 의해 삽입된 `<script>` 요소는 `parser document` 상태가 `non-null`로 설정되며,
 이 경우 해당 스크립트를 “parser-inserted”라고 부른다.  
-즉, **HTML 파서가 직접 삽입한 스크립트인지, 혹은 JS로 동적으로 생성된 스크립트**인지를 구분하는 역할이다.
+즉, HTML 파서가 직접 삽입한 스크립트인지, 혹은 JS로 동적으로 생성된 스크립트인지를 구분하는 역할이다.
 
 ### was-parser-inserted 플래그
 
 `was-parser-inserted`는 원래의 `parser-inserted` 값을 복사한 것으로,
-파서에 의해 삽입된 스크립트가 **비어있거나 실행에 실패했을 때,
-후에 수정되어 실행될 가능성**을 보존하기 위한 장치이다.  
-즉, 한 번 파서가 삽입했지만 **아직 실행되지 않은 스크립트**는
+파서에 의해 삽입된 스크립트가 비어있거나 실행에 실패했을 때,
+후에 수정되어 실행될 가능성을 보존하기 위한 장치이다.  
+즉, 한 번 파서가 삽입했지만 아직 실행되지 않은 스크립트는
 후에 내용이 바뀌면 실행될 수 있다.
 
 ### already started 플래그
 
 `already started`는 해당 `<script>`가 이미 prepare 또는 execute 단계에 진입했음을 표시한다.
-즉, 한 번 실행된 스크립트는 이 플래그가 설정되어 **재실행되지 않는다.**
+즉, 한 번 실행된 스크립트는 이 플래그가 설정되어 재실행되지 않는다.
 
 ### Children changed steps
 
@@ -151,9 +151,9 @@ HTML 파서에 의해 삽입된 `<script>` 요소는 `parser document` 상태가
 ```
 
 즉,
-`outer-script`는 **parser-inserted 상태이지만 비어 있어 실행되지 않은 스크립트**이다.
+`outer-script`는 parser-inserted 상태이지만 비어 있어 실행되지 않은 스크립트이다.
 따라서 `already started`가 설정되지 않았고,
-내용이 바뀌면 **Children changed steps** 알고리즘에 따라 **실행 대기 상태**로 남는다.
+내용이 바뀌면 Children changed steps 알고리즘에 따라 실행 대기 상태로 남는다.
 
 두 번째 스크립트가 `outer-script`의 내용을 변경하면
 그 즉시 `outer-script`가 실행되고,
@@ -211,25 +211,25 @@ HTML 파서에 의해 삽입된 `<script>` 요소는 `parser document` 상태가
 `id=name` 스크립트는 parser에 의해 삽입되었지만 내용이 비어 있어 실행되지 않은 상태이며,
 `already started`가 설정되지 않았다.  
 따라서 첫 번째 스크립트가 내용을 변경하면
-**Children changed steps**에 따라 실행이 트리거된다.
+Children changed steps에 따라 실행이 트리거된다.
 
 ---
 
 ## 남은 의문 — strict-dynamic 신뢰 전파
 
-여기서 여전히 남는 문제는 **CSP의 strict-dynamic 규칙**이다.
+여기서 여전히 남는 문제는 CSP의 strict-dynamic 규칙이다.
 `name` 스크립트는 `nonce`가 없지만 CSP를 우회해 실행된다.
 
 `strict-dynamic` 명세에 따르면,
-“신뢰된 스크립트가 **동적으로 생성하거나 로드한 스크립트**”에 한해 신뢰가 전파된다.
+“신뢰된 스크립트가 동적으로 생성하거나 로드한 스크립트”에 한해 신뢰가 전파된다.
 그러나 `InnerHTML`로 변경된 기존 `<script>`는
 “동적으로 생성된 스크립트”로 보기 애매하다.
 
 관련 명세에서는 이에 대한 명확한 정의를 찾기 어렵다.
-따라서 나는 다음과 같이 **가설적 결론**을 내렸다.
+따라서 나는 다음과 같은 결론을 내렸다.
 
 `nonce`를 가진 신뢰된 스크립트가 `InnerHTML`을 통해
-기존 `<script>`의 **Children changed steps**을 트리거했고,
+기존 `<script>`의 Children changed steps을 트리거했고,
 이 과정에서 브라우저는 실행 컨텍스트를 신뢰된 스크립트의 맥락으로 처리했을 가능성이 높다.
 
 ---
