@@ -50,11 +50,11 @@ url = "https://github.com/KMINGON"
     url = "/note/"
     weight = 40
     
-  # [[menu.main]]
-  #   name = "Rookies"
-  #   identifier = "rookies"
-  #   url = "/rookies/"
-  #   weight = 50
+  [[menu.main]]
+    name = "Rookies"
+    identifier = "rookies"
+    url = "/rookies/"
+    weight = 50
 
 [taxonomies]
   category = "categories"
