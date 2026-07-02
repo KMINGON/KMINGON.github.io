@@ -1,0 +1,8 @@
+/* 인라인 코드 강조 (코드 블록 pre/.chroma 는 제외) */
+.post__content :not(pre) > code {
+  background-color: rgba(135, 131, 120, 0.18);
+  color: #d6336c;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}

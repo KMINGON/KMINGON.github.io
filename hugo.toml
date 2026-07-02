@@ -18,6 +18,7 @@ profilePicture = "images/4.png"
 mainSections = ["review", "analysis", "note"]  # 홈에 3개 섹션 글 노출
 readMore = true # 가볍게 요약 정렬
 gtagId = "G-GGY59YGHKJ"
+customCss = ["css/custom.css"]  # 인라인 코드 강조 등 커스텀 스타일
 
 [[params.socialIcons]]
 icon = "fab fa-github"
