@@ -6,3 +6,11 @@
   border-radius: 4px;
   font-size: 0.9em;
 }
+
+/* 데스크톱에서 본문 오른쪽 여백 (24~64px 취향껏 조정) */
+@media screen and (min-width: 961px) {
+  .wrapper__main {
+    box-sizing: border-box;   /* padding 이 66% 폭 안쪽에 포함되도록 → 트랙 넘침 방지 */
+    padding-right: 40px;
+  }
+}
