@@ -16,6 +16,14 @@ Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었�
 
 ## 실행 방법
 
+### 최초 1회 셋업 (새 로컬)
+새로 clone한 환경에서는 CI와 동일한 버전의 Hugo Extended / Dart Sass / Go 가 필요합니다.
+아래 스크립트가 `~/.local` 에 설치하고 PATH까지 등록합니다 (sudo 불필요, WSL2 x86_64 기준).
+```bash
+bash scripts/setup.sh
+source ~/.bashrc   # 또는 새 터미널
+```
+
 ### 로컬 개발 서버
 ```bash
 # 의존성 초기화
