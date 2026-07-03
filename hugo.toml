@@ -51,7 +51,13 @@ url = "https://github.com/KMINGON"
     identifier = "note"
     url = "/note/"
     weight = 40
-    
+
+  [[menu.main]]
+    name = "WRITE-UP"
+    identifier = "write-up"
+    url = "/write-up/"
+    weight = 50
+
   # [[menu.main]]
   #   name = "Rookies"
   #   identifier = "rookies"

@@ -1,5 +1,5 @@
 +++
-date = '2026-06-27T15:23:15+09:00'
+date = '2026-05-27T15:23:15+09:00'
 draft = false
 title = '[Note] PortSwigger - SQL Injection 토픽 정리 및 실습'
 summary = "SQL Injection의 정의와 진단 방법, 서비스 가용성을 고려한 안전한 진단 전략, 그리고 취약점이 발생하는 쿼리 지점별 유형을 정리한 자료"
@@ -141,7 +141,7 @@ PortSwigger Web Security Academy의 SQL Injection 랩을 유형별로 풀어 정
 | Blind - Time / OAST           | time delays / out-of-band interaction            | PRACTITIONER |
 | 필터 우회                     | filter bypass via XML encoding                   | PRACTITIONER |
 
-전체 풀이는 [SQL Injection Write-up 아카이브](#)에서 확인할 수 있다.
+전체 풀이는 [SQL Injection Write-up 아카이브](/write-up/)에서 확인할 수 있다.
 
 ---
 
