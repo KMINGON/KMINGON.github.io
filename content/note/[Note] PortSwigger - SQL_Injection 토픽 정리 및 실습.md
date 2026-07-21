@@ -155,7 +155,7 @@ PortSwigger Web Security Academy의 SQL Injection 랩을 유형별로 풀어 정
 | Blind - Time / OAST           | time delays / out-of-band interaction            | PRACTITIONER |
 | 필터 우회                     | filter bypass via XML encoding                   | PRACTITIONER |
 
-전체 풀이는 [SQL Injection Write-up 아카이브](/write-up/)에서 확인할 수 있다.
+전체 풀이는 [Write-up 아카이브](/write-up/)에서 확인할 수 있다.
 
 ---
 
