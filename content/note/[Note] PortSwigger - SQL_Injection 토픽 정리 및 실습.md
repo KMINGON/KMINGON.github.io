@@ -127,6 +127,20 @@ PortSwigger의 [SQL Injection Cheat Sheet](https://portswigger.net/web-security/
 
 ---
 
+## SQL Injection 대응 방안
+
+앞서 다룬 "안전한 진단을 위한 전략"이 진단자가 서비스 가용성을 해치지 않기 위한 관점이었다면, 이 절은 취약점 자체를 제거하기 위한 개발·방어 관점의 대응이다.
+
+- **Parameterized Query(Prepared Statement) 사용**: 가장 근본적이고 효과적인 대응이다. 쿼리의 구조를 먼저 고정하고 사용자 입력은 파라미터(데이터)로만 전달하므로, 입력이 아무리 조작되어도 쿼리 구문으로 해석되지 않는다. 문자열 연결로 쿼리를 조립하는 방식을 지양하는 것이 핵심이다.
+- **식별자는 화이트리스트로 검증**: 테이블·컬럼 이름이나 `ORDER BY` 정렬 방향처럼 `?` 바인딩이 불가능한 위치는 Parameterized Query로 보호되지 않는다. 이런 값은 반드시 미리 정의된 허용 목록(Whitelist)과 비교해, 목록에 없는 값은 거부해야 한다.
+- **최소 권한 원칙(Least Privilege)**: 애플리케이션이 사용하는 DB 계정에 필요한 최소한의 권한만 부여한다. 그러면 Injection이 발생하더라도 조회·변조 가능한 범위가 제한되어 피해를 줄일 수 있다.
+- **입력값 검증(심층 방어)**: 예상되는 형식(자료형·길이·문자 집합)을 기준으로 입력을 검증한다. 다만 필터링이나 이스케이프만으로는 우회 가능성이 있으므로, 단독 방어책이 아니라 Parameterized Query를 보완하는 심층 방어(Defense in Depth)로 취급해야 한다.
+- **상세 오류 메시지 노출 제한**: DB 오류를 사용자에게 그대로 반환하지 않고 일반화된 오류로 처리한다. 오류 내용이 노출되면 DBMS 종류 추정이나 Error-Based Blind SQL Injection의 신호로 악용될 수 있다.
+
+핵심은 **Parameterized Query로 쿼리 구조와 데이터를 분리**하는 것이며, 나머지 항목은 이를 보완하는 심층 방어에 해당한다.
+
+---
+
 ## 실습
 
 PortSwigger Web Security Academy의 SQL Injection 랩을 유형별로 풀어 정리했다.  
