@@ -4,7 +4,7 @@ draft = false
 title = '[Analysis] 브라우저의 인코딩 해석 규칙 분석'
 summary = "HTML Parser, URL Parser 의 동작 방식을 표준 문서를 통해 확인하고, 인코딩·이스케이프 방식을 통한 필터링 우회 방법을 분석"
 toc = true
-tags = ["Web", "XSS", "HTML Parser", "URL Parser"]
+tags = ["XSS", "Filter Bypass", "HTML Parser", "URL Parser"]
 +++
 
 ---

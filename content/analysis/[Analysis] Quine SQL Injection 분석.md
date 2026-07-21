@@ -4,7 +4,7 @@ draft = false
 title = '[Analysis] Quine SQL Injection 분석'
 summary = "Quine SQL Injection의 페이로드를 분석하고, 해당 기법이 왜 그리고 어떻게 동작하는지 분석"
 toc = true
-tags = ["Quine SQL Injection", "SQL Injection", "Quine's Pardox", "UNION SQL Injection"]
+tags = ["SQL Injection", "UNION-Based", "Quine", "Quine's Paradox"]
 +++
 
 ---

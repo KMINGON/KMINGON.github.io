@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - Visible error-based SQL injection'
 summary = "DB 오류 메시지가 응답에 그대로 노출되는 환경에서, 문자열을 정수로 캐스팅해 원하는 데이터를 오류 메시지로 끌어내고 길이 제한을 우회해 비밀번호를 획득하는 풀이 (PostgreSQL)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "Error-Based"]
+tags = ["SQL Injection", "Error-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

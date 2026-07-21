@@ -4,7 +4,7 @@ draft = false
 title = '[Review] Samsung Galaxy S24 - (Pwn2Own Ireland 2024) White Paper 분석'
 summary = "Pwn2Own Ireland 2024에서 공개되고, OffensiveCon 2025의 'Chainspotting 2' 발표에서 다뤄진 삼성 갤럭시 S24의 1-Click 익스플로잇 체인을 분석"
 toc = true
-tags = ["Samsung", "Galaxy S24", "Pwn2Own", "WebView", "Intent Redirection", "Deeplink", "Path Traversal"]
+tags = ["Samsung", "Pwn2Own", "WebView", "Deeplink", "Path Traversal"]
 +++
 
 ---

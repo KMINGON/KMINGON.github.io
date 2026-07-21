@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - SQL injection UNION attack, determining the number of columns returned by the query'
 summary = "ORDER BY와 UNION SELECT NULL을 이용해 원본 쿼리가 반환하는 컬럼 수를 파악하는 PortSwigger 랩 풀이"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "UNION"]
+tags = ["SQL Injection", "UNION-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

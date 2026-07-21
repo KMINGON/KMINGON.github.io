@@ -4,7 +4,7 @@ draft = false
 title = '[Analysis] CSP Nonce 우회 방법 분석'
 summary = "브라우저의 보안 정책에 대해 알아보고, 그 중 CSP의 Nonce를 우회하기 위한 다양한 방법을 시도"
 toc = true
-tags = ["Web", "XSS", "CSP", "Nonce"]
+tags = ["XSS", "CSP", "Nonce", "Filter Bypass"]
 +++
 
 ---

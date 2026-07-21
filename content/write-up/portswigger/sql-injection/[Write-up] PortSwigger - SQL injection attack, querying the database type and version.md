@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - SQL injection attack, querying the database type and version'
 summary = "UNION 기반 SQL Injection으로 컬럼 수와 데이터 타입을 파악한 뒤 데이터베이스 버전 문자열을 조회하는 PortSwigger 랩 풀이 (Oracle · MySQL · Microsoft)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "UNION"]
+tags = ["SQL Injection", "UNION-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

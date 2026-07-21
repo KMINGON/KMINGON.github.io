@@ -4,7 +4,7 @@ draft = false
 title = '[Note] PortSwigger - SQL Injection 토픽 정리 및 실습'
 summary = "SQL Injection의 정의와 진단 방법, 서비스 가용성을 고려한 안전한 진단 전략, 그리고 취약점이 발생하는 쿼리 지점별 유형을 정리한 자료"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "Web Hacking", "Database"]
+tags = ["SQL Injection", "PortSwigger", "Database"]
 +++
 
 ---

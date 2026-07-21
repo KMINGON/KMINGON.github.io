@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - SQL injection UNION attack, retrieving data from other tables'
 summary = "앞서 파악한 컬럼 수와 문자열 컬럼을 이용해 users 테이블의 사용자명·비밀번호를 조회하고 administrator로 로그인하는 PortSwigger 랩 풀이"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "UNION"]
+tags = ["SQL Injection", "UNION-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

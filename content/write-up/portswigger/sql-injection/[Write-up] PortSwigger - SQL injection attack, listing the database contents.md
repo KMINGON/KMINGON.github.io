@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - SQL injection attack, listing the database contents'
 summary = "메타데이터 뷰(information_schema, all_tables)를 조회해 사용자 계정 테이블과 컬럼을 열거하고, administrator의 비밀번호를 탈취해 로그인하는 PortSwigger 랩 풀이 (non-Oracle · Oracle)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "UNION"]
+tags = ["SQL Injection", "UNION-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

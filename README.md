@@ -1,7 +1,27 @@
-# Personal Blog with Hugo + Anatole
+# RTCat's Lab — 보안 연구 노트
 
-보안 공부 기록 및 개인 아카이브를 위한 블로그입니다.  
-Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었습니다.
+보안 학습 과정에서 얻은 인사이트를 기록하는 아카이브입니다.
+Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었습니다. → https://KMINGON.github.io/
+
+---
+
+## 콘텐츠 구성
+
+| 섹션 | 내용 |
+|---|---|
+| **Review** | 실제 CVE·공개 리포트·컨퍼런스 발표를 분석하며 익스플로잇 체인과 근본 원인을 정리 |
+| **Analysis** | 특정 기법·브라우저 동작·표준 스펙을 파고들어 "왜 그렇게 동작하는가"를 규명한 심층 분석 |
+| **Note** | 취약점 토픽을 체계적으로 정리한 학습 노트와 참고 리소스 |
+| **Write-up** | PortSwigger·Dreamhack 등 취약점 실습·CTF 풀이를 플랫폼·주제별로 정리한 아카이브 |
+
+- **태그**로도 횡단 탐색이 가능합니다(예: `SQL Injection` 태그로 Review·Analysis·Note·Write-up을 한 번에).
+- 태그 표기 규칙: `[대분류, 세부기법, 플랫폼/출처, 난이도, 기술스택]` 순서, 통제 어휘 사용.
+
+### 대표 글
+- KakaoTalk 1-click account hijacking 분석 (CVE-2023-51219)
+- Samsung Galaxy S24 - Pwn2Own Ireland 2024 White Paper 분석
+- TikTok 1-click account hijacking 분석 (CVE-2022-28799)
+- OAuth/OIDC 프로토콜 취약점 분석
 
 ---
 
@@ -46,23 +66,25 @@ GitHub Actions 워크플로우가 main 브랜치 푸시 시 자동으로 Pages�
 ### 포스팅 방법
 
 1. 섹션 선택
-
-- content/note/
-- content/project/
-- content/review/
+- `content/review/` · `content/analysis/` · `content/note/`
+- `content/write-up/<플랫폼>/<주제>/` (예: `content/write-up/portswigger/sql-injection/`)
 
 2. 새 글 생성
 ```bash
 hugo new note/my-first-note.md
 ```
 
-3. Front Matter 수정
-```yaml
----
-title: "My First Note"
-date: 2025-08-29
-draft: false   # 배포 시 반드시 false
----
+3. Front Matter 수정 (TOML)
+```toml
++++
+title = "My First Note"
+date = 2025-08-29
+draft = false   # 배포 시 반드시 false
+summary = ""
+toc = true
+# tags 순서: [대분류, 세부기법, 플랫폼/출처, 난이도, 기술스택]
+tags = []
++++
 ```
 
 4. 커밋 및 푸시

@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - SQL injection UNION attack, finding a column containing text'
 summary = "컬럼 수를 파악한 뒤 각 컬럼에 문자열을 삽입해, 문자열 데이터와 호환되는 컬럼을 찾아내는 PortSwigger 랩 풀이"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "UNION"]
+tags = ["SQL Injection", "UNION-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

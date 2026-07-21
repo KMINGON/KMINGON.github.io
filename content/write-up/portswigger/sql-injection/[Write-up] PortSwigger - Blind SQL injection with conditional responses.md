@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - Blind SQL injection with conditional responses'
 summary = "쿼리 결과나 오류가 노출되지 않는 환경에서, 조건의 참·거짓에 따라 달라지는 응답(Welcome back 메시지)을 신호로 삼아 비밀번호를 비트 단위로 추출하는 Boolean-Based Blind SQL Injection 풀이"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "Blind SQLi"]
+tags = ["SQL Injection", "Blind SQLi", "Boolean-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

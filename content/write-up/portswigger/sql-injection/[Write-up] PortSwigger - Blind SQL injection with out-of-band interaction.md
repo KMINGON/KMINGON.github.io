@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - Blind SQL injection with out-of-band interaction'
 summary = "응답 내용·오류·시간 어떤 인밴드 신호도 없는 환경에서, DB가 외부로 DNS 조회를 수행하도록 유도해 취약점을 확인하는 OAST(Out-of-band) 기법 풀이 (Oracle)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "OAST"]
+tags = ["SQL Injection", "Blind SQLi", "OAST", "PortSwigger", "Practitioner"]
 +++
 
 ---

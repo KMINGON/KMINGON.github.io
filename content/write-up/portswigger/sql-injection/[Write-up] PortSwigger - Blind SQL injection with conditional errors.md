@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - Blind SQL injection with conditional errors'
 summary = "응답 차이가 전혀 없고 오류 발생 여부만 관측 가능한 환경에서, CASE 문으로 조건에 따라 오류를 강제 유발해 비밀번호를 비트 단위로 추출하는 Error-Based Blind SQL Injection 풀이 (Oracle)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "Blind SQLi"]
+tags = ["SQL Injection", "Blind SQLi", "Error-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - SQL injection UNION attack, retrieving multiple values in a single column'
 summary = "문자열 컬럼이 하나뿐인 상황에서 문자열 연결 연산자로 username과 password를 하나의 컬럼에 합쳐 조회하는 PortSwigger 랩 풀이"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "UNION"]
+tags = ["SQL Injection", "UNION-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

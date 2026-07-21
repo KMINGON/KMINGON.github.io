@@ -4,7 +4,7 @@ draft = false
 title = '[Review] OAuth/OIDC 프로토콜 취약점 분석'
 summary = "OAuth/OIDC 프로토콜의 Implicit Grant Type과 Authorization Grant Type에서 발생할 수 있는 취약점 리뷰"
 toc = true
-tags = ["OAuth", "OIDC", "AccessToken", "state", "PKCE", "Authentication", "Authorization"]
+tags = ["OAuth", "OIDC", "PKCE", "State Parameter", "Authentication", "Authorization"]
 +++
 
 ---

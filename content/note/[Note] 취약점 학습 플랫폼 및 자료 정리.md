@@ -4,7 +4,7 @@ draft = false
 title = '[Note] 취약점 학습을 위한 보안 리소스 정리'
 summary = "정보보안 취약점 학습에 필요한 주요 플랫폼·VM·레퍼런스를 한눈에 정리한 자료"
 toc = true
-tags = ["Security Guide", "Security Resources"]
+tags = ["Security Resources"]
 +++
 
 ---

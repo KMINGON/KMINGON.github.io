@@ -4,7 +4,7 @@ draft = false
 title = '[Analysis] InnerHTML과 Script 태그 분석'
 summary = "`<script>` 태그의 실행 과정과 브라우저의 스크립트 처리 메커니즘을 분석"
 toc = true
-tags = ["Web", "DOM-XSS", "CSP", "HTML"]
+tags = ["XSS", "DOM-Based", "CSP", "HTML"]
 +++
 
 ## 들어가며

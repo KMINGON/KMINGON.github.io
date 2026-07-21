@@ -4,7 +4,7 @@ draft = false
 title = '[Note] PortSwigger - Cross-Site Scripting(XSS) 토픽 정리'
 summary = "XSS의 정의와 동작 원리, Reflected·Stored·DOM 기반 세 가지 유형, 공격이 초래하는 영향과 진단 방법, 그리고 CSP를 포함한 대응 방안을 정리한 자료"
 toc = true
-tags = ["XSS", "Cross-Site Scripting", "PortSwigger", "Web Hacking"]
+tags = ["XSS", "PortSwigger", "CSP"]
 +++
 
 ---

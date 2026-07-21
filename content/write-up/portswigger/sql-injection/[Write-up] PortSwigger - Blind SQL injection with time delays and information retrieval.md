@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - Blind SQL injection with time delays and information retrieval'
 summary = "조건이 참일 때만 지연을 거는 CASE 구문으로, 응답 시간의 변화를 신호로 삼아 비밀번호를 비트 단위로 추출하는 Time-Based Blind SQL Injection 풀이 (PostgreSQL)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "Blind SQLi"]
+tags = ["SQL Injection", "Blind SQLi", "Time-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---

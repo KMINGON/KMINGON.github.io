@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - SQL injection with filter bypass via XML encoding'
 summary = "XML 입력을 파싱하기 전에 SQL 키워드를 차단하는 WAF를, 문자 엔티티 인코딩(파싱 불일치)으로 우회해 UNION 공격으로 administrator 계정 정보를 탈취하는 풀이"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "WAF Bypass"]
+tags = ["SQL Injection", "UNION-Based", "WAF Bypass", "PortSwigger", "Practitioner"]
 +++
 
 ---

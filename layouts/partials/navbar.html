@@ -20,6 +20,8 @@
         {{ $count := 0 }}
         {{ if eq $menuItem.Identifier "home" }}
           {{ $count = len (where $.Site.RegularPages "Type" "in" $.Site.Params.mainSections) }}
+        {{ else if eq $menuItem.Identifier "tags" }}
+          {{ $count = len $.Site.Taxonomies.tags }}
         {{ else }}
           {{ $count = len (where $.Site.RegularPages "Section" $menuItem.Identifier) }}
         {{ end }}

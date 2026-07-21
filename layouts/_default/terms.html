@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <div
+    class="archive {{ with .Site.Params.doNotLoadAnimations }}
+      .
+    {{ else }}
+      animated fadeInDown
+    {{ end }}"
+  >
+    {{ with .Content }}
+      <div class="post__content">{{ . }}</div>
+    {{ end }}
+
+    <div class="post__content">
+      {{ range .Data.Terms.ByCount }}
+        <a class="tag" href="{{ .Page.RelPermalink }}" title="{{ .Page.LinkTitle }} ({{ .Count }})"
+          >{{ .Page.LinkTitle }} ({{ .Count }})</a
+        >
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

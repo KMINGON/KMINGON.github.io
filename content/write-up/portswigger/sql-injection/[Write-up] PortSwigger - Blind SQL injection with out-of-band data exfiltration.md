@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - Blind SQL injection with out-of-band data exfiltration'
 summary = "OAST 채널을 확장해, 조회한 비밀번호를 DNS 요청의 서브도메인에 실어 Burp Collaborator로 직접 빼내는 Out-of-band 데이터 유출 풀이 (Oracle)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "OAST"]
+tags = ["SQL Injection", "Blind SQLi", "OAST", "PortSwigger", "Practitioner"]
 +++
 
 ---

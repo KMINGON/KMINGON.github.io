@@ -1,0 +1,62 @@
+{{ define "main" }}
+  <div
+    class="archive {{ with .Site.Params.doNotLoadAnimations }}
+      .
+    {{ else }}
+      animated fadeInDown
+    {{ end }}"
+  >
+    {{ with .Content }}
+      <div class="post__content">{{ . }}</div>
+    {{ end }}
+
+    {{ if .Sections }}
+      {{/* 개요 모드: 플랫폼(헤딩) → 주제(제목 + 글 개수) */}}
+      {{ range .Sections.ByTitle }}
+        {{ if .Sections }}
+          {{/* 플랫폼: 헤딩 + 하위 주제 목록 */}}
+          <div class="archive__heading">{{ .LinkTitle }}</div>
+          {{ range .Sections.ByTitle }}
+            <ul class="archive__list">
+              <li class="archive__list-item">
+                <a class="archive__list-title" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}">{{ .LinkTitle }}</a>
+                <div class="archive__list-date">{{ len .RegularPagesRecursive }}</div>
+              </li>
+            </ul>
+          {{ end }}
+        {{ else }}
+          {{/* 주제가 최상위에 바로 있는 경우 */}}
+          <ul class="archive__list">
+            <li class="archive__list-item">
+              <a class="archive__list-title" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}">{{ .LinkTitle }}</a>
+              <div class="archive__list-date">{{ len .RegularPagesRecursive }}</div>
+            </li>
+          </ul>
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{/* 리프 모드: 해당 주제의 글을 연도별로 (테마 기본 아카이브와 동일) */}}
+      {{ range .Pages.GroupByDate "2006" }}
+        <div class="archive__heading">{{ .Key }}</div>
+        {{ range .Pages }}
+          <ul class="archive__list">
+            <li class="archive__list-item">
+              {{ if (eq .Site.Params.disableArchiveTitleStyling true) }}
+                <a class="archive__list-title" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Title }}</a>
+              {{ else }}
+                <a class="archive__list-title" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ upper .Title }}</a>
+              {{ end }}
+              <div class="archive__list-date">
+                {{ if .Site.Params.localizedDates }}
+                  {{ time.Format "Jan 2" .Date }}
+                {{ else }}
+                  {{ .Date.Format "Jan 2" }}
+                {{ end }}
+              </div>
+            </li>
+          </ul>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

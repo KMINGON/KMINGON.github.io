@@ -4,7 +4,7 @@ draft = false
 title = '[Write-up] PortSwigger - Blind SQL injection with time delays'
 summary = "응답 내용 차이도 오류도 없는 환경에서, 지연 함수(pg_sleep)를 삽입해 응답 시간으로 취약점을 확인하는 Time-Based Blind SQL Injection 풀이 (PostgreSQL)"
 toc = true
-tags = ["SQL Injection", "PortSwigger", "PRACTITIONER", "Blind SQLi"]
+tags = ["SQL Injection", "Blind SQLi", "Time-Based", "PortSwigger", "Practitioner"]
 +++
 
 ---
