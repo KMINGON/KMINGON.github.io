@@ -1,7 +1,7 @@
 +++
 date = '2026-06-10T14:00:00+09:00'
 draft = false
-title = '[Note] PortSwigger - Cross-Site Scripting(XSS) 토픽 정리'
+title = '[Note] PortSwigger - Cross-Site Scripting(XSS) 토픽 정리 및 실습'
 summary = "XSS의 정의와 동작 원리, Reflected·Stored·DOM 기반 세 가지 유형, 공격이 초래하는 영향과 진단 방법, 그리고 CSP를 포함한 대응 방안을 정리한 자료"
 toc = true
 tags = ["XSS", "PortSwigger", "CSP"]
@@ -182,8 +182,20 @@ XSS 방어는 단순한 경우도 있지만, 애플리케이션의 복잡도와 
 
 ## 실습
 
-PortSwigger Web Security Academy는 XSS를 Reflected·Stored·DOM 기반으로 나눠 다양한 Lab을 제공하며, 컨텍스트별 페이로드 구성과 CSP 우회까지 폭넓게 다룬다.  
-유형별 상세 풀이는 Write-up으로 별도 정리했으며, 전체 풀이는 [XSS Write-up 아카이브](/write-up/)에서 확인할 수 있다.
+PortSwigger Web Security Academy의 XSS 랩을 유형별로 풀어 정리했다.
+각 랩의 상세 풀이는 Write-up으로 별도 정리했으며, 아래는 유형별 개요다.
+
+| 유형                         | 대표 Lab                                                    | 난이도                    |
+| ---------------------------- | ----------------------------------------------------------- | ------------------------- |
+| 기본 Reflected·Stored XSS    | HTML context with nothing encoded                           | APPRENTICE                |
+| DOM-Based XSS                | document.write / innerHTML / jQuery sink                     | APPRENTICE · PRACTITIONER |
+| HTML·JavaScript 컨텍스트     | attribute / JavaScript string / template literal            | APPRENTICE · PRACTITIONER |
+| 태그·속성 필터 우회          | most tags blocked / SVG markup allowed                      | PRACTITIONER              |
+| 공격 영향 확장               | stealing cookies / capturing passwords / bypassing CSRF     | PRACTITIONER              |
+| AngularJS 샌드박스 탈출      | sandbox escape without strings / sandbox escape with CSP    | EXPERT                    |
+| CSP·Dangling Markup 우회     | strict CSP with dangling markup / CSP policy injection      | PRACTITIONER · EXPERT     |
+
+전체 풀이는 [XSS Write-up 아카이브](/write-up/portswigger/xss/)에서 확인할 수 있다.
 
 ---
 
