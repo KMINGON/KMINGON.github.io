@@ -1,5 +1,5 @@
 +++
-date = '2026-07-30T18:00:00+09:00'
+date = '2026-06-18T18:00:00+09:00'
 draft = false
 title = '[Note] PortSwigger - WebSocket 토픽 정리 및 실습'
 summary = "WebSocket의 동작 방식과 핸드셰이크 구조, 메시지·핸드셰이크·CSWSH로 나뉘는 취약점 유형, Burp를 이용한 트래픽 조작 진단 방법과 대응 방안을 정리한 자료"

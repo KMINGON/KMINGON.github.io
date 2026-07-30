@@ -1,5 +1,5 @@
 +++
-date = '2026-07-30T12:00:00+09:00'
+date = '2026-06-12T12:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Cross-site WebSocket hijacking'
 summary = "CSRF 토큰 없이 쿠키만으로 인증되는 WebSocket 핸드셰이크를 교차 사이트에서 열어, 피해자의 챗 기록과 자격 증명을 유출하는 CSWSH 풀이"
