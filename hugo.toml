@@ -1,6 +1,8 @@
-baseURL = 'https://KMINGON.github.io/'
-languageCode = 'ko-kr'
+baseURL = 'https://kmingon.github.io/'
+languageCode = 'ko-KR'
+defaultContentLanguage = 'ko'   # <html lang="ko"> — 미설정 시 en으로 렌더링됨
 title = '보안 연구 노트'
+enableRobotsTXT = true          # layouts/robots.txt 로 Sitemap 지시자 노출
 
 [module]
   # uncomment line below for temporary local development of module
@@ -15,7 +17,7 @@ title = "RTCat's Lab"   # 사이드바 타이틀(사이트 title과 별개)
 author = "RTCat"
 description = "보안 학습 과정에서 얻은 인사이트 저장소"
 profilePicture = "images/4.png"
-mainSections = ["review", "analysis", "note", "playbook"]  # 홈에 주요 섹션 글 노출
+mainSections = ["review", "analysis", "note", "playbook", "write-up"]  # 홈에 주요 섹션 글 노출
 readMore = true # 가볍게 요약 정렬
 gtagId = "G-GGY59YGHKJ"
 customCss = ["css/custom.css"]  # 인라인 코드 강조 등 커스텀 스타일
@@ -77,5 +79,4 @@ url = "https://github.com/KMINGON"
   #   weight = 50
 
 [taxonomies]
-  category = "categories"
   tag = "tags"
