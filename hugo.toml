@@ -72,11 +72,5 @@ url = "https://github.com/KMINGON"
     url = "/tags/"
     weight = 70
 
-  # [[menu.main]]
-  #   name = "Rookies"
-  #   identifier = "rookies"
-  #   url = "/rookies/"
-  #   weight = 50
-
 [taxonomies]
   tag = "tags"
