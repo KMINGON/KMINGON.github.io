@@ -1,10 +1,11 @@
 +++
 date = '2026-06-21T11:00:00+09:00'
 draft = false
-title = '[Playbook] WebSocket 올인원 진단 Cheat Sheet'
-summary = "WebSocket 진단 중 조작 지점(메시지·핸드셰이크·연결)과 사용할 수 있는 신호를 빠르게 판별하고 다음 테스트를 선택하기 위한 올인원 Playbook"
+title = '[Playbook] WebSocket 진단 Cheat Sheet'
+summary = "WebSocket 진단 중 조작 지점(메시지·핸드셰이크·연결)과 사용할 수 있는 신호를 빠르게 판별하고 다음 테스트를 선택하기 위한 Playbook"
 toc = true
 tags = ["WebSocket", "Playbook", "Cheat Sheet", "Testing Workflow"]
+aliases = ['/playbook/playbook-websocket-올인원-진단-cheat-sheet/']
 +++
 
 ---
@@ -70,8 +71,8 @@ JSON 메시지는 `message`, `user`, `room`처럼 필드가 여러 개인 경우
 
 | 처리 지점 | 확인할 것 | 사용할 Probe | 관련 문서 |
 | --- | --- | --- | --- |
-| 다른 사용자 화면에 출력 | 수신 측이 어떤 sink로 삽입하는가 | 태그 파싱 여부 → 이벤트 요소 | [XSS Playbook](/playbook/playbook-xss-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
-| DB 조회·검색 조건 | 구문 파괴와 복구 응답 차이 | `'`, 참·거짓 조건 쌍 | [SQL Injection Playbook](/playbook/playbook-sql-injection-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
+| 다른 사용자 화면에 출력 | 수신 측이 어떤 sink로 삽입하는가 | 태그 파싱 여부 → 이벤트 요소 | [XSS Playbook](/playbook/playbook-xss-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
+| DB 조회·검색 조건 | 구문 파괴와 복구 응답 차이 | `'`, 참·거짓 조건 쌍 | [SQL Injection Playbook](/playbook/playbook-sql-injection-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
 | XML·파일 파서 | 외부 엔티티 처리 여부 | 무해한 엔티티 선언 | 서버 측 파서 동작 확인 |
 | 서버의 외부 요청 | 응답에 반영되지 않는 처리 | 고유 OAST 도메인 | 인밴드 신호가 없을 때만 |
 | 응답이 전혀 관측되지 않음 | Blind 여부 | OAST 또는 다른 사용자 화면 | 신호를 먼저 확보 |

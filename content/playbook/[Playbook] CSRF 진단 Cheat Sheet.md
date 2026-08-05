@@ -1,10 +1,11 @@
 +++
 date = '2026-06-27T10:00:00+09:00'
 draft = false
-title = '[Playbook] CSRF 올인원 진단 Cheat Sheet'
-summary = "CSRF 진단 중 어떤 방어가 어느 조건에 걸려 있는지 빠르게 판별하고 다음 우회 시도를 선택하기 위한 올인원 Playbook"
+title = '[Playbook] CSRF 진단 Cheat Sheet'
+summary = "CSRF 진단 중 어떤 방어가 어느 조건에 걸려 있는지 빠르게 판별하고 다음 우회 시도를 선택하기 위한 Playbook"
 toc = true
 tags = ["CSRF", "SameSite", "Playbook", "Cheat Sheet", "Testing Workflow"]
+aliases = ['/playbook/playbook-csrf-올인원-진단-cheat-sheet/']
 +++
 
 ---
@@ -146,8 +147,8 @@ tags = ["CSRF", "SameSite", "Playbook", "Cheat Sheet", "Testing Workflow"]
 | 상황 | 짧은 판단 기준 | 관련 글 |
 | --- | --- | --- |
 | 토큰 검증이 완벽한데 XSS가 있음 | 같은 출처에서 토큰을 읽어 유효 요청 생성 가능 | [XSS로 CSRF 우회](/write-up/portswigger/xss/write-up-portswigger---exploiting-xss-to-bypass-csrf-defenses/) |
-| WebSocket 핸드셰이크에 쿠키만 존재 | CSRF가 CSWSH로 확장되어 응답까지 열람 가능 | [WebSocket Playbook](/playbook/playbook-websocket-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
-| 반사 지점은 있는데 실행이 막힘 | 토큰 탈취용 dangling markup으로 전환 | [XSS Playbook](/playbook/playbook-xss-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
+| WebSocket 핸드셰이크에 쿠키만 존재 | CSRF가 CSWSH로 확장되어 응답까지 열람 가능 | [WebSocket Playbook](/playbook/playbook-websocket-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
+| 반사 지점은 있는데 실행이 막힘 | 토큰 탈취용 dangling markup으로 전환 | [XSS Playbook](/playbook/playbook-xss-%EC%A7%84%EB%8B%A8-cheat-sheet/) |
 | `SameSite` 명시인데 2분 완화가 통함 | 명시 `Lax`에는 적용되지 않음. 실제 응답 헤더 재확인 | [cookie refresh](/write-up/portswigger/csrf/write-up-portswigger---samesite-lax-bypass-via-cookie-refresh/) |
 | `Content-Type`이 JSON 고정 | form-urlencoded 수용 여부 → 아니면 폼 CSRF 불가 | 커스텀 헤더 요구 여부 확인 |
 | 요청에 커스텀 헤더가 필수 | 폼으로 재현 불가. preflight가 발생해 교차 사이트 차단 | 사실상 방어로 기능 |

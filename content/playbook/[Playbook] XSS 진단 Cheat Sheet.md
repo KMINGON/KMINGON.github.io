@@ -1,10 +1,11 @@
 +++
 date = '2026-06-20T10:00:00+09:00'
 draft = false
-title = '[Playbook] XSS 올인원 진단 Cheat Sheet'
-summary = "XSS 진단 중 입력이 도달한 파서 컨텍스트와 실행 조건을 빠르게 판별하고 다음 페이로드를 선택하기 위한 올인원 Playbook"
+title = '[Playbook] XSS 진단 Cheat Sheet'
+summary = "XSS 진단 중 입력이 도달한 파서 컨텍스트와 실행 조건을 빠르게 판별하고 다음 페이로드를 선택하기 위한 Playbook"
 toc = true
 tags = ["XSS", "Playbook", "Cheat Sheet", "Testing Workflow"]
+aliases = ['/playbook/playbook-xss-올인원-진단-cheat-sheet/']
 +++
 
 ---

@@ -188,7 +188,7 @@ https://vulnerable-website.com.attacker.com/
 5. **Referer·`Origin` 검증 여부를 확인한다.** 값 변조와 헤더 제거를 모두 시도해 폴백과 비교 방식을 파악한다.
 6. **쿠키 주입 가젯을 찾는다.** 검색어나 파라미터가 `Set-Cookie`에 반영되는 지점, 서브도메인의 XSS는 토큰·SameSite 방어를 우회하는 발판이 된다.
 
-각 단계에서 판단이 갈리는 지점과 다음 시도는 [CSRF Playbook](/playbook/playbook-csrf-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%A7%84%EB%8B%A8-cheat-sheet/)에 표로 정리했다.
+각 단계에서 판단이 갈리는 지점과 다음 시도는 [CSRF Playbook](/playbook/playbook-csrf-%EC%A7%84%EB%8B%A8-cheat-sheet/)에 표로 정리했다.
 
 ---
 
