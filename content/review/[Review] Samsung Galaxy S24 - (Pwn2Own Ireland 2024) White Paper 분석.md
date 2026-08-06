@@ -22,7 +22,7 @@ tags = ["Samsung", "Pwn2Own", "WebView", "Deeplink", "Path Traversal"]
 
 특히, 복잡한 OS 레벨의 메모리 오염이나 0-Day 취약점이 아닌, 기본적인 안드로이드 컴포넌트 권한 설정과 Intent Schema의 검증 누락 등 총 5개의 버그와 1개의 정상 기능이 어떻게 하나의 거대한 익스플로잇 체인을 형성하는지 중점적으로 다룰 것이다.
 
-본격적인 PoC 분석에 앞서 모바일 보안이나 안드로이드 구조에 익숙하지 않은 독자라면 [[Review] KakaoTalk 1-Click Exploit 분석 (CVE-2023-51219)](https://kmingon.github.io/review/review-kakaotalk-1-click-exploit-%EB%B6%84%EC%84%9D-cve-2023-51219/) 글 초반부에서 공격의 전체 흐름을 명확히 이해할 수 있도록 필수 배경지식인 안드로이드 앱 보안과 웹 네트워크의 핵심 개념을 설명하고 있으니 참고하길 바란다.
+본격적인 PoC 분석에 앞서 모바일 보안이나 안드로이드 구조에 익숙하지 않은 독자라면 [[Review] KakaoTalk 1-Click Exploit 분석 (CVE-2023-51219)](/review/review-kakaotalk-1-click-account-hijacking-%EB%B6%84%EC%84%9D-cve-2023-51219/) 글 초반부에서 공격의 전체 흐름을 명확히 이해할 수 있도록 필수 배경지식인 안드로이드 앱 보안과 웹 네트워크의 핵심 개념을 설명하고 있으니 참고하길 바란다.
 
 ---
 

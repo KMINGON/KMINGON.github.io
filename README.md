@@ -1,7 +1,7 @@
-# RTCat's Lab — 보안 연구 노트
+# MINGON's Lab — 보안 연구 노트
 
 보안 학습 과정에서 얻은 인사이트를 기록하는 아카이브입니다.
-Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었습니다. → https://KMINGON.github.io/
+Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었습니다. → https://blog.mingon.dev/
 
 ---
 

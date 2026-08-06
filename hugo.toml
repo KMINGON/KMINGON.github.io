@@ -1,4 +1,4 @@
-baseURL = 'https://kmingon.github.io/'
+baseURL = 'https://blog.mingon.dev/'
 languageCode = 'ko-KR'
 defaultContentLanguage = 'ko'   # <html lang="ko"> — 미설정 시 en으로 렌더링됨
 title = '보안 연구 노트'
@@ -13,8 +13,8 @@ enableRobotsTXT = true          # layouts/robots.txt 로 Sitemap 지시자 노�
 
 
 [params]
-title = "RTCat's Lab"   # 사이드바 타이틀(사이트 title과 별개)
-author = "RTCat"
+title = "MINGON's Lab"   # 사이드바 타이틀(사이트 title과 별개)
+author = "MINGON"
 description = "보안 학습 과정에서 얻은 인사이트 저장소"
 profilePicture = "images/4.png"
 mainSections = ["review", "analysis", "note", "playbook"]  # 홈에 주요 섹션 글 노출
