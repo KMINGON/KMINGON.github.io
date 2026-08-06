@@ -48,23 +48,30 @@
       {{ end }}
     </ul>
 
-    {{/* ── 커스텀: 주제 태그 상위 N개 + 전체 태그 링크 ─────────────── */}}
+    {{/* ── 커스텀: 주제 태그 + 전체 태그 링크 ──────────────────────
+         목록은 화면 높이에 맞춰 CSS(.sidebar__tags-list)가 잘라낸다.
+         sidebarTagsLimit = 0 이면 제외 후 전체를 렌더한다. */}}
     {{ with site.Taxonomies.tags }}
       {{ $exclude := site.Params.sidebarTagsExclude | default slice }}
-      {{ $limit := site.Params.sidebarTagsLimit | default 15 }}
+      {{ $limit := site.Params.sidebarTagsLimit | default 0 }}
       {{ $picked := slice }}
       {{ range .ByCount }}
         {{ if not (in $exclude .Page.LinkTitle) }}
           {{ $picked = $picked | append . }}
         {{ end }}
       {{ end }}
+      {{ if gt $limit 0 }}
+        {{ $picked = first $limit $picked }}
+      {{ end }}
       <nav class="sidebar__tags" aria-label="주요 태그">
         <div class="sidebar__tags-title">Tags</div>
-        {{ range first $limit $picked }}
-          <a class="tag" href="{{ .Page.RelPermalink }}" title="{{ .Page.LinkTitle }} ({{ .Count }})"
-            >{{ .Page.LinkTitle }} ({{ .Count }})</a
-          >
-        {{ end }}
+        <div class="sidebar__tags-list">
+          {{ range $picked }}
+            <a class="tag" href="{{ .Page.RelPermalink }}" title="{{ .Page.LinkTitle }} ({{ .Count }})"
+              >{{ .Page.LinkTitle }} ({{ .Count }})</a
+            >
+          {{ end }}
+        </div>
         <a class="sidebar__tags-more" href="{{ relLangURL "tags/" }}" aria-label="모든 태그 보기"
           >더보기 ({{ len . }})</a
         >

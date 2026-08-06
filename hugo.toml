@@ -20,8 +20,8 @@ profilePicture = "images/4.png"
 mainSections = ["review", "analysis", "note", "playbook"]  # 홈에 주요 섹션 글 노출
 # 사이드바 태그 목록에서 제외할 태그 (출처·난이도 라벨)
 sidebarTagsExclude = ["PortSwigger", "Practitioner", "Apprentice", "Expert"]
-# 사이드바에 노출할 태그 개수. 19 = 글 5편 이상인 태그 전체 (그 아래는 3편 동점 8개)
-sidebarTagsLimit = 19
+# 사이드바에 노출할 태그 개수. 0 = 제외 후 전체, 화면 높이에 맞게 CSS가 잘라냄
+sidebarTagsLimit = 0
 readMore = true # 가볍게 요약 정렬
 gtagId = "G-GGY59YGHKJ"
 customCss = ["css/custom.css"]  # 인라인 코드 강조 등 커스텀 스타일

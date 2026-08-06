@@ -25,8 +25,24 @@
 }
 
 @media screen and (min-width: 961px) {
+  /* .sidebar__content 는 .sidebar(100vh)의 flex 아이템인데 min-height 가
+     기본값 auto(=콘텐츠 높이)라 스스로 축소되지 못한다. 이걸 풀지 않으면
+     안쪽 태그 블록에 음의 여유 공간이 전달되지 않아 아무것도 잘리지 않고
+     사이드바만 넘쳐 스크롤바가 생긴다. 축소 연쇄의 출발점. */
+  .sidebar__content {
+    min-height: 0;
+  }
+
+  /* .sidebar 는 position:fixed; height:100% 라 100vh 확정 높이를 갖고,
+     .sidebar__content 는 이미 column flex + flex-grow:1 이다.
+     따라서 이 블록이 남은 세로 공간을 흡수하면 프로필이 상단에 고정되고
+     태그가 바닥까지 확장된다. (.sidebar__content 의 justify-content:center 는
+     남는 공간이 0이 되므로 자동으로 무력화된다 — 별도 해제 불필요) */
   .sidebar__tags {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0; /* flex 아이템 기본값 min-height:auto 를 풀어야 축소 가능 */
     text-align: center;
     margin: 24px 1em 0;
     padding-top: 20px;
@@ -34,12 +50,30 @@
   }
 
   .sidebar__tags-title {
+    flex: none;
     font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #9f9f9f;
     margin-bottom: 8px;
+  }
+
+  /* 태그 목록만 잘린다. 자연 높이를 쓰되(flex-grow 0) 공간이 모자라면 축소된다.
+     하단 28px 에 알파 그라디언트 마스크를 씌워 반쪽 잘린 행이
+     "더 있음" 신호로 읽히게 한다. 마스크는 알파만 다루므로 라이트/다크 공통.
+
+     padding-bottom 을 페이드 높이와 같게 두는 것이 요점이다. 마스크는
+     border-box 기준이므로,
+       - 다 들어갈 때  : 마지막 행 아래 28px 패딩이 페이드 구간을 차지 → 안 흐려짐
+       - 넘칠 때      : 콘텐츠가 패딩 영역까지 흘러 클리핑되므로 → 정상 페이드 */
+  .sidebar__tags-list {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    padding-bottom: 28px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
   }
 
   /* 색상은 테마의 .theme--light/.theme--dark .tag 규칙이 이미 지정하므로
@@ -51,15 +85,15 @@
     overflow-wrap: break-word;
   }
 
+  /* 페이드 영역 밖. 항상 온전히 보인다. */
   .sidebar__tags-more {
-    display: block;
+    flex: none;
     margin-top: 10px;
     font-size: 1.2rem;
   }
 
-  /* .sidebar 는 position:fixed; height:100% 인데 overflow 지정이 없어,
-     세로가 짧은 화면에서 내용이 잘리고 스크롤도 되지 않는다.
-     넘칠 때만 스크롤되게 한다(넘치지 않으면 시각적 변화 없음). */
+  /* 세로가 극단적으로 짧아 프로필+소셜만으로도 넘칠 때의 안전장치.
+     태그 블록이 먼저 축소되므로 평상시에는 동작하지 않는다. */
   .sidebar {
     overflow-y: auto;
     overflow-x: hidden;
