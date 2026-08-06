@@ -15,3 +15,54 @@
     padding-right: 3%;
   }
 }
+
+/* ── 사이드바 태그 목록 (layouts/partials/sidebar.html) ─────────────── */
+
+/* 모바일(<961px)에서는 사이드바 전체가 본문 위로 쌓이므로 숨긴다.
+   테마의 .footer__sidebar 와 동일한 mobile-first 관용구. */
+.sidebar__tags {
+  display: none;
+}
+
+@media screen and (min-width: 961px) {
+  .sidebar__tags {
+    display: block;
+    text-align: center;
+    margin: 24px 1em 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(159, 159, 159, 0.35);
+  }
+
+  .sidebar__tags-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #9f9f9f;
+    margin-bottom: 8px;
+  }
+
+  /* 색상은 테마의 .theme--light/.theme--dark .tag 규칙이 이미 지정하므로
+     여기서는 좁은 컬럼(뷰포트 30%)에 맞춘 크기/여백만 조정한다. */
+  .sidebar__tags .tag {
+    font-size: 1.3rem;
+    margin: 3px 6px 3px 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .sidebar__tags-more {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+
+  /* .sidebar 는 position:fixed; height:100% 인데 overflow 지정이 없어,
+     세로가 짧은 화면에서 내용이 잘리고 스크롤도 되지 않는다.
+     넘칠 때만 스크롤되게 한다(넘치지 않으면 시각적 변화 없음). */
+  .sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+  }
+}

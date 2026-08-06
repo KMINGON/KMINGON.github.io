@@ -1,0 +1,75 @@
+{{/*
+  로컬 오버라이드: _vendor/github.com/lxndrblz/anatole/layouts/partials/sidebar.html
+  변경점 = 소셜 아이콘 <ul> 아래 "사이드바 태그 목록" 블록 1개 추가.
+  테마 업데이트 시 원본과 diff 하여 이 파일을 갱신할 것.
+*/}}
+<div
+  class="sidebar{{ with .Site.Params.doNotLoadAnimations }}
+    .
+  {{ else }}
+    animated fadeInDown
+  {{ end }}"
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="{{ .Site.Params.profilePicture | relURL }}"
+        alt="profile picture"
+      />
+      {{ if .IsHome }}
+        <div class="sidebar__introduction-title">
+          <h1>
+            <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.Title }}</a>
+          </h1>
+        </div>
+      {{ else }}
+        <div class="sidebar__introduction-title">
+          <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.Title }}</a>
+        </div>
+      {{ end }}
+      <div class="sidebar__introduction-description">
+        <p>{{ replace .Site.Params.description "\n" "<br />" | safeHTML }}</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      {{ range $item := .Site.Params.socialIcons }}
+        <li class="sidebar__list-item">
+          <a
+            href="{{ $item.url }}"
+            target="_blank"
+            rel="noopener me"
+            aria-label="{{ $item.title }}"
+            title="{{ $item.title }}"
+          >
+            <i class="{{ $item.icon }} fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+
+    {{/* ── 커스텀: 주제 태그 상위 N개 + 전체 태그 링크 ─────────────── */}}
+    {{ with site.Taxonomies.tags }}
+      {{ $exclude := site.Params.sidebarTagsExclude | default slice }}
+      {{ $limit := site.Params.sidebarTagsLimit | default 15 }}
+      {{ $picked := slice }}
+      {{ range .ByCount }}
+        {{ if not (in $exclude .Page.LinkTitle) }}
+          {{ $picked = $picked | append . }}
+        {{ end }}
+      {{ end }}
+      <nav class="sidebar__tags" aria-label="주요 태그">
+        <div class="sidebar__tags-title">Tags</div>
+        {{ range first $limit $picked }}
+          <a class="tag" href="{{ .Page.RelPermalink }}" title="{{ .Page.LinkTitle }} ({{ .Count }})"
+            >{{ .Page.LinkTitle }} ({{ .Count }})</a
+          >
+        {{ end }}
+        <a class="sidebar__tags-more" href="{{ relLangURL "tags/" }}" aria-label="모든 태그 보기"
+          >더보기 ({{ len . }})</a
+        >
+      </nav>
+    {{ end }}
+  </div>
+  {{- partial "footer.html" (dict "context" . "footerClassModifier" "sidebar") -}}
+</div>
