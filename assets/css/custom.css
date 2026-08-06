@@ -31,6 +31,18 @@
      사이드바만 넘쳐 스크롤바가 생긴다. 축소 연쇄의 출발점. */
   .sidebar__content {
     min-height: 0;
+    /* min-height:0 은 이 박스가 콘텐츠보다 작아지도록 허용하므로,
+       세로가 극단적으로 짧으면 자식이 밖으로 밀려나 푸터를 덮는다. 그걸 잘라낸다. */
+    overflow: hidden;
+  }
+
+  /* 프로필 아이콘 위 여백을 푸터 아래 여백과 맞춘다.
+     하단 36px = .footer__list 의 margin-bottom 16px + .footer 의 padding-bottom 20px.
+     세로가 짧을 때는 태그에 줄 공간이 없으므로 여백을 넣지 않는다. */
+  @media screen and (min-height: 620px) {
+    .sidebar__content {
+      padding-top: 36px;
+    }
   }
 
   /* .sidebar 는 position:fixed; height:100% 라 100vh 확정 높이를 갖고,
@@ -43,6 +55,7 @@
     flex-direction: column;
     flex: 1 1 auto;
     min-height: 0; /* flex 아이템 기본값 min-height:auto 를 풀어야 축소 가능 */
+    overflow: hidden; /* 제목·더보기(flex:none)조차 못 들어갈 때의 넘침 처리 */
     text-align: center;
     margin: 24px 1em 0;
     padding-top: 20px;
