@@ -1,5 +1,5 @@
 +++
-date = '2026-08-04T18:00:00+09:00'
+date = '2026-07-09T12:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Broken brute-force protection, IP block'
 summary = "로그인 성공이 실패 카운터를 초기화하는 점을 이용해 실패·성공 요청을 섞어 IP 차단을 회피하고 피해자 비밀번호를 브루트포스하는 Authentication 풀이"

@@ -1,5 +1,5 @@
 +++
-date = '2026-08-03T09:00:00+09:00'
+date = '2026-07-08T15:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Password reset broken logic'
 summary = "비밀번호 재설정 요청 본문의 username 파라미터를 타인으로 바꿔 임의 계정의 비밀번호를 재설정하는 Authentication 풀이"

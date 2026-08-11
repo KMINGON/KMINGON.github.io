@@ -1,5 +1,5 @@
 +++
-date = '2026-08-04T09:00:00+09:00'
+date = '2026-07-09T09:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Username enumeration via response timing'
 summary = "IP 차단을 X-Forwarded-For로 우회하고, 유효 계정에서만 길어지는 응답 시간(TTFB)으로 username을 열거한 뒤 비밀번호를 브루트포스하는 Authentication 풀이"

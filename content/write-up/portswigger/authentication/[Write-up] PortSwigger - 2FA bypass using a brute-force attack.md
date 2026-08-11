@@ -1,5 +1,5 @@
 +++
-date = '2026-08-08T18:00:00+09:00'
+date = '2026-07-11T12:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - 2FA bypass using a brute-force attack'
 summary = "매 시도마다 세션·CSRF·재로그인이 강제되는 2FA를 상태 머신 스크립트로 자동 연쇄해, 시도 제한이 없는 4자리 코드를 전수 대입으로 뚫는 EXPERT Authentication 풀이"

@@ -1,5 +1,5 @@
 +++
-date = '2026-08-02T14:00:00+09:00'
+date = '2026-07-08T12:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - 2FA simple bypass'
 summary = "2단계 인증을 거치지 않고 인증 이후 페이지로 바로 접근해 2FA를 통째로 건너뛰는 기본 Authentication 풀이"

@@ -1,5 +1,5 @@
 +++
-date = '2026-08-06T09:00:00+09:00'
+date = '2026-07-10T09:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Brute-forcing a stay-logged-in cookie'
 summary = "stay-logged-in 쿠키가 base64(username:md5(password)) 구조임을 밝혀, 비밀번호 후보를 같은 방식으로 인코딩해 대입함으로써 피해자 계정에 로그인하는 Authentication 풀이"

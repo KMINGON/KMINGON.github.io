@@ -1,5 +1,5 @@
 +++
-date = '2026-08-06T18:00:00+09:00'
+date = '2026-07-10T12:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Offline password cracking'
 summary = "댓글 XSS로 피해자의 stay-logged-in 쿠키를 탈취하고, 쿠키에 담긴 MD5 해시를 오프라인 크랙해 평문 비밀번호를 복원한 뒤 계정을 삭제하는 Authentication 풀이"

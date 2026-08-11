@@ -1,5 +1,5 @@
 +++
-date = '2026-08-07T09:00:00+09:00'
+date = '2026-07-10T15:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Password reset poisoning via middleware'
 summary = "X-Forwarded-Host 헤더로 비밀번호 재설정 링크의 도메인을 공격자 서버로 바꿔, 피해자가 클릭한 재설정 토큰을 탈취해 계정을 탈취하는 Authentication 풀이"

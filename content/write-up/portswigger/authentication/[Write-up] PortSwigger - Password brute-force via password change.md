@@ -1,5 +1,5 @@
 +++
-date = '2026-08-07T18:00:00+09:00'
+date = '2026-07-10T18:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Password brute-force via password change'
 summary = "비밀번호 변경 폼이 새 비밀번호 불일치 시엔 세션을 유지하면서 현재 비밀번호 정오에 따라 응답을 달리하는 점을 이용해, 변경 기능을 오라클 삼아 브루트포스하는 Authentication 풀이"

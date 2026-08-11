@@ -1,5 +1,5 @@
 +++
-date = '2026-08-03T14:00:00+09:00'
+date = '2026-07-08T18:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Username enumeration via subtly different responses'
 summary = "실패 메시지의 마침표 유무 같은 미세한 차이를 Turbo Intruder의 Anomaly Rank로 잡아 유효 계정을 열거하고 로그인하는 Authentication 풀이"

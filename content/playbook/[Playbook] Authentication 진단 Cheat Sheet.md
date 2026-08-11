@@ -1,5 +1,5 @@
 +++
-date = '2026-08-11T09:00:00+09:00'
+date = '2026-07-13T10:00:00+09:00'
 draft = false
 title = '[Playbook] Authentication 진단 Cheat Sheet'
 summary = "Authentication 진단 중 인증 표면 어디에 관찰 가능한 차이가 새는지, 어떤 방어가 어떤 조건에서 우회되는지 빠르게 판별하고 다음 시도를 선택하기 위한 Playbook"

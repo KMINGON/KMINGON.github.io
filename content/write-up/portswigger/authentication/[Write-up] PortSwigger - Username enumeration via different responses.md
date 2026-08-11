@@ -1,5 +1,5 @@
 +++
-date = '2026-08-02T09:00:00+09:00'
+date = '2026-07-08T09:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Username enumeration via different responses'
 summary = "로그인 실패 응답이 username 유효 여부에 따라 다른 점을 이용해 유효 계정을 열거하고, 이어 비밀번호를 브루트포스해 로그인하는 기본 Authentication 풀이"

@@ -1,5 +1,5 @@
 +++
-date = '2026-08-08T09:00:00+09:00'
+date = '2026-07-11T09:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Broken brute-force protection, multiple credentials per request'
 summary = "로그인 요청의 password 필드에 JSON 배열로 후보 전체를 한 번에 실어, 요청당 1회로 세는 rate limit을 우회하고 단일 요청으로 계정을 탈취하는 Authentication 풀이"

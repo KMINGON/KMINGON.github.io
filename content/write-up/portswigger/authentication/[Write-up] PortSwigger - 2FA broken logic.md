@@ -1,5 +1,5 @@
 +++
-date = '2026-08-05T18:00:00+09:00'
+date = '2026-07-09T18:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - 2FA broken logic'
 summary = "2단계 코드가 세션이 아닌 verify 쿠키에 묶인 점을 이용해 대상 계정으로 코드를 발급시키고, 시도 제한 없는 4자리 코드를 브루트포스해 계정을 탈취하는 Authentication 풀이"

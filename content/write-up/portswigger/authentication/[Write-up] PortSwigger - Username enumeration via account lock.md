@@ -1,5 +1,5 @@
 +++
-date = '2026-08-05T09:00:00+09:00'
+date = '2026-07-09T15:00:00+09:00'
 draft = false
 title = '[Write-up] PortSwigger - Username enumeration via account lock'
 summary = "존재하는 계정만 반복 실패 시 잠기는 점을 이용해 잠금 반응으로 username을 열거하고, 잠금 상태에서도 남는 응답 차이로 비밀번호를 특정하는 Authentication 풀이"
