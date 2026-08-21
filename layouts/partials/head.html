@@ -200,6 +200,10 @@
     {{- partial "analytics/meta.html" . -}}
   {{ end }}
 
+  {{ if and hugo.IsProduction .Site.Params.cloudflareAnalyticsToken }}
+    {{- partial "analytics/cloudflare.html" . -}}
+  {{ end }}
+
 
   <!-- Twitter Cards -->
   {{ template "_internal/twitter_cards.html" . }}
