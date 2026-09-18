@@ -16,7 +16,7 @@ enableRobotsTXT = true          # layouts/robots.txt 로 Sitemap 지시자 노�
 title = "MINGON's Lab"   # 사이드바 타이틀(사이트 title과 별개)
 author = "MINGON"
 description = "보안 학습 과정에서 얻은 인사이트 저장소"
-profilePicture = "images/4.png"
+profilePicture = "images/profile.png"
 mainSections = ["review", "analysis", "note", "playbook"]  # 홈에 주요 섹션 글 노출
 # 사이드바 태그 목록에서 제외할 태그 (출처·난이도 라벨)
 sidebarTagsExclude = ["PortSwigger", "Practitioner", "Apprentice", "Expert"]
