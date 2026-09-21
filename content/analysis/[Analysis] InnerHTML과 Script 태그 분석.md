@@ -36,8 +36,8 @@ CSP(Content Security Policy)의 script-src 설정은 nonce와 strict-dynamic 옵
 
 이에 다음 두 가지 의문이 생겼다.
 
->1️⃣ InnerHTML로 단순히 `<script>` 태그 내부 내용을 바꿨을 뿐인데, 왜 코드가 실행되는가?  
-2️⃣ strict-dynamic의 신뢰 전파 범위는 어디까지인가?
+> 1\. InnerHTML로 단순히 `<script>` 태그 내부 내용을 바꿨을 뿐인데, 왜 코드가 실행되는가?\
+> 2\. strict-dynamic의 신뢰 전파 범위는 어디까지인가?
 
 ---
 
