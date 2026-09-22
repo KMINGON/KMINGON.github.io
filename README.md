@@ -12,6 +12,7 @@ Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었�
 | **Review** | 실제 CVE·공개 리포트·컨퍼런스 발표를 분석하며 익스플로잇 체인과 근본 원인을 정리 |
 | **Analysis** | 특정 기법·브라우저 동작·표준 스펙을 파고들어 "왜 그렇게 동작하는가"를 규명한 심층 분석 |
 | **Note** | 취약점 토픽을 체계적으로 정리한 학습 노트와 참고 리소스 |
+| **Playbook** | 취약점 진단 절차와 확인할 항목을 정리한 실무용 Cheat Sheet |
 | **Write-up** | PortSwigger·Dreamhack 등 취약점 실습·CTF 풀이를 플랫폼·주제별로 정리한 아카이브 |
 
 - **태그**로도 횡단 탐색이 가능합니다(예: `SQL Injection` 태그로 Review·Analysis·Note·Write-up을 한 번에).
@@ -65,21 +66,40 @@ GitHub Actions 워크플로우가 main 브랜치 푸시 시 자동으로 Pages�
 
 ### 포스팅 방법
 
-1. 섹션 선택
-- `content/review/` · `content/analysis/` · `content/note/`
-- `content/write-up/<플랫폼>/<주제>/` (예: `content/write-up/portswigger/sql-injection/`)
+글 하나를 폴더 하나로 관리하는 Hugo Leaf Bundle 구조를 사용합니다.
+섹션 목록은 `_index.md`, 개별 글은 `<글 이름>/index.md`로 구분합니다.
 
-2. 새 글 생성
-```bash
-hugo new note/my-first-note.md
+```text
+content/
+├── analysis/
+│   ├── _index.md
+│   └── email-parser-differential/
+│       ├── index.md
+│       └── images/
+│           ├── validation-vs-delivery.png
+│           └── validation-vs-delivery.drawio
+├── review/<글 이름>/index.md
+├── note/<글 이름>/index.md
+├── playbook/<주제>/index.md
+└── write-up/<플랫폼>/<주제>/<문제 이름>/index.md
 ```
 
-3. Front Matter 수정 (TOML)
+폴더명은 짧고 고정된 영문 소문자·숫자·하이픈으로 작성하고, 표시할 한글 제목과 `[Analysis]` 같은 분류는 `title`에 기록합니다.
+이미지가 없는 글은 `index.md`만 두면 됩니다.
+
+1. 섹션을 선택하고 초안을 생성합니다.
+
+```bash
+hugo new content note/my-first-note/index.md
+```
+
+2. Front Matter를 수정합니다. 작성 중에는 `draft = true`를 유지합니다.
+
 ```toml
 +++
-title = "My First Note"
-date = 2025-08-29
-draft = false   # 배포 시 반드시 false
+title = "[Note] 새 글 제목"
+date = '2026-09-22T12:00:00+09:00'
+draft = true
 summary = ""
 toc = true
 # tags 순서: [대분류, 세부기법, 플랫폼/출처, 난이도, 기술스택]
@@ -87,10 +107,24 @@ tags = []
 +++
 ```
 
-4. 커밋 및 푸시
+3. 글 전용 이미지는 같은 폴더의 `images/`에 넣고 상대 경로로 참조합니다.
+   draw.io·SVG 편집 원본도 함께 보관합니다. 번들에 넣는 첨부 파일은 공개 배포 대상으로 관리합니다.
+
+```markdown
+![검증과 전송의 해석 차이](images/validation-vs-delivery.png)
+```
+
+프로필·파비콘 등 사이트 공통 파일은 `static/`에 둡니다.
+`static/analysis/`, `static/review/`, `static/note/`, `static/writeup/`의 기존 파일은 이전 이미지 URL을 유지하는 호환용 복사본입니다. 새 글은 이 경로를 사용하지 않습니다.
+과거 파일명에 기반한 글 주소는 각 글의 `url` 값으로 고정되어 있으므로, 제목이나 폴더명을 바꿀 때도 유지합니다. `url`에는 `%EB...` 같은 인코딩 문자열 대신 디코딩된 경로를 기록합니다.
+
+4. `hugo server -D`로 확인한 뒤 `draft = false`로 바꿔 발행합니다. 초안과 정식 글의 폴더 위치는 같습니다.
+   기존 `draft/`·`temp/`는 Git에서 제외되는 임시 작업 공간이며, 보관할 글과 편집 원본은 번들 안에 둡니다.
+
+5. 변경한 글 폴더를 커밋하고 푸시합니다.
 
 ```bash
-git add .
+git add content/note/my-first-note/
 git commit -m "Add new post"
 git push origin main
 ```

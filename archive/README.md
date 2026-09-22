@@ -8,12 +8,18 @@ Hugo는 `content/`와 `static/`만 읽으므로, 이 폴더 아래 파일은 **�
 
 ## 구조
 
-복원이 쉽도록 **원래 프로젝트 경로를 그대로 유지**한다.
+공개 글과 같은 Leaf Bundle 구조를 사용하며, `archive/` 아래에 두어 미노출 상태를 유지한다.
 
 ```
 archive/
-├── content/      → 원래 content/ 아래에 있던 글
-└── static/       → 그 글에서만 참조하던 이미지 등 정적 자산
+├── content/rookies/
+│   ├── final-project-week-1/index.md
+│   ├── final-project-week-2/index.md
+│   ├── final-project-week-3/index.md
+│   └── wargame-write-up/
+│       ├── index.md
+│       └── images/
+└── static/review/1/  → 복원 시 이전 이미지 URL을 유지할 호환용 파일
 ```
 
 ## 보관 목록
@@ -21,11 +27,13 @@ archive/
 | 경로 | 내용 | 보관 사유 |
 | --- | --- | --- |
 | `content/rookies/` | SK Shieldus Rookies 과정 관련 글 4편 (Wargame Write-Up, 최종 프로젝트 1~3주차 회고) | 교육과정 관련 글은 블로그 주제에서 제외 |
-| `static/review/1/` | 위 Wargame Write-Up 전용 이미지 13개 | 해당 글에서만 참조 |
+| `content/rookies/wargame-write-up/images/` | Wargame Write-Up 전용 이미지 13개 | 본문과 함께 관리 |
+| `static/review/1/` | 위 이미지의 이전 경로 복사본 | 복원 시 기존 이미지 URL 유지 |
 
 ## 복원 방법
 
-경로 구조가 같으므로 `archive/` 접두사만 떼고 되돌리면 된다.
+글 폴더를 `content/`로 옮기면 된다. 각 글의 `url` 값이 이전 글 주소를 유지하며, 본문은 번들 안의 `images/`를 참조한다.
+이전 이미지 주소도 다시 제공하려면 호환용 파일을 함께 복원한다.
 
 ```bash
 git mv archive/content/rookies content/rookies

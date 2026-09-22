@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="610" viewBox="0 0 960 610" role="img" aria-labelledby="title desc">
+<title id="title">UTS #46과 raw Punycode의 결과 차이</title>
+<desc id="desc">victim@compa{U+00AD}ny.com。UTS #46 기반 검증：U+00AD 제거。취약한 Nodemailer：raw Punycode 변환。company.com：허용 목록 통과。xn--company-pka.com：SMTP 수신 도메인</desc>
+<rect width="960" height="610" fill="#ffffff"/>
+<path d="M480 153 L480 193 L235 193 L235 235" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="235,235 230,224 240,224" fill="#555555"/>
+<path d="M480 153 L480 193 L725 193 L725 235" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="725,235 720,224 730,224" fill="#555555"/>
+<path d="M235 339 L235 420" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="235,420 230,409 240,409" fill="#555555"/>
+<path d="M725 339 L725 420" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="725,420 720,409 730,409" fill="#555555"/>
+<rect x="50" y="75" width="860" height="78" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="40" y="235" width="390" height="104" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="530" y="235" width="390" height="104" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="40" y="420" width="390" height="86" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="530" y="420" width="390" height="86" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif" text-anchor="middle">
+<text x="480" y="40.9" font-size="24" fill="#222222">UTS #46과 raw Punycode의 결과 차이</text>
+<text x="480" y="289.8" font-size="28" fill="#a34444">≠</text>
+<text x="480" y="576.65" font-size="19" fill="#444444">{U+00AD}는 보이지 않는 문자의 위치를 나타낸다.</text>
+<text x="480" y="121" font-size="20" fill="#222222">victim@compa{U+00AD}ny.com</text>
+<text x="235" y="279.5" font-size="20" fill="#222222">UTS #46 기반 검증</text>
+<text x="235" y="308.5" font-size="20" fill="#222222">U+00AD 제거</text>
+<text x="725" y="279.5" font-size="20" fill="#222222">취약한 Nodemailer</text>
+<text x="725" y="308.5" font-size="20" fill="#222222">raw Punycode 변환</text>
+<text x="235" y="455.5" font-size="20" fill="#222222">company.com</text>
+<text x="235" y="484.5" font-size="20" fill="#222222">허용 목록 통과</text>
+<text x="725" y="455.5" font-size="20" fill="#222222">xn--company-pka.com</text>
+<text x="725" y="484.5" font-size="20" fill="#222222">SMTP 수신 도메인</text>
+</g></svg>

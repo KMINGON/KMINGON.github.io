@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="550" viewBox="0 0 960 550" role="img" aria-labelledby="title desc">
+<title id="title">검증과 전송의 해석 차이</title>
+<desc id="desc">같은 입력을 검증 라이브러리는 도메인 A, 메일 라이브러리는 도메인 B로 해석한다. 조직 가입을 허용한 도메인과 인증 메일의 수신 도메인이 달라진다.</desc>
+<rect width="960" height="550" fill="#ffffff"/>
+<g fill="none" stroke="#555555" stroke-width="1.5">
+<path d="M480 129 V159 H225 V209"/>
+<path d="M480 159 H735 V209"/>
+<path d="M225 306 V371"/>
+<path d="M735 306 V371"/>
+</g>
+<g fill="#555555">
+<path d="M225 220 L220 209 H230 Z"/>
+<path d="M735 220 L730 209 H740 Z"/>
+<path d="M225 382 L220 371 H230 Z"/>
+<path d="M735 382 L730 371 H740 Z"/>
+</g>
+<rect x="360" y="65" width="240" height="64" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="60" y="220" width="330" height="86" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="570" y="220" width="330" height="86" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="60" y="382" width="330" height="66" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="570" y="382" width="330" height="66" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif" text-anchor="middle" fill="#222222">
+<text x="480.0" y="104.0" font-size="20">사용자가 입력한 주소</text>
+<text x="225.0" y="254" font-size="20">검증 라이브러리</text>
+<text x="225.0" y="283" font-size="20">도메인 A로 해석</text>
+<text x="735.0" y="254" font-size="20">메일 라이브러리</text>
+<text x="735.0" y="283" font-size="20">도메인 B로 해석</text>
+<text x="225.0" y="422.0" font-size="20">조직 가입 허용</text>
+<text x="735.0" y="422.0" font-size="20">도메인 B로 인증 메일 전송</text>
+<text x="480.0" y="39.4" font-size="24" fill="#222222">검증과 전송의 해석 차이</text>
+<text x="315" y="198.95" font-size="17" fill="#666666">검증 경로</text>
+<text x="825" y="198.95" font-size="17" fill="#666666">전송 경로</text>
+<text x="480.0" y="268.4" font-size="24" fill="#a34444">A ≠ B</text>
+<text x="480.0" y="512.65" font-size="19" fill="#444444">메일 수신만으로 도메인 A의 소속을 증명할 수 없다.</text>
+</g></svg>

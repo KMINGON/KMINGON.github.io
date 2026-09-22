@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="630" viewBox="0 0 960 630" role="img" aria-labelledby="title desc">
+<title id="title">파서 출력과 실제 배달의 확인 범위</title>
+<desc id="desc">입력: &quot;user&quot;@example.com(x)evil.com。파서 결과：user@example.com evil.com。envelope.to로 전달：여기까지 확인됨。실제 SMTP 수락·배달：권고문에서 미확인</desc>
+<rect width="960" height="630" fill="#ffffff"/>
+<path d="M480 137 L480 185" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="480,185 475,174 485,174" fill="#555555"/>
+<path d="M480 265 L480 315" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="480,315 475,304 485,304" fill="#555555"/>
+<path d="M480 395 L480 460" fill="none" stroke="#a34444" stroke-width="1.5" stroke-dasharray="6 5"/>
+<polygon points="480,460 475,449 485,449" fill="#a34444"/>
+<rect x="150" y="75" width="660" height="62" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="150" y="185" width="660" height="80" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="260" y="315" width="440" height="80" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="260" y="460" width="440" height="80" fill="#ffffff" stroke="#a34444" stroke-width="1.5" stroke-dasharray="6 5"/>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif" text-anchor="middle">
+<text x="480" y="40.9" font-size="24" fill="#222222">파서 출력과 실제 배달의 확인 범위</text>
+<text x="480" y="598.65" font-size="19" fill="#444444">Envelope에 값이 전달되었다는 사실만으로 오배송을 확정하지 않는다.</text>
+<text x="480" y="113" font-size="20" fill="#222222">입력: &quot;user&quot;@example.com(x)evil.com</text>
+<text x="480" y="217.5" font-size="20" fill="#222222">파서 결과</text>
+<text x="480" y="246.5" font-size="20" fill="#222222">user@example.com evil.com</text>
+<text x="480" y="347.5" font-size="20" fill="#222222">envelope.to로 전달</text>
+<text x="480" y="376.5" font-size="20" fill="#222222">여기까지 확인됨</text>
+<text x="480" y="492.5" font-size="20" fill="#222222">실제 SMTP 수락·배달</text>
+<text x="480" y="521.5" font-size="20" fill="#222222">권고문에서 미확인</text>
+</g></svg>

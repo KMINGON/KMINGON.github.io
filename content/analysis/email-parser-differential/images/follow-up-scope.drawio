@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="follow-up-scope" name="파서 출력과 실제 배달의 확인 범위">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="960" pageHeight="630" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" source="input" target="parsed" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" source="parsed" target="envelope" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" source="envelope" target="delivery" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#a34444;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="input" value="입력: &quot;user&quot;@example.com(x)evil.com" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="150" y="75" width="660" height="62" />
+        </mxCell>
+        <mxCell id="parsed" value="파서 결과&#10;user@example.com evil.com" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="150" y="185" width="660" height="80" />
+        </mxCell>
+        <mxCell id="envelope" value="envelope.to로 전달&#10;여기까지 확인됨" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="260" y="315" width="440" height="80" />
+        </mxCell>
+        <mxCell id="delivery" value="실제 SMTP 수락·배달&#10;권고문에서 미확인" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a34444;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="260" y="460" width="440" height="80" />
+        </mxCell>
+        <mxCell id="label-0" value="파서 출력과 실제 배달의 확인 범위" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=24;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="15" width="900" height="35" />
+        </mxCell>
+        <mxCell id="label-1" value="Envelope에 값이 전달되었다는 사실만으로 오배송을 확정하지 않는다." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=19;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="577" width="900" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

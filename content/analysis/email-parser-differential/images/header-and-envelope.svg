@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+<title id="title">메일 헤더와 SMTP 수신자</title>
+<desc id="desc">입력 주소。애플리케이션의 도메인 검사。메일 라이브러리：주소 해석·변환。To: 헤더：화면에 표시되는 주소。SMTP Envelope：전송에 사용하는 수신자。RCPT TO → 메일 서버</desc>
+<rect width="960" height="720" fill="#ffffff"/>
+<path d="M480 124 L480 173" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="480,173 475,162 485,162" fill="#555555"/>
+<path d="M480 235 L480 284" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="480,284 475,273 485,273" fill="#555555"/>
+<path d="M480 364 L480 403 L235 403 L235 440" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="235,440 230,429 240,429" fill="#555555"/>
+<path d="M480 364 L480 403 L725 403 L725 440" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="725,440 720,429 730,429" fill="#555555"/>
+<path d="M725 520 L725 580" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="725,580 720,569 730,569" fill="#555555"/>
+<rect x="330" y="70" width="300" height="54" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="260" y="173" width="440" height="62" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="280" y="284" width="400" height="80" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="50" y="440" width="370" height="80" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="540" y="440" width="370" height="80" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="540" y="580" width="370" height="62" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif" text-anchor="middle">
+<text x="480" y="40.9" font-size="24" fill="#222222">메일 헤더와 SMTP 수신자</text>
+<text x="480" y="690.65" font-size="19" fill="#444444">To: 헤더만으로 실제 SMTP 수신자를 확정할 수 없다.</text>
+<text x="480" y="104" font-size="20" fill="#222222">입력 주소</text>
+<text x="480" y="211" font-size="20" fill="#222222">애플리케이션의 도메인 검사</text>
+<text x="480" y="316.5" font-size="20" fill="#222222">메일 라이브러리</text>
+<text x="480" y="345.5" font-size="20" fill="#222222">주소 해석·변환</text>
+<text x="235" y="472.5" font-size="20" fill="#222222">To: 헤더</text>
+<text x="235" y="501.5" font-size="20" fill="#222222">화면에 표시되는 주소</text>
+<text x="725" y="472.5" font-size="20" fill="#222222">SMTP Envelope</text>
+<text x="725" y="501.5" font-size="20" fill="#222222">전송에 사용하는 수신자</text>
+<text x="725" y="618" font-size="20" fill="#222222">RCPT TO → 메일 서버</text>
+</g></svg>

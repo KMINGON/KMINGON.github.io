@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="shared-address" name="같은 주소로 검증하고 전송하는 흐름">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="960" pageHeight="710" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" source="input" target="parse" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" source="parse" target="address" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" source="address" target="validate" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" source="validate" target="send" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" source="validate" target="reject" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="input" value="입력" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="310" y="70" width="340" height="54" />
+        </mxCell>
+        <mxCell id="parse" value="문맥에 맞는 파싱·정규화&#10;오류·남은 입력 검사" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="230" y="170" width="500" height="80" />
+        </mxCell>
+        <mxCell id="address" value="구조화된 주소&#10;local-part + domain" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="270" y="295" width="420" height="75" />
+        </mxCell>
+        <mxCell id="validate" value="동일한 주소로&#10;도메인 정책 검사" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="270" y="415" width="420" height="75" />
+        </mxCell>
+        <mxCell id="reject" value="거절&#10;전송 중단" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="415" width="150" height="75" />
+        </mxCell>
+        <mxCell id="send" value="허용한 주소로 수신자 구성&#10;SMTP Envelope 일치 확인" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="230" y="560" width="500" height="80" />
+        </mxCell>
+        <mxCell id="label-0" value="같은 주소로 검증하고 전송하는 흐름" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=24;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="15" width="900" height="35" />
+        </mxCell>
+        <mxCell id="label-1" value="불허" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=17;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="694" y="411" width="78" height="30" />
+        </mxCell>
+        <mxCell id="label-2" value="허용" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=17;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="492" y="510" width="78" height="30" />
+        </mxCell>
+        <mxCell id="label-3" value="검증에 사용한 주소의 의미를 실제 전송 단계까지 유지한다." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=19;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="670" width="900" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

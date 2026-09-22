@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="parser-differential" name="검증과 전송">
+    <mxGraphModel dx="960" dy="550" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="550" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="input" value="사용자가 입력한 주소" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="360" y="65" width="240" height="64" />
+        </mxCell>
+        <mxCell id="validator" value="검증 라이브러리&#10;도메인 A로 해석" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="220" width="330" height="86" />
+        </mxCell>
+        <mxCell id="mailer" value="메일 라이브러리&#10;도메인 B로 해석" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="570" y="220" width="330" height="86" />
+        </mxCell>
+        <mxCell id="allowed" value="조직 가입 허용" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="382" width="330" height="66" />
+        </mxCell>
+        <mxCell id="delivery" value="도메인 B로 인증 메일 전송" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="570" y="382" width="330" height="66" />
+        </mxCell>
+        <mxCell id="title" value="검증과 전송의 해석 차이" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=24;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="15" width="900" height="32" />
+        </mxCell>
+        <mxCell id="validation-label" value="검증 경로" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=17;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="245" y="179" width="140" height="28" />
+        </mxCell>
+        <mxCell id="delivery-label" value="전송 경로" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=17;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="755" y="179" width="140" height="28" />
+        </mxCell>
+        <mxCell id="mismatch" value="A ≠ B" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=24;fontColor=#a34444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="405" y="242" width="150" height="36" />
+        </mxCell>
+        <mxCell id="caption" value="메일 수신만으로 도메인 A의 소속을 증명할 수 없다." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=19;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="490" width="900" height="32" />
+        </mxCell>
+        <mxCell id="to-validator" source="input" target="validator" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="480" y="159" />
+              <mxPoint x="225" y="159" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="to-mailer" source="input" target="mailer" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="480" y="159" />
+              <mxPoint x="735" y="159" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="to-allowed" source="validator" target="allowed" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="to-delivery" source="mailer" target="delivery" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

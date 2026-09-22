@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="idna-domain-mismatch" name="UTS #46과 raw Punycode의 결과 차이">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="960" pageHeight="610" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" source="input" target="left-parse" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="480" y="193" />
+              <mxPoint x="235" y="193" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" source="input" target="right-parse" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="480" y="193" />
+              <mxPoint x="725" y="193" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" source="left-parse" target="left-use" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" source="right-parse" target="right-use" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="input" value="victim@compa{U+00AD}ny.com" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="75" width="860" height="78" />
+        </mxCell>
+        <mxCell id="left-parse" value="UTS #46 기반 검증&#10;U+00AD 제거" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="235" width="390" height="104" />
+        </mxCell>
+        <mxCell id="right-parse" value="취약한 Nodemailer&#10;raw Punycode 변환" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="530" y="235" width="390" height="104" />
+        </mxCell>
+        <mxCell id="left-use" value="company.com&#10;허용 목록 통과" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="420" width="390" height="86" />
+        </mxCell>
+        <mxCell id="right-use" value="xn--company-pka.com&#10;SMTP 수신 도메인" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="530" y="420" width="390" height="86" />
+        </mxCell>
+        <mxCell id="label-0" value="UTS #46과 raw Punycode의 결과 차이" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=24;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="15" width="900" height="35" />
+        </mxCell>
+        <mxCell id="label-1" value="≠" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=28;fontColor=#a34444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="435" y="265" width="90" height="30" />
+        </mxCell>
+        <mxCell id="label-2" value="{U+00AD}는 보이지 않는 문자의 위치를 나타낸다." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=19;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="555" width="900" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

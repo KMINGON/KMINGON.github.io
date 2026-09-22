@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+<title id="title">검증 이후 표현이 바뀌는 지점</title>
+<desc id="desc">입력。표현 A：주소 해석·보안 판단。디코딩·정규화：오류 복구·재파싱。표현 B：메일 전송·주소 표시·인가</desc>
+<rect width="960" height="640" fill="#ffffff"/>
+<path d="M480 124 L480 175" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="480,175 475,164 485,164" fill="#555555"/>
+<path d="M480 255 L480 310" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="480,310 475,299 485,299" fill="#555555"/>
+<path d="M480 400 L480 455" fill="none" stroke="#555555" stroke-width="1.5"/>
+<polygon points="480,455 475,444 485,444" fill="#555555"/>
+<rect x="330" y="70" width="300" height="54" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="230" y="175" width="500" height="80" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<rect x="230" y="310" width="500" height="90" fill="#ffffff" stroke="#a34444" stroke-width="1.5"/>
+<rect x="230" y="455" width="500" height="80" fill="#ffffff" stroke="#555555" stroke-width="1.5"/>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif" text-anchor="middle">
+<text x="480" y="40.9" font-size="24" fill="#222222">검증 이후 표현이 바뀌는 지점</text>
+<text x="480" y="602.65" font-size="19" fill="#444444">표현 A에 대한 검증 결과가 표현 B에도 유효한가?</text>
+<text x="480" y="104" font-size="20" fill="#222222">입력</text>
+<text x="480" y="207.5" font-size="20" fill="#222222">표현 A</text>
+<text x="480" y="236.5" font-size="20" fill="#222222">주소 해석·보안 판단</text>
+<text x="480" y="347.5" font-size="20" fill="#222222">디코딩·정규화</text>
+<text x="480" y="376.5" font-size="20" fill="#222222">오류 복구·재파싱</text>
+<text x="480" y="487.5" font-size="20" fill="#222222">표현 B</text>
+<text x="480" y="516.5" font-size="20" fill="#222222">메일 전송·주소 표시·인가</text>
+</g></svg>

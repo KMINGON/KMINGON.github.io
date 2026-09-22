@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="header-and-envelope" name="메일 헤더와 SMTP 수신자">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="960" pageHeight="720" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" source="input" target="validate" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" source="validate" target="parse" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" source="parse" target="header" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="480" y="403" />
+              <mxPoint x="235" y="403" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" source="parse" target="envelope" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="480" y="403" />
+              <mxPoint x="725" y="403" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" source="envelope" target="smtp" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="input" value="입력 주소" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="330" y="70" width="300" height="54" />
+        </mxCell>
+        <mxCell id="validate" value="애플리케이션의 도메인 검사" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="260" y="173" width="440" height="62" />
+        </mxCell>
+        <mxCell id="parse" value="메일 라이브러리&#10;주소 해석·변환" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="284" width="400" height="80" />
+        </mxCell>
+        <mxCell id="header" value="To: 헤더&#10;화면에 표시되는 주소" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="440" width="370" height="80" />
+        </mxCell>
+        <mxCell id="envelope" value="SMTP Envelope&#10;전송에 사용하는 수신자" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="540" y="440" width="370" height="80" />
+        </mxCell>
+        <mxCell id="smtp" value="RCPT TO → 메일 서버" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#555555;strokeWidth=1.5;fontFamily=Malgun Gothic;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;spacing=8;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="540" y="580" width="370" height="62" />
+        </mxCell>
+        <mxCell id="label-0" value="메일 헤더와 SMTP 수신자" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=24;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="15" width="900" height="35" />
+        </mxCell>
+        <mxCell id="label-1" value="To: 헤더만으로 실제 SMTP 수신자를 확정할 수 없다." style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Malgun Gothic;fontSize=19;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="669" width="900" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
