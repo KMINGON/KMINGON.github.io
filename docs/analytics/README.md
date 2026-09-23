@@ -4,7 +4,7 @@
 
 ## 현재 진행 상태
 
-**GTM 버전 2 게시와 실제 Google tag / GA4 수집 요청 검증을 완료했다. 사용자 배포 지시에 따라 사이트 이관을 진행하며, 배포 완료 후 운영 검증 결과를 갱신한다.**
+**GTM 버전 2와 사이트 운영 배포를 완료했다. 운영 응답을 사용한 동의·페이지 조회·민감 값 제외 검증과 실제 GA4 HTTP 204 응답을 확인했다. GA4 보고서 화면의 집계 반영 여부는 별도로 남아 있다.**
 
 | 항목 | 상태 |
 | --- | --- |
@@ -18,9 +18,11 @@
 | GA4 향상된 측정 | 사용 안 함, 게시 후 UI에서도 비활성 상태 재확인 |
 | 게시된 GTM + 로컬 사이트 검증 | 실제 태그 실행·동의 차단·민감 값 제거·page_view 1회 확인 |
 | GA4 수집 서버 | 기존 측정 ID로 `/g/collect` HTTP 204 확인 |
-| 운영 사이트 | 기존 직접 GA 및 Cloudflare 삽입 상태 유지, 새 코드 미배포 |
+| 운영 사이트 | `b5c356d` 배포 완료, 직접 GA·Cloudflare 제거 및 동의 기반 GTM 적용 |
+| 사이트 배포 완료 | 2026-09-23 22:03:19 KST, [GitHub Actions](https://github.com/KMINGON/KMINGON.github.io/actions/runs/35864259243) 성공 |
+| 운영 검증 기록 | [production-validation.json](production-validation.json) |
 
-게시 권한은 버전 2의 실제 게시 성공으로 확인했다. GTM을 게시해도 운영 사이트가 아직 새 컨테이너를 로드하지 않으므로 사이트 이관은 완료되지 않았다. 사용자가 커밋·푸시·운영 배포를 지시했으며, 배포 후 결과를 아래에 기록한다. toy 컨테이너와 속성은 수정하지 않았다.
+GTM 게시와 사이트 배포를 각각 완료했다. 운영 사이트는 동의한 방문에만 블로그 컨테이너를 로드한다. toy 컨테이너와 속성은 수정하지 않았다.
 
 ## 계정과 조회 위치
 
@@ -50,7 +52,7 @@
 - 2026-09-23 운영 응답에는 CSP 및 CSP Report-Only 헤더가 없었고 HTML에도 CSP meta가 없었다.
 - GitHub Pages가 정적 파일을 제공한다. `.github/workflows/deploy.yml`에서 main push → Hugo Extended 0.149.0 / Dart Sass 1.91.0 → Pages 배포가 실행된다. 별도 서버·DB는 없다.
 
-## 로컬 구현
+## 사이트 구현
 
 `hugo.toml`에는 실제 블로그 컨테이너 ID와 기존 GA4 측정 ID만 둔다. 직접 `gtagId`는 제거한다. `layouts/partials/analytics/gtm.html`은 production 빌드에만 로컬 동의 스크립트를 삽입한다. 실제 GTM 요청은 HTTPS `blog.mingon.dev`에서 동의한 경우에만 발생한다. 404에는 추적 스크립트를 넣지 않는다.
 
@@ -88,18 +90,17 @@ GTM의 Google tag 하나가 문서당 자동 `page_view`를 한 번 보낸다. �
 
 추후 CSP를 도입한다면 페이지의 기존 스크립트·스타일·외부 이미지까지 별도로 조사하고, 실제 헤더를 설정할 수 있는 제공 계층에서 검증한다. GTM/GA에 필요한 출처는 Google의 [CSP 가이드](https://developers.google.com/tag-platform/security/guides/csp)를 기준으로 최소화한다. 로컬 로더는 외부 JS 파일로 제공하며 Custom HTML / Custom JavaScript 변수는 이 컨테이너에 추가하지 않는다.
 
-## 게시한 설정과 남은 배포 순서
+## 게시 및 운영 배포
 
 2026-09-23에 toy 세션의 명시적인 브라우저 재인계를 받은 뒤 블로그 컨테이너에 후보 JSON을 병합했다. 가져오기 미리보기는 추가 5개, 수정·삭제 0개였으며, Google tag의 모든 구성 매개변수와 추가 동의, 페이지당 한 번 실행, 블로그 전용 hostname·이벤트 조건을 UI에서 확인했다.
 
 [블로그 GTM 버전 2](https://tagmanager.google.com/#/versions/accounts/6378414723/containers/264952584/versions/2)가 Live / 최신으로 표시됐고 공개 `gtm.js` 응답도 HTTP 200이었다. 게시한 실제 내보내기 JSON을 `gtm-blog.json`에 보관했다. Windows Downloads의 `gtm-blog-migration.json`은 가져오기에 쓴 후보이며, 이후 복구·비교에는 저장소의 실제 내보내기를 기준으로 한다.
 
-남은 작업:
+사이트 변경 커밋 `b5c356de143440646225237540350a17c47aba4f`를 main에 푸시했다. [배포 실행 35864259243](https://github.com/KMINGON/KMINGON.github.io/actions/runs/35864259243)의 빌드·분석 검증·Pages 배포가 모두 성공했다. 실제 배포 완료 시각은 2026-09-23 13:03:19 UTC / 22:03:19 KST다.
 
-1. 승인된 변경 파일을 커밋·푸시한다. main push는 GitHub Pages 운영 배포를 시작한다.
-2. Actions의 Hugo 빌드와 분석 검증이 통과하는지 확인한다.
-3. 운영 HOME·글·개인정보 페이지에서 새 동의 UI, 기존 GA 중복 제거, 실제 GTM 요청과 단일 page_view를 확인한다.
-4. GA4 실시간/DebugView·일반 보고서의 처리 결과를 확인하고 운영 배포 커밋·시각을 기록한다. HTTP 204는 수집 요청 성공을 뜻하며 보고서 집계 완료의 증거로 대신하지 않는다.
+운영 검증에서는 HTML을 로컬 파일로 대체하지 않고 `https://blog.mingon.dev/`의 실제 응답을 사용했다. HOME·Analysis·개인정보·Note·Playbook·Write-up 페이지에서 로더 1개, 직접 GA/Cloudflare 제거를 확인했고 HOME의 Analysis·Review 9편도 유지됐다. 데스크톱·모바일에서 실제 Google 태그의 동의 처리와 전송 값을 검사했으며 별도 정상 조회를 실제 GA4 서버로 보내 HTTP 204를 확인했다.
+
+GA4 계정 화면의 보고서 집계 확인은 아직 완료하지 못했다. 운영 배포 시점의 Orca CLI는 Windows 실행 경로 `C:\Users\Brain\AppData\Local\Programs\orca\resources\bin`이 없다는 `Push-Location ... PathNotFound` 오류로 실행되지 않았다. 다른 실행 파일이나 세션으로 우회하지 않았으며, 로그인된 Chrome 창도 조작하지 않았다. 도구 복구 후 Github-Blog `520438050`의 실시간/일반 보고서를 확인한다. HTTP 204를 보고서 집계 완료의 증거로 대신하지 않는다.
 
 다음 GTM 변경도 블로그 전용 컨테이너에서 수행하며, 게시 후 실제 내보내기·검증 결과를 이 문서와 함께 갱신한다.
 
@@ -115,7 +116,8 @@ GTM의 Google tag 하나가 문서당 자동 `page_view`를 한 번 보낸다. �
 - 실제 Google 태그가 만든 전송 데이터에서 측정 ID `G-GGY59YGHKJ`, canonical page_location, origin만 남긴 page_referrer, `npa=1`과 블로그 범위 쿠키를 확인했다. 쿼리·해시·유입 경로의 테스트 문자열 및 toy 측정 ID는 없었다. 이 두 시나리오의 collect는 브라우저에서 가로채 테스트 트래픽을 줄였다.
 - 별도의 깨끗한 브라우저에서 정상 페이지 조회 1건을 실제 Google 수집 서버로 전송했고 `https://www.google-analytics.com/g/collect`의 HTTP 204 응답을 확인했다. 검증 결과는 [2026-09-23 기록](validation-2026-09-23.json)에 저장했다.
 - 블로그 GA4 스트림 ID·측정 ID·현재 URL과 향상된 측정 비활성 상태를 게시 후 다시 확인했다. 기존 Internal Traffic 데이터 필터는 `테스트` 상태였으며 변경하지 않았다.
-- **남은 검증:** 실제 운영 사이트 배포 후 재검증과 GA4 보고서 처리 결과 확인. 최초 실시간 확인에서는 데이터가 표시되지 않아 보고서 수신 완료로 기록하지 않았다.
+- **운영 배포 후 검증:** 실제 배포된 HTML/JS로 데스크톱·모바일 각각 미동의·거부 외부 분석 요청 0건, 허용 후 GTM 1회·page_view 1건, 반복 허용 중복 0건, 철회 후 추가 요청 0건을 확인했다. 테스트 문자열 미전송과 블로그 범위 쿠키도 확인했다. 별도 정상 조회의 실제 collect 응답은 HTTP 204였다.
+- **남은 확인:** GA4 보고서 집계 반영 여부. 배포 전 최초 실시간 확인에는 데이터가 없었고, 배포 후에는 Orca 실행 경로 오류로 계정 화면에 접근하지 못했다. 보고서 수신 완료로 기록하지 않는다.
 
 ```bash
 PATH="$HOME/.local/dart-sass:$PATH" hugo --minify
