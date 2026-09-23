@@ -6,6 +6,8 @@
   <!-- Meta -->
   {{- hugo.Generator -}}
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="referrer" content="strict-origin" />
+  {{- partial "analytics/gtm.html" . -}}
   <meta name="author" content="{{ .Site.Params.author }}" />
   {{/* 글은 front matter에 summary만 쓰므로 폴백 체인에 포함시킨다 (전 페이지 동일 description 방지) */}}
   <meta name="description" content="{{ .Description | default .Params.summary | default site.Params.description }}" />
@@ -198,10 +200,6 @@
 
   {{ if and hugo.IsProduction .Site.Params.meta.pixelId }}
     {{- partial "analytics/meta.html" . -}}
-  {{ end }}
-
-  {{ if and hugo.IsProduction .Site.Params.cloudflareAnalyticsToken }}
-    {{- partial "analytics/cloudflare.html" . -}}
   {{ end }}
 
 

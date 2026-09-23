@@ -1,0 +1,33 @@
+<footer class="footer footer__{{ .footerClassModifier }}">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      {{ if isset .context.Site.Params "copyright" }}
+        {{ replace .context.Site.Params.copyright "{{ YEAR }}" (now.Format "2006") | markdownify }}
+      {{ else }}
+        {{ .context.Site.Params.author }}
+        {{ now.Format "2006" }}
+      {{ end }}
+    </li>
+    {{ range .context.Site.Menus.footer }}
+      <li class="footer__item">
+        <a
+          class="link"
+          href="{{ .URL }}"
+          {{ if strings.HasPrefix .URL "http" }}
+            target="_blank" rel="noopener noreferrer"
+          {{ end }}
+          title="{{ .Title }}"
+        >
+          {{ .Name }}
+        </a>
+      </li>
+    {{ end }}
+    <li class="footer__item"><a href="{{ "privacy/" | relURL }}">개인정보 안내</a></li>
+    <li class="footer__item"><button class="analytics-settings" type="button" data-analytics-settings hidden>분석 설정</button></li>
+  </ul>
+</footer>
+{{- if eq .footerClassModifier "base" -}}
+  {{- partial "medium-zoom.html" .context -}}
+  {{- partial "analytics/consent.html" .context -}}
+{{- end -}}

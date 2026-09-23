@@ -64,6 +64,11 @@ hugo --minify
 
 GitHub Actions 워크플로우가 main 브랜치 푸시 시 자동으로 Pages에 배포합니다.
 
+HOME에는 Analysis와 Review만 최신순으로 노출합니다. Note, Playbook, Write-up은 각 메뉴에서 탐색합니다.
+
+방문 통계의 계정·컨테이너, 동의 처리와 배포 검증은 [분석 운영 문서](docs/analytics/README.md)를 참고합니다.
+배포 전에는 `node scripts/check-analytics.mjs public`으로 직접 GA 중복 삽입과 동의 처리도 확인합니다.
+
 ### 포스팅 방법
 
 글 하나를 폴더 하나로 관리하는 Hugo Leaf Bundle 구조를 사용합니다.

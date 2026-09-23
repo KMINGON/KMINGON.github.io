@@ -23,8 +23,8 @@ sidebarTagsExclude = ["PortSwigger", "Practitioner", "Apprentice", "Expert"]
 # 사이드바에 노출할 태그 개수. 0 = 제외 후 전체, 화면 높이에 맞게 CSS가 잘라냄
 sidebarTagsLimit = 0
 readMore = true # 가볍게 요약 정렬
-gtagId = "G-GGY59YGHKJ"
-cloudflareAnalyticsToken = "3c2e43dddc894731b5857b1d69a39d73"  # Cloudflare Web Analytics beacon 토큰
+gtmContainerId = "GTM-KLNKCLLG"
+googleAnalyticsId = "G-GGY59YGHKJ"  # 기존 GA4 속성 유지. Google tag는 GTM에서 관리
 customCss = ["css/custom.css"]  # 인라인 코드 강조 등 커스텀 스타일
 contentratio = 0.70  # 본문 66% / 사이드바 34% (기본 0.6). 클수록 사이드바가 좁아짐
 

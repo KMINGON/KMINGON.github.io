@@ -7,6 +7,49 @@
   font-size: 0.9em;
 }
 
+.analytics-settings {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.analytics-consent {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  box-sizing: border-box;
+  width: min(42rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1.5rem;
+  border: 1px solid #777;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 2px 12px #0002;
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+.analytics-consent[hidden] { display: none; }
+.analytics-consent h2 { margin: 0; font-size: 1.7rem; }
+.analytics-consent__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.analytics-consent button {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  color: inherit;
+  padding: .6rem 1rem;
+  font: inherit;
+}
+.theme--dark .analytics-consent { background: #222; color: #eee; }
+
 /* 데스크톱: 본문 콘텐츠에만 좌우 여백. 메뉴바(.header) 구분선은 full-width 유지 */
 @media screen and (min-width: 961px) {
   .wrapper__main > :not(.header) {

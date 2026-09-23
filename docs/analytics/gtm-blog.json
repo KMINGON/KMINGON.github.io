@@ -1,0 +1,342 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-09-23 10:21:07",
+    "containerVersion": {
+        "path": "accounts/6378414723/containers/264952584/versions/2",
+        "accountId": "6378414723",
+        "containerId": "264952584",
+        "containerVersionId": "2",
+        "name": "Blog GA4 - consent gated migration",
+        "description": "Preserve G-GGY59YGHKJ. One Google tag per page after blog_analytics_ready and analytics consent, restricted to blog.mingon.dev. Canonical page URL, referrer origin only, no ads/signals. Host-scoped cookies expire in 180 days. Site deployment is separate and pending.",
+        "container": {
+            "path": "accounts/6378414723/containers/264952584",
+            "accountId": "6378414723",
+            "containerId": "264952584",
+            "name": "blog.mingon.dev",
+            "publicId": "GTM-KLNKCLLG",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1790142429387",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6378414723/containers/264952584/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-KLNKCLLG"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "tagId": "7",
+                "name": "Google tag - blog",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "G-GGY59YGHKJ"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "configSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "page_location"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - blog_page_location}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "page_referrer"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - blog_page_referrer}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "page_title"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - blog_page_title}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "send_page_view"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "allow_google_signals"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "false"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "allow_ad_personalization_signals"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "false"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "cookie_domain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "blog.mingon.dev"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "cookie_expires"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "15552000"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1790158577986",
+                "firingTriggerId": [
+                    "4"
+                ],
+                "tagFiringOption": "ONCE_PER_LOAD",
+                "consentSettings": {
+                    "consentStatus": "NEEDED",
+                    "consentType": {
+                        "type": "LIST",
+                        "list": [
+                            {
+                                "type": "TEMPLATE",
+                                "value": "analytics_storage"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "triggerId": "4",
+                "name": "Blog analytics ready - production",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "blog_analytics_ready"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Hostname}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "blog.mingon.dev"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1790158577986"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "variableId": "3",
+                "name": "DLV - blog_page_title",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "blog_page_title"
+                    }
+                ],
+                "fingerprint": "1790158577986"
+            },
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "variableId": "5",
+                "name": "DLV - blog_page_referrer",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "blog_page_referrer"
+                    }
+                ],
+                "fingerprint": "1790158577986"
+            },
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "variableId": "6",
+                "name": "DLV - blog_page_location",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "blog_page_location"
+                    }
+                ],
+                "fingerprint": "1790158577986"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6378414723",
+                "containerId": "264952584",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "1790158749071",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6378414723/containers/264952584/versions/2?apiLink=version"
+    }
+}

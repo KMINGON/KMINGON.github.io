@@ -1,7 +1,0 @@
-{{/* Cloudflare Web Analytics — 토큰은 hugo.toml의 params.cloudflareAnalyticsToken */}}
-{{- $beacon := dict "token" .Site.Params.cloudflareAnalyticsToken | jsonify -}}
-<script
-  type="module"
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  {{ printf "data-cf-beacon='%s'" $beacon | safeHTMLAttr }}
-></script>

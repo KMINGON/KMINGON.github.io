@@ -1,0 +1,14 @@
+{{- if and hugo.IsProduction .Site.Params.gtmContainerId (ne .Kind "404") -}}
+  {{- if or .Site.Params.gtagId .Site.Config.Services.GoogleAnalytics.ID -}}
+    {{- errorf "Use GTM only: remove direct Google Analytics configuration." -}}
+  {{- end -}}
+  {{- if not (findRE `^GTM-[A-Z0-9]+$` .Site.Params.gtmContainerId) -}}
+    {{- errorf "Invalid GTM container ID." -}}
+  {{- end -}}
+  {{- $analytics := resources.Get "js/analytics.js" | resources.Minify | resources.Fingerprint -}}
+  <script id="blog-analytics" defer src="{{ $analytics.RelPermalink }}"
+    integrity="{{ $analytics.Data.Integrity }}" crossorigin="anonymous"
+    data-container="{{ .Site.Params.gtmContainerId }}"
+    data-measurement="{{ .Site.Params.googleAnalyticsId }}"
+    data-page-url="{{ .Permalink }}" data-page-title="{{ .Title }}"></script>
+{{- end -}}

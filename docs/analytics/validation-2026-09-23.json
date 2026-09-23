@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-09-23T10:20:28.985Z",
+  "container": "GTM-KLNKCLLG",
+  "version": 2,
+  "measurement": "G-GGY59YGHKJ",
+  "siteSource": "local production build intercepted at blog.mingon.dev; site NOT deployed",
+  "scenarios": [
+    {
+      "viewport": {
+        "width": 1365,
+        "height": 900
+      },
+      "preConsentRequests": 0,
+      "deniedRequests": 0,
+      "gtmLoads": 1,
+      "pageViews": 1,
+      "repeatedAcceptAdditionalPageViews": 0,
+      "revocationAdditionalRequests": 0,
+      "queryAndReferrerCanary": "absent",
+      "actualGoogleTagExecuted": true,
+      "collectionEndpoint": "intercepted to avoid test traffic",
+      "pageLocation": "https://blog.mingon.dev/analysis/email-parser-differential/",
+      "pageReferrer": "https://example.org",
+      "consent": {
+        "gcs": "G101",
+        "gcd": "13p3t3p3p7l1",
+        "npa": "1"
+      },
+      "cookieDomains": [
+        ".blog.mingon.dev"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "preConsentRequests": 0,
+      "deniedRequests": 0,
+      "gtmLoads": 1,
+      "pageViews": 1,
+      "repeatedAcceptAdditionalPageViews": 0,
+      "revocationAdditionalRequests": 0,
+      "queryAndReferrerCanary": "absent",
+      "actualGoogleTagExecuted": true,
+      "collectionEndpoint": "intercepted to avoid test traffic",
+      "pageLocation": "https://blog.mingon.dev/analysis/email-parser-differential/",
+      "pageReferrer": "https://example.org",
+      "consent": {
+        "gcs": "G101",
+        "gcd": "13p3t3p3p7l1",
+        "npa": "1"
+      },
+      "cookieDomains": [
+        ".blog.mingon.dev"
+      ]
+    }
+  ],
+  "realCollection": {
+    "status": 204,
+    "pageViews": 1,
+    "measurement": "G-GGY59YGHKJ",
+    "endpoint": "https://www.google-analytics.com/g/collect"
+  },
+  "publication": {
+    "name": "Blog GA4 - consent gated migration",
+    "publishedAtKST": "2026-09-23 19:19",
+    "exportTimeUTC": "2026-09-23 10:21:07",
+    "liveVersionVerifiedInUI": true,
+    "publicGtmScriptStatus": 200
+  },
+  "ga4Settings": {
+    "propertyId": "520438050",
+    "streamId": "13322659823",
+    "enhancedMeasurement": false,
+    "internalTrafficFilter": "TESTING (unchanged)"
+  },
+  "reporting": "Initial GA4 Realtime check showed no data; report processing not confirmed. HTTP 204 proves endpoint response only.",
+  "siteDeployment": "Not committed, pushed or deployed; follow-up user instruction required."
+}

@@ -71,6 +71,9 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      - name: Check analytics and consent
+        run: node scripts/check-analytics.mjs public
+
       # 7) Pages 아티팩트 업로드(전용)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
