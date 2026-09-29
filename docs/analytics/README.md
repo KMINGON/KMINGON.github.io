@@ -4,7 +4,7 @@
 
 ## 현재 진행 상태
 
-**2026-09-29 사용자가 수동 Cloudflare 기본 통계 + 기존 Google opt-in 구조의 커밋·main 푸시·운영 배포를 승인했다.** 로컬 빌드·스텁 검증과 실제 SDK의 전송 직전 검증을 완료했다. 이번 배포에서 관리자 설정은 변경하지 않으며, 계정 대시보드 확인과 수동 스크립트의 지역 제외 미구현은 아래 한계로 기록한다. 배포 결과와 운영 검증은 완료 후 이 문서에 갱신한다.
+**2026-09-29 Cloudflare 기본 통계 추가의 main 푸시·GitHub Pages 운영 배포를 완료했다.** 구현 커밋은 `5ae28d766985458c9a594e0fcaafa8aec82d1076`, [배포 실행 36528911022](https://github.com/KMINGON/KMINGON.github.io/actions/runs/36528911022)은 build/deploy 모두 성공했다. 배포 완료는 2026-09-29 15:01:36 KST다. 운영 응답 + 실제 SDK 검증이 통과했고, 정상 HOME 조회의 Cloudflare 수집 POST 1건에서 실제 HTTP 204를 확인했다. 관리자 설정은 변경하지 않았으며 계정 대시보드·지역 설정·집계 반영은 미확인, 수동 스크립트의 지역 제외는 미구현이다.
 
 | Cloudflare 구성 | 값 / 상태 |
 | --- | --- |
@@ -13,8 +13,8 @@
 | 설치 방식 | GTM 밖의 로컬 로더 → `type="module"`, `https://static.cloudflareinsights.com/beacon.min.js`, `data-cf-beacon` JSON token |
 | Google 분석 | `GTM-KLNKCLLG` / `G-GGY59YGHKJ`, 기존 명시적 동의 조건 유지 |
 | 기본 통계 거부 | 개인정보 안내 페이지와 footer의 ‘기본 통계 설정’, 저장 후 새로고침 |
-| 계정 설정 확인 | 미수행. 사이트/토큰 연결, 수동 설치 선택 및 자동 삽입 비활성, 지역별 운영 방식 확인 필요 |
-| 검증 | 네 가지 빌드·Node/Chromium 스텁 통과. 실제 SDK에서도 CF 단일 로드·Google 동의·거부 확인, 수집 POST는 가로채 전송하지 않음 |
+| 계정 설정 확인 | 관리자 화면 미조회. 운영 응답의 자동 삽입 없음과 지정 토큰·도메인의 RUM HTTP 204 확인. 계정 메타데이터·지역 설정·대시보드 집계는 별도 확인 필요 |
+| 검증 | 네 가지 빌드·Node/Chromium 스텁 및 배포 전후 실제 SDK 검증 통과. 정상 HOME의 CF POST 1건만 실제 전송(204), 나머지 검증 수집 요청은 가로챔 |
 
 ### 기존 운영 상태 (2026-09-23)
 
@@ -124,7 +124,7 @@ Cloudflare 수동 설치에 필요한 추가 범위는 `script-src`의 `https://
 2. 수동 스크립트 설치를 사용하고 Web Analytics 자동 삽입, 프록시/Zaraz/기타 태그의 중복 삽입 여부를 확인한다. 자동 삽입이 켜져 있으면 로컬 opt-out이 무력화될 수 있으므로 해결 전 배포하지 않는다. 배포 전 실제 운영 응답에 자동 삽입이 없는 것을 확인했다. 이번 요청은 관리자 설정 변경을 포함하지 않으며, 로그인된 계정 대시보드는 조회하지 않았다. 응답 검사로 계정 전체 설정 확인을 대신하지 않는다.
 3. **수동 스크립트는 자동 삽입 설정의 ‘Enable, excluding visitor data in the EU’를 자동 상속하지 않는다.** 이번 코드는 지역 조회나 EU 제외를 구현하지 않는다. 사용자는 이 미구현 사항을 한계로 기록하면서 현 구조를 배포하도록 승인했다. 계정/지역 설정 및 지역별 적합성은 확인되지 않았으며, 필요한 지역 제외나 별도 동의 정책을 구현한 것으로 간주하지 않는다. 쿠키 없는 분석이라는 설명을 이 판단의 대체물로 사용하지 않는다.
 4. 배포 시에는 배포 응답과 브라우저 Network에서 수동 CF script 1개, 지정 토큰, Google 미선택·거부 요청 0개를 확인한다. 기본 통계를 끈 뒤 새 문서에는 CF 요청도 0개여야 한다. 새 preview 호스트나 CF 프록시를 붙일 때도 이 조건을 재검증한다.
-5. Cloudflare Dashboard → Web Analytics → `blog.mingon.dev`에서 방문·페이지·유입 및 성능 지표를 조회한다. 스텁 응답은 실제 RUM 수신·대시보드 집계의 성공 증거가 아니다. 승인된 운영 검증에서는 민감한 값이 없는 정상 HOME 조회 1회의 수집 응답을 확인한다. HTTP 성공 응답과 대시보드 집계 반영도 구분해 기록한다.
+5. Cloudflare Dashboard → Web Analytics → `blog.mingon.dev`에서 방문·페이지·유입 및 성능 지표를 조회한다. 스텁 응답은 실제 RUM 수신·대시보드 집계의 성공 증거가 아니다. 승인된 운영 검증에서 민감한 값이 없는 정상 HOME 조회의 CF 수집 POST 1건만 실제 전송해 HTTP 204를 확인했다. 나머지 수집 요청은 가로챘다. HTTP 성공 응답은 계정의 사이트 연결 표시나 대시보드 집계 완료의 증거로 대신하지 않는다.
 
 참고: [Cloudflare 수동 설치와 EU 자동 삽입 옵션](https://developers.cloudflare.com/web-analytics/get-started/), [FAQ: CSP·URL·수동 설치](https://developers.cloudflare.com/web-analytics/faq/), [통계 전송 경로](https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/), [Web Analytics 개인정보 안내](https://www.cloudflare.com/web-analytics/).
 
@@ -174,6 +174,15 @@ BLOG_PLAYWRIGHT_MODULE=file:///tmp/blog-analytics-test/node_modules/playwright/i
 데스크톱·모바일 모두 CF 로더 1개, 지정 siteToken과 블로그 URL, Google 미선택/거부 요청 0건, 기본 통계 거부 후 새 문서의 CF 요청 0건을 확인했다. CF가 꺼진 상태에서도 명시적 Google 동의 후에는 기존 측정 ID로 page_view 1건만 생성됐고, 반복 동의 시 중복 로드가 없었다. 기본 통계 재활성화가 Google 동의를 바꾸지 않는 것도 확인했다. 실제 SDK는 로드 및 페이지 종료 시 서로 다른 RUM 이벤트를 만들 수 있으므로 RUM 요청이 여러 개라는 이유만으로 중복 삽입이라고 판단하지 않는다.
 
 검증 기록: [배포 및 실제 SDK 검증](cloudflare-deployment-2026-09-29.json).
+
+### 운영 배포 후 검증
+
+- GitHub Pages의 `build_type=workflow`, `cname=blog.mingon.dev`를 확인했다. 기존 `.github/workflows/deploy.yml` 경로로 main 커밋을 배포했다.
+- 운영 HOME·개인정보·Analysis HTML에서 로컬 CF 로더 1개, 자동 삽입 beacon 0개, 지정 토큰 및 Google 동의 로더 1개를 확인했다. 내려받은 CF 로더 바이트는 검증한 production 빌드와 일치했다. 응답은 `server: GitHub.com`이며 CSP 헤더/meta는 여전히 없다.
+- **운영 HTML을 로컬 파일로 대체하지 않고** 실제 응답과 실제 Cloudflare/Google SDK를 사용했다. 데스크톱·모바일 모두 CF module script 1개, Google 미선택/거부 요청 0건, 기본 통계 거부 후 새 문서의 CF 요청 0건이었다. Google 동의 후 기존 측정 ID의 page_view 1건, 반복 동의 중복 없음, 독립 설정과 철회도 확인했다. 이 기능 검증의 수집 POST는 모두 가로채 실제 통계를 늘리지 않았다.
+- 별도의 깨끗한 브라우저에서 쿼리·해시·민감 canary 없이 `https://blog.mingon.dev/`를 정상 조회했다. 지정 `siteToken`과 HOME URL을 확인한 **CF POST 1건만** 실제로 보내 `https://cloudflareinsights.com/cdn-cgi/rum`의 HTTP 204를 받았다. 이 조회에서도 Google 요청은 0건이었다. 종료 등 추가 수집 요청은 가로챘다.
+- 운영 응답에서 자동 삽입 중복이 관찰되지 않았다는 결과는 계정 전체·다른 지역의 설정 검증을 뜻하지 않는다. 공유 관리자 브라우저는 사용하지 않았고 대시보드 집계·토큰 연결 UI는 미조회다. 수동 beacon에 EU 등 지역 제외가 적용됐다고 주장하지 않는다.
+- 사용자 profile 미추적 파일 3개는 커밋 대상에서 제외하고 SHA-256 동일성을 확인했다. toy 파일·컨테이너·Google 설정은 변경하지 않았다.
 
 ## 기존 검증 결과 (2026-09-23)
 
