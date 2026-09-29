@@ -1,0 +1,90 @@
+{
+  "scope": "Cloudflare blog deployment authorized; toy and account settings unchanged",
+  "preDeploymentHTTP": {
+    "url": "https://blog.mingon.dev/",
+    "status": 200,
+    "server": "GitHub.com",
+    "automaticallyInjectedBeacons": 0,
+    "cspHeaderOrMeta": false
+  },
+  "preDeploymentSDK": {
+    "checkedAt": "2026-09-29T05:59:26.692Z",
+    "html": "local production build",
+    "sdk": "actual Cloudflare and Google SDKs",
+    "collection": "all analytics POSTs intercepted, no canary values used",
+    "results": [
+      {
+        "viewport": {
+          "width": 1365,
+          "height": 900
+        },
+        "cfInitialScripts": 1,
+        "googleBeforeConsent": 0,
+        "googleAfterDenial": 0,
+        "cfAfterOptOut": 0,
+        "googleWhileCFDisabled": 1,
+        "gaPageViews": 1,
+        "gaMeasurement": "G-GGY59YGHKJ",
+        "singleLoad": true,
+        "independentChoices": true,
+        "errors": [],
+        "rum": [
+          {
+            "siteToken": "ba6343dfd33a4e5998a37308989dd022",
+            "location": "https://blog.mingon.dev/privacy/",
+            "eventType": 1
+          },
+          {
+            "siteToken": "ba6343dfd33a4e5998a37308989dd022",
+            "location": "https://blog.mingon.dev/privacy/",
+            "eventType": 3
+          },
+          {
+            "siteToken": "ba6343dfd33a4e5998a37308989dd022",
+            "location": "https://blog.mingon.dev/privacy/",
+            "eventType": 1
+          }
+        ],
+        "realAnalyticsPosts": 0
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "cfInitialScripts": 1,
+        "googleBeforeConsent": 0,
+        "googleAfterDenial": 0,
+        "cfAfterOptOut": 0,
+        "googleWhileCFDisabled": 1,
+        "gaPageViews": 1,
+        "gaMeasurement": "G-GGY59YGHKJ",
+        "singleLoad": true,
+        "independentChoices": true,
+        "errors": [],
+        "rum": [
+          {
+            "siteToken": "ba6343dfd33a4e5998a37308989dd022",
+            "location": "https://blog.mingon.dev/privacy/",
+            "eventType": 1
+          },
+          {
+            "siteToken": "ba6343dfd33a4e5998a37308989dd022",
+            "location": "https://blog.mingon.dev/privacy/",
+            "eventType": 3
+          },
+          {
+            "siteToken": "ba6343dfd33a4e5998a37308989dd022",
+            "location": "https://blog.mingon.dev/privacy/",
+            "eventType": 1
+          }
+        ],
+        "realAnalyticsPosts": 0
+      }
+    ]
+  },
+  "limitations": [
+    "Cloudflare account/dashboard settings and report aggregation not inspected",
+    "Manual beacon does not inherit automatic-injection EU exclusion; no regional exclusion implemented"
+  ]
+}

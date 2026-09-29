@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-09-29T05:03:33.922Z",
+  "build": "/tmp/blog-cf-production",
+  "mode": "local HTML and stubbed vendors; all network requests intercepted",
+  "results": [
+    {
+      "viewport": {
+        "width": 1365,
+        "height": 900
+      },
+      "unknown": {
+        "cf": 1,
+        "google": 0
+      },
+      "deniedGoogle": 0,
+      "optedOutNewDocument": {
+        "cf": 0,
+        "google": 0
+      },
+      "googleConsentGtmLoads": 1,
+      "independentChoices": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "unknown": {
+        "cf": 1,
+        "google": 0
+      },
+      "deniedGoogle": 0,
+      "optedOutNewDocument": {
+        "cf": 0,
+        "google": 0
+      },
+      "googleConsentGtmLoads": 1,
+      "independentChoices": true
+    }
+  ],
+  "excludedOriginsAnd404": true,
+  "javascriptDisabled": true,
+  "blockedStorage": true,
+  "persistedOptOut": true,
+  "crossTabOptOut": true,
+  "realAnalyticsRequests": 0
+}

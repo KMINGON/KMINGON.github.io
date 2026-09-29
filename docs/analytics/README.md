@@ -1,8 +1,22 @@
 # 블로그 방문 통계 운영
 
-확인일: 2026-09-23. 대상: `KMINGON.github.io` main, `https://blog.mingon.dev/`.
+확인일: 2026-09-29. 대상: `KMINGON.github.io` main, `https://blog.mingon.dev/`.
 
 ## 현재 진행 상태
+
+**2026-09-29 사용자가 수동 Cloudflare 기본 통계 + 기존 Google opt-in 구조의 커밋·main 푸시·운영 배포를 승인했다.** 로컬 빌드·스텁 검증과 실제 SDK의 전송 직전 검증을 완료했다. 이번 배포에서 관리자 설정은 변경하지 않으며, 계정 대시보드 확인과 수동 스크립트의 지역 제외 미구현은 아래 한계로 기록한다. 배포 결과와 운영 검증은 완료 후 이 문서에 갱신한다.
+
+| Cloudflare 구성 | 값 / 상태 |
+| --- | --- |
+| 실행 대상 | production 빌드 + HTTPS `blog.mingon.dev`의 기본 포트, 404 제외 |
+| 공개 사이트 토큰 | `ba6343dfd33a4e5998a37308989dd022` (사용자 제공, API 인증키 아님) |
+| 설치 방식 | GTM 밖의 로컬 로더 → `type="module"`, `https://static.cloudflareinsights.com/beacon.min.js`, `data-cf-beacon` JSON token |
+| Google 분석 | `GTM-KLNKCLLG` / `G-GGY59YGHKJ`, 기존 명시적 동의 조건 유지 |
+| 기본 통계 거부 | 개인정보 안내 페이지와 footer의 ‘기본 통계 설정’, 저장 후 새로고침 |
+| 계정 설정 확인 | 미수행. 사이트/토큰 연결, 수동 설치 선택 및 자동 삽입 비활성, 지역별 운영 방식 확인 필요 |
+| 검증 | 네 가지 빌드·Node/Chromium 스텁 통과. 실제 SDK에서도 CF 단일 로드·Google 동의·거부 확인, 수집 POST는 가로채 전송하지 않음 |
+
+### 기존 운영 상태 (2026-09-23)
 
 **GTM 버전 2와 사이트 운영 배포를 완료했다. 운영 응답을 사용한 동의·페이지 조회·민감 값 제외 검증과 실제 GA4 HTTP 204 응답을 확인했다. GA4 보고서 화면의 집계 반영 여부는 별도로 남아 있다.**
 
@@ -54,23 +68,35 @@ GTM 게시와 사이트 배포를 각각 완료했다. 운영 사이트는 동�
 
 ## 사이트 구현
 
-`hugo.toml`에는 실제 블로그 컨테이너 ID와 기존 GA4 측정 ID만 둔다. 직접 `gtagId`는 제거한다. `layouts/partials/analytics/gtm.html`은 production 빌드에만 로컬 동의 스크립트를 삽입한다. 실제 GTM 요청은 HTTPS `blog.mingon.dev`에서 동의한 경우에만 발생한다. 404에는 추적 스크립트를 넣지 않는다.
+`hugo.toml`에는 실제 블로그 컨테이너 ID·기존 GA4 측정 ID와 사용자 제공 Cloudflare 공개 사이트 토큰을 둔다. 직접 `gtagId`는 제거한다. `layouts/partials/analytics/gtm.html`과 `cloudflare.html`은 production 빌드이며 baseURL이 `https://blog.mingon.dev/`인 경우에만 각 로컬 스크립트를 삽입한다. 실제 GTM 요청은 HTTPS `blog.mingon.dev`에서 동의한 경우에만 발생한다. 404에는 추적 스크립트를 넣지 않는다.
 
 `layouts/partials/footer.html`을 로컬에서 오버라이드하여 직접 GA 코드를 제거했다. 동의 UI와 공통 확대 스크립트는 base footer에서 한 번만 넣는다. HOME의 Analysis·Review 9편과 기존 카테고리/글 내용은 그대로 둔다.
 
-분석 경로를 GTM의 기존 GA4로 통일하면서 Cloudflare beacon 설정·삽입은 제거했다. Cloudflare 분석의 새 데이터는 사이트 배포 시점부터 들어오지 않는다. 과거 데이터나 Cloudflare 계정 자체를 삭제한 것은 아니다.
+2026-09-23 GTM 이관 당시 Cloudflare beacon을 제거했다. 2026-09-29 변경은 Cloudflare 기본 통계를 다시 별도로 추가하며, 당시의 제거·배포 기록은 과거 상태를 나타낸다.
 
-### 동의와 철회
+### Cloudflare 기본 통계 (2026-09-29)
+
+- `assets/js/cloudflare-analytics.js`는 Google의 `dataLayer`나 동의 기록을 사용하지 않는다. 기본 통계를 켠 상태에서만 공식 module 스크립트를 한 번 추가한다. Google 동의가 미선택·거부여도 기본 통계는 독립적으로 동작한다.
+- 호스트는 런타임의 `location.origin === 'https://blog.mingon.dev'`로 다시 제한한다. 개발 빌드, 다른 baseURL의 preview 빌드, `kmingon.github.io`, localhost, HTTP, 비표준 포트에서는 실행하지 않는다. 두 로더 모두 같은 배포·호스트 경계를 따른다.
+- `blog.basic-analytics-disabled.v1` 로컬 저장소 값이 `1`이면 스크립트를 요청하지 않는다. `0` 또는 기록 없음은 기본 통계 사용이다. 만료를 따로 두지 않으며 사이트 저장소 삭제 시 초기화된다. 이 기록은 방문자 식별이 아닌 거부 선택 보존용이다.
+- ‘기본 통계 끄고 새로고침’ / ‘켜고 새로고침’ 버튼은 저장 후 페이지를 다시 로드한다. 이미 실행된 스크립트의 리스너는 DOM에서 태그를 지워도 남으므로 새로고침이 필요하다. **현재 페이지의 종료 시점 전송까지 소급 차단하는 기능은 아니다. 새 문서부터 로드를 막으며, 기존 데이터도 삭제하지 않는다.** 다른 탭의 기본 통계 변경도 `storage` 이벤트로 새로고침한다.
+- 거부 기록을 읽을 수 없으면 수집하지 않는다. 저장 실패 시 성공으로 표시하거나 새로고침하지 않고 실패 안내를 표시한다. Google 동의 키는 건드리지 않는다.
+- 기존 `data-cf-beacon` 또는 Cloudflare beacon script가 DOM에 있으면 추가하지 않는다. 이는 중복 삽입을 줄이는 방어일 뿐, **계정에서 자동 삽입된 스크립트의 실행·opt-out 우회를 막아주지는 않는다. 자동 삽입을 꺼야 한다.** MutationObserver나 Google 태그를 통한 우회 로더는 추가하지 않는다.
+- 2026-09-29 운영 HOME을 HTTP로 읽은 결과 `server: GitHub.com`, Cloudflare beacon 0개, CSP 헤더·meta 없음이었다. 읽기만 했으며 분석 스크립트를 실행하지 않았다. 계정 전체나 지역별 응답을 검증한 결과는 아니다.
+- Cloudflare 기본 방문·성능 지표만 사용한다. 입력값·검색어·사용자 ID를 보내는 커스텀 이벤트는 추가하지 않는다. Google의 canonical URL/origin 정제는 Google에만 적용된다. Cloudflare의 URL 정제·수집 필드는 제공 업체의 동작이므로 동일한 필터를 적용했다고 설명하지 않는다. `strict-origin` referrer meta는 유지한다.
+- Cloudflare는 통계용 쿠키·localStorage·지문을 사용하지 않는다고 안내하지만, 네트워크 요청 처리 자체는 IP/브라우저 정보를 동반한다. 쿠키 없음이 전세계 동의 면제라는 법적 결론은 내리지 않는다.
+
+### Google 동의와 철회
 
 - 최초 방문·거부·기간 만료: GTM/GA를 요청하지 않는다. 동의 상태를 보내는 cookieless ping도 발생시키지 않는다.
 - 허용: 컨테이너를 로드하기 **전에** `analytics_storage=granted`, 광고 관련 세 항목은 `denied`로 설정한다. 이미 확인된 동의 상태로 시작하므로 실행 중인 GTM에 `gtag('consent', 'update', ...)`를 보내는 순서 문제를 피한다.
 - 컨테이너 로드 요청 후 `dataLayer`에 `blog_analytics_ready` 이벤트를 한 번 넣는다. 이 이벤트는 GTM 트리거용이며 GA4의 커스텀 이벤트 태그는 만들지 않는다.
 - 선택은 `blog.analytics-consent.v1` 로컬 저장소에 최대 180일 보관한다. 저장소 차단 시 해당 문서에서만 선택이 유효하다.
-- ‘분석 설정’에서 철회하면 GA4 전송 차단 플래그를 설정하고 쿠키를 정리한 뒤 페이지를 새로 불러온다. 다른 탭에서 동의를 철회하거나 저장소를 비운 경우에도 `storage` 이벤트로 중지한다.
+- ‘Google 통계 설정’에서 철회하면 GA4 전송 차단 플래그를 설정하고 쿠키를 정리한 뒤 페이지를 새로 불러온다. 다른 탭에서 동의를 철회하거나 저장소를 비운 경우에도 `storage` 이벤트로 중지한다.
 - 새 분석 쿠키는 `blog.mingon.dev` 범위, 만료 180일을 GTM Google tag에서 지정한다. 철회 시 블로그 쿠키와 과거 상위 도메인의 블로그 스트림 쿠키를 지운다. 다른 서비스의 `_ga_*` 및 상위 도메인의 공용 `_ga` 쿠키는 삭제하지 않는다.
 - `<noscript>` GTM iframe은 넣지 않는다. JavaScript 없이 동의를 확인할 수 없는 상황에서 요청이 발생하는 경로를 만들지 않기 위해서다.
 
-### 수집 항목 제한
+### Google 수집 항목 제한
 
 | 값 | 처리 |
 | --- | --- |
@@ -90,7 +116,19 @@ GTM의 Google tag 하나가 문서당 자동 `page_view`를 한 번 보낸다. �
 
 추후 CSP를 도입한다면 페이지의 기존 스크립트·스타일·외부 이미지까지 별도로 조사하고, 실제 헤더를 설정할 수 있는 제공 계층에서 검증한다. GTM/GA에 필요한 출처는 Google의 [CSP 가이드](https://developers.google.com/tag-platform/security/guides/csp)를 기준으로 최소화한다. 로컬 로더는 외부 JS 파일로 제공하며 Custom HTML / Custom JavaScript 변수는 이 컨테이너에 추가하지 않는다.
 
-## 게시 및 운영 배포
+Cloudflare 수동 설치에 필요한 추가 범위는 `script-src`의 `https://static.cloudflareinsights.com/beacon.min.js`와 `connect-src`의 `https://cloudflareinsights.com`이다. `script-src-elem`을 별도로 쓴다면 그 지시자에도 스크립트를 허용해야 한다. 자동 삽입의 같은 출처 `/cdn-cgi/rum`과 혼동하지 않는다. 기존 사이트 전체 CSP 검증 없이 이 항목만으로 완전한 정책을 만들지 않는다. 현재 CSP가 없어 이번 변경에서 새 정책·와일드카드·`unsafe-inline`·`unsafe-eval`을 추가하지 않았다. 수동 beacon은 버전 고정을 지원하지 않아 외부 스크립트에 임의의 SRI를 고정하지 않으며, 로컬 로더의 Hugo fingerprint/SRI는 유지한다.
+
+## Cloudflare 운영 확인사항과 한계
+
+1. Cloudflare Dashboard → Web Analytics → `blog.mingon.dev` → Manage site에서 사용자 제공 토큰과 사이트 연결을 확인한다. 저장소의 토큰과 정확히 일치해야 한다. 공급자의 도메인 검증이 서브도메인별 엄격한 격리를 보장한다고 가정하지 않고, 사이트 로더의 정확한 origin 검사도 유지한다.
+2. 수동 스크립트 설치를 사용하고 Web Analytics 자동 삽입, 프록시/Zaraz/기타 태그의 중복 삽입 여부를 확인한다. 자동 삽입이 켜져 있으면 로컬 opt-out이 무력화될 수 있으므로 해결 전 배포하지 않는다. 배포 전 실제 운영 응답에 자동 삽입이 없는 것을 확인했다. 이번 요청은 관리자 설정 변경을 포함하지 않으며, 로그인된 계정 대시보드는 조회하지 않았다. 응답 검사로 계정 전체 설정 확인을 대신하지 않는다.
+3. **수동 스크립트는 자동 삽입 설정의 ‘Enable, excluding visitor data in the EU’를 자동 상속하지 않는다.** 이번 코드는 지역 조회나 EU 제외를 구현하지 않는다. 사용자는 이 미구현 사항을 한계로 기록하면서 현 구조를 배포하도록 승인했다. 계정/지역 설정 및 지역별 적합성은 확인되지 않았으며, 필요한 지역 제외나 별도 동의 정책을 구현한 것으로 간주하지 않는다. 쿠키 없는 분석이라는 설명을 이 판단의 대체물로 사용하지 않는다.
+4. 배포 시에는 배포 응답과 브라우저 Network에서 수동 CF script 1개, 지정 토큰, Google 미선택·거부 요청 0개를 확인한다. 기본 통계를 끈 뒤 새 문서에는 CF 요청도 0개여야 한다. 새 preview 호스트나 CF 프록시를 붙일 때도 이 조건을 재검증한다.
+5. Cloudflare Dashboard → Web Analytics → `blog.mingon.dev`에서 방문·페이지·유입 및 성능 지표를 조회한다. 스텁 응답은 실제 RUM 수신·대시보드 집계의 성공 증거가 아니다. 승인된 운영 검증에서는 민감한 값이 없는 정상 HOME 조회 1회의 수집 응답을 확인한다. HTTP 성공 응답과 대시보드 집계 반영도 구분해 기록한다.
+
+참고: [Cloudflare 수동 설치와 EU 자동 삽입 옵션](https://developers.cloudflare.com/web-analytics/get-started/), [FAQ: CSP·URL·수동 설치](https://developers.cloudflare.com/web-analytics/faq/), [통계 전송 경로](https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/), [Web Analytics 개인정보 안내](https://www.cloudflare.com/web-analytics/).
+
+## 게시 및 운영 배포 (2026-09-23 기록)
 
 2026-09-23에 toy 세션의 명시적인 브라우저 재인계를 받은 뒤 블로그 컨테이너에 후보 JSON을 병합했다. 가져오기 미리보기는 추가 5개, 수정·삭제 0개였으며, Google tag의 모든 구성 매개변수와 추가 동의, 페이지당 한 번 실행, 블로그 전용 hostname·이벤트 조건을 UI에서 확인했다.
 
@@ -104,7 +142,40 @@ GA4 계정 화면의 보고서 집계 확인은 아직 완료하지 못했다. �
 
 다음 GTM 변경도 블로그 전용 컨테이너에서 수행하며, 게시 후 실제 내보내기·검증 결과를 이 문서와 함께 갱신한다.
 
-## 검증 결과
+## Cloudflare 검증 (2026-09-29)
+
+- production/development/preview/옛 github.io baseURL 빌드가 각각 통과했다. 각 빌드의 HTML 298개에서 로더 개수·토큰·404 제외·직접 GA 및 toy 컨테이너 미포함을 확인했다. development/다른 baseURL에는 두 로더 모두 없다.
+- `scripts/check-analytics.mjs`: 기본 통계 1회 로드, 전용 토큰 및 module 속성, 호스트/포트 제한, 저장된 거부, 재활성화, 중복 삽입, 읽기·쓰기 실패, 다른 탭 변경과 기존 Google 동의·철회·민감 값 제외 검증 통과. DOM과 저장소 스텁이므로 네트워크 요청은 없다.
+- `scripts/check-analytics-browser.mjs`: 실제 Chromium에서 로컬 빌드 파일을 제공하고 Google/CF를 스텁으로 대체한다. 모든 요청을 로컬 응답 또는 차단으로 처리해 실제 분석 서버에 전송하지 않는다. 데스크톱 1365×900 / 모바일 390×844에서 독립 설정, 새로고침 후 거부, Google 반복 허용/철회, CF module/token, 요청 Referer의 origin 제한과 안내창 크기를 확인한다. 제외 호스트·404·JavaScript 비활성·저장소 차단·저장된 opt-out·다른 탭 거부도 포함한다.
+- [스텁 브라우저 검증 결과](cloudflare-validation-2026-09-29.json). **외부 vendor 스크립트 자체의 실제 payload나 RUM HTTP 수신·계정 집계는 이 테스트로 검증하지 않는다.** 이전 2026-09-23 실제 GA HTTP 204 기록과 구분한다.
+
+```bash
+PATH="$HOME/.local/dart-sass:$PATH" hugo --minify --destination /tmp/blog-cf-production
+node scripts/check-analytics.mjs /tmp/blog-cf-production
+PATH="$HOME/.local/dart-sass:$PATH" hugo --environment development --destination /tmp/blog-cf-development
+node scripts/check-analytics.mjs /tmp/blog-cf-development --excluded
+PATH="$HOME/.local/dart-sass:$PATH" hugo --minify --baseURL https://preview.mingon.dev/ --destination /tmp/blog-cf-preview
+node scripts/check-analytics.mjs /tmp/blog-cf-preview --excluded
+PATH="$HOME/.local/dart-sass:$PATH" hugo --minify --baseURL https://kmingon.github.io/ --destination /tmp/blog-cf-legacy
+node scripts/check-analytics.mjs /tmp/blog-cf-legacy --excluded
+
+# 브라우저 검증 도구는 저장소 의존성을 늘리지 않고 임시 경로에 설치한다.
+npm install --prefix /tmp/blog-analytics-test --no-save playwright
+/tmp/blog-analytics-test/node_modules/.bin/playwright install chromium
+BLOG_PLAYWRIGHT_MODULE=file:///tmp/blog-analytics-test/node_modules/playwright/index.mjs \
+  node scripts/check-analytics-browser.mjs /tmp/blog-cf-production
+# 설치된 Chromium을 재사용할 때는 BLOG_CHROMIUM_EXECUTABLE에 실행 파일 경로를 지정한다.
+```
+
+### 배포 전 실제 SDK 검증
+
+로컬 production HTML에 실제 Cloudflare module beacon과 게시된 Google GTM/GA SDK를 로드했다. 쿼리·해시·민감 canary를 넣지 않았으며 수집 POST는 전부 브라우저에서 가로채 HTTP 204로 대체했다. 이 204는 벤더의 실제 수신 응답이 아니다.
+
+데스크톱·모바일 모두 CF 로더 1개, 지정 siteToken과 블로그 URL, Google 미선택/거부 요청 0건, 기본 통계 거부 후 새 문서의 CF 요청 0건을 확인했다. CF가 꺼진 상태에서도 명시적 Google 동의 후에는 기존 측정 ID로 page_view 1건만 생성됐고, 반복 동의 시 중복 로드가 없었다. 기본 통계 재활성화가 Google 동의를 바꾸지 않는 것도 확인했다. 실제 SDK는 로드 및 페이지 종료 시 서로 다른 RUM 이벤트를 만들 수 있으므로 RUM 요청이 여러 개라는 이유만으로 중복 삽입이라고 판단하지 않는다.
+
+검증 기록: [배포 및 실제 SDK 검증](cloudflare-deployment-2026-09-29.json).
+
+## 기존 검증 결과 (2026-09-23)
 
 - Hugo production/development 빌드 통과.
 - `node scripts/check-analytics.mjs /tmp/blog-gtm-build/public`: 동의 상태, 중복 로드 방지, 철회·다른 탭 철회, 저장소 차단, 도메인 분리와 생성된 HTML 298개 검증 통과.
@@ -130,7 +201,8 @@ CI에서도 빌드 다음에 동일한 검증을 실행한다. 컨테이너를 �
 
 - 새로운 태그나 이벤트를 추가할 때 수집 목적·동의·전송 값부터 확인한다. 입력 원문, 검색어, 쿼리 문자열, 사용자 ID는 기본 수집 항목으로 추가하지 않는다.
 - 테마를 갱신하면 로컬 `head.html` / `footer.html`과 upstream 차이를 확인한다. 직접 GA 삽입이 되살아나지 않도록 CI 검증을 유지한다.
-- 분석 전송만 급히 중단해야 하면 GTM의 `Google tag - blog`를 일시중지한 버전을 게시한다. toy 컨테이너에는 손대지 않는다.
+- Cloudflare만 중단하려면 `cloudflareAnalyticsToken`을 비우고 이후 승인된 배포를 수행한다. Google 설정은 별개이며 그대로 유지된다. 로더/토큰을 요구하는 검증 기대값도 함께 조정한다. 계정 자동 삽입이 켜져 있다면 사이트 코드 제거만으로 멈추지 않으므로 계정 측 설치를 확인한다.
+- Google 분석 전송만 급히 중단해야 하면 GTM의 `Google tag - blog`를 일시중지한 버전을 게시한다. toy 컨테이너에는 손대지 않는다.
 - 사이트 측 긴급 중단은 `gtmContainerId`를 비우고 재배포할 수 있다. 이 경우 위의 ‘항상 하나의 로더’ 검사 기대값도 함께 조정해야 한다. 안전한 기본 복구는 동의 처리를 유지하면서 태그만 중지하는 것이다.
 - 이관 전 직접 GA를 복원하면 중복 삽입·무동의 수집도 다시 생기므로 단순 복구 수단으로 쓰지 않는다.
 

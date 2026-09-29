@@ -1,0 +1,9 @@
+{{- if and hugo.IsProduction (eq .Site.BaseURL "https://blog.mingon.dev/") .Site.Params.cloudflareAnalyticsToken (ne .Kind "404") -}}
+  {{- if not (findRE `^[a-f0-9]{32}$` .Site.Params.cloudflareAnalyticsToken) -}}
+    {{- errorf "Invalid Cloudflare Web Analytics site token." -}}
+  {{- end -}}
+  {{- $analytics := resources.Get "js/cloudflare-analytics.js" | resources.Minify | resources.Fingerprint -}}
+  <script id="blog-cloudflare" defer src="{{ $analytics.RelPermalink }}"
+    integrity="{{ $analytics.Data.Integrity }}" crossorigin="anonymous"
+    data-token="{{ .Site.Params.cloudflareAnalyticsToken }}"></script>
+{{- end -}}

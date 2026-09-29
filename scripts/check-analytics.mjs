@@ -6,7 +6,7 @@ import vm from 'node:vm';
 
 const source = fs.readFileSync('assets/js/analytics.js', 'utf8');
 const consentKey = 'blog.analytics-consent.v1';
-function browser({ saved = null, hostname = 'blog.mingon.dev', blocked = false } = {}) {
+function browser({ saved = null, hostname = 'blog.mingon.dev', protocol = 'https:', blocked = false } = {}) {
   const handlers = {};
   const button = value => ({ hidden: true, dataset: { analyticsChoice: value }, addEventListener: (_, fn) => { handlers[value] = fn; } });
   const settings = button('settings');
@@ -30,7 +30,7 @@ function browser({ saved = null, hostname = 'blog.mingon.dev', blocked = false }
     setItem(key, value) { if (blocked) throw Error('blocked'); values.set(key, value); }
   };
   vm.runInNewContext(source, { window, document, localStorage, URL, Date,
-    location: { hostname, protocol: 'https:', search: '?q=PRIVATE_SENTINEL', hash: '#PRIVATE_SENTINEL', reload: () => { reloads++; } }
+    location: { hostname, protocol, origin: `${protocol}//${hostname}`, search: '?q=PRIVATE_SENTINEL', hash: '#PRIVATE_SENTINEL', reload: () => { reloads++; } }
   });
   return { handlers, window, scripts, banner, settings, values, cookies, get reloads() { return reloads; } };
 }
@@ -68,11 +68,75 @@ assert.equal(otherTab.reloads, 1);
 assert.equal(browser({ saved: saved('granted') }).scripts.length, 1);
 assert.equal(browser({ saved: saved('granted'), hostname: 'localhost' }).scripts.length, 0);
 assert.equal(browser({ saved: saved('granted'), hostname: 'toy.mingon.dev' }).scripts.length, 0);
+assert.equal(browser({ saved: saved('granted'), hostname: 'kmingon.github.io' }).scripts.length, 0);
+assert.equal(browser({ saved: saved('granted'), hostname: 'preview.mingon.dev' }).scripts.length, 0);
+assert.equal(browser({ saved: saved('granted'), hostname: 'blog.mingon.dev:1313' }).scripts.length, 0);
+assert.equal(browser({ saved: saved('granted'), protocol: 'http:' }).scripts.length, 0);
 const unavailable = browser({ blocked: true });
 unavailable.handlers.granted();
 assert.equal(unavailable.scripts.length, 1);
 
+// Stub DOM/storage only: no vendor script is executed and no analytics traffic is sent.
+const cfSource = fs.readFileSync('assets/js/cloudflare-analytics.js', 'utf8');
+const cfToken = 'ba6343dfd33a4e5998a37308989dd022';
+const cfKey = 'blog.basic-analytics-disabled.v1';
+function cloudflare({ disabled = null, origin = 'https://blog.mingon.dev', blocked = false, writeBlocked = false, existing = false, token = cfToken } = {}) {
+  const handlers = {}, scripts = [], values = new Map([[cfKey, disabled]]);
+  const config = { dataset: { token } }, status = { textContent: '' };
+  const button = { hidden: true, addEventListener: (_, fn) => { handlers.toggle = fn; } };
+  let reloads = 0;
+  const context = vm.createContext({
+    document: {
+      getElementById: id => ({ 'blog-cloudflare': config, 'basic-analytics-toggle': button, 'basic-analytics-status': status }[id]),
+      querySelector: () => existing || scripts.length ? {} : null,
+      createElement: () => ({ dataset: {} }), head: { appendChild: script => scripts.push(script) }
+    },
+    window: { addEventListener: (name, fn) => { handlers[name] = fn; } },
+    location: { origin, reload: () => { reloads++; } },
+    localStorage: {
+      getItem(key) { if (blocked) throw Error('blocked'); return values.get(key); },
+      setItem(key, value) { if (blocked || writeBlocked) throw Error('blocked'); values.set(key, value); }
+    }
+  });
+  const run = () => vm.runInContext(cfSource, context);
+  run();
+  return { handlers, scripts, values, status, button, run, get reloads() { return reloads; } };
+}
+const basic = cloudflare();
+basic.run();
+assert.equal(basic.scripts.length, 1, 'Cloudflare loads once, outside GTM');
+assert.equal(basic.scripts[0].type, 'module');
+assert.equal(basic.scripts[0].src, 'https://static.cloudflareinsights.com/beacon.min.js');
+assert.deepEqual(JSON.parse(basic.scripts[0].dataset.cfBeacon), { token: cfToken });
+basic.handlers.toggle();
+assert.equal(basic.values.get(cfKey), '1');
+assert.equal(basic.reloads, 1, 'Opt-out reloads to unload the beacon');
+assert.ok(basic.button.textContent.includes('새로고침'));
+const optedOut = cloudflare({ disabled: '1' });
+assert.equal(optedOut.scripts.length, 0);
+optedOut.handlers.toggle();
+assert.equal(optedOut.values.get(cfKey), '0');
+assert.equal(optedOut.reloads, 1);
+assert.equal(cloudflare({ disabled: '0' }).scripts.length, 1);
+for (const origin of ['http://blog.mingon.dev', 'https://blog.mingon.dev:1313', 'http://localhost:1313', 'https://preview.mingon.dev', 'https://kmingon.github.io', 'https://toy.mingon.dev']) {
+  assert.equal(cloudflare({ origin }).scripts.length, 0, origin);
+}
+assert.equal(cloudflare({ existing: true }).scripts.length, 0, 'Do not add a second automatic/manual beacon');
+assert.equal(cloudflare({ token: 'invalid' }).scripts.length, 0);
+const blockedBasic = cloudflare({ blocked: true });
+assert.equal(blockedBasic.scripts.length, 0, 'Cannot read opt-out: do not load');
+assert.equal(blockedBasic.button.hidden, true);
+const writeFailure = cloudflare({ writeBlocked: true });
+writeFailure.handlers.toggle();
+assert.equal(writeFailure.reloads, 0);
+assert.ok(writeFailure.status.textContent.includes('변경이 적용되지 않았으므로'));
+basic.handlers.storage({ key: cfKey });
+assert.equal(basic.reloads, 2, 'Other tabs apply the basic analytics choice');
+basic.handlers.storage({ key: consentKey });
+assert.equal(basic.reloads, 2, 'Google choices do not change Cloudflare');
+
 const build = process.argv[2] || 'public';
+const excluded = process.argv.includes('--excluded');
 let pages = 0;
 for (const name of fs.readdirSync(build, { recursive: true })) {
   if (!name.endsWith('.html')) continue;
@@ -81,7 +145,10 @@ for (const name of fs.readdirSync(build, { recursive: true })) {
   assert.ok(!html.includes('GTM-W63DRPTG'), name);
   if (!html.includes('name=generator') && !html.includes('name="generator"')) continue;
   if (/http-equiv=["']?refresh/i.test(html)) continue;
-  assert.equal((html.match(/id=["']?blog-analytics(?=[\s"'>])/g) || []).length, name === '404.html' ? 0 : 1, name);
+  const expected = excluded || name === '404.html' ? 0 : 1;
+  assert.equal((html.match(/id=["']?blog-analytics(?=[\s"'>])/g) || []).length, expected, name);
+  assert.equal((html.match(/id=["']?blog-cloudflare(?=[\s"'>])/g) || []).length, expected, name);
+  assert.equal((html.match(new RegExp(cfToken, 'g')) || []).length, expected, name);
   assert.equal((html.match(/id=["']?analytics-consent(?=[\s"'>])/g) || []).length, 1, name);
   pages++;
 }

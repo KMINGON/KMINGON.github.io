@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const config = document.getElementById('blog-analytics');
-  if (!config || location.hostname !== 'blog.mingon.dev' || location.protocol !== 'https:') return;
+  if (!config || location.origin !== 'https://blog.mingon.dev') return;
 
   const key = 'blog.analytics-consent.v1';
   const lifetime = 180 * 24 * 60 * 60 * 1000;

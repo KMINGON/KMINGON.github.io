@@ -1,4 +1,4 @@
-{{- if and hugo.IsProduction .Site.Params.gtmContainerId (ne .Kind "404") -}}
+{{- if and hugo.IsProduction (eq .Site.BaseURL "https://blog.mingon.dev/") .Site.Params.gtmContainerId (ne .Kind "404") -}}
   {{- if or .Site.Params.gtagId .Site.Config.Services.GoogleAnalytics.ID -}}
     {{- errorf "Use GTM only: remove direct Google Analytics configuration." -}}
   {{- end -}}
