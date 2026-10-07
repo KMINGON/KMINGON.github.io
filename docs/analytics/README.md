@@ -1,10 +1,12 @@
 # 블로그 방문 통계 운영
 
-코드 갱신일: 2026-10-07. 마지막 운영 확인일: 2026-09-29. 대상: `KMINGON.github.io` main, `https://blog.mingon.dev/`.
+코드 갱신일·마지막 운영 확인일: 2026-10-07. 대상: `KMINGON.github.io` main, `https://blog.mingon.dev/`.
 
 ## 현재 진행 상태
 
-2026-10-07 로컬 코드에서 Cloudflare 기본 통계의 끄기 설정을 제거했다. Cloudflare는 Google 동의·기존 거부 기록·브라우저 저장소 접근 여부와 관계없이 수집하며, GA4만 명시적 동의 후 수집한다. 푸터와 동의 배너의 개인정보 안내·기본 통계 설정 링크를 제거하고 Google 동의·거부 및 설정 버튼은 유지했다. 이번 변경의 운영 배포는 아직 수행하지 않았다.
+**2026-10-07 Cloudflare 끄기 설정 제거의 main 푸시·GitHub Pages 운영 배포를 완료했다.** 구현 커밋은 `39385af75cdb320e351251b9b3b5fda6f5973a80`, [배포 실행 37584229914](https://github.com/KMINGON/KMINGON.github.io/actions/runs/37584229914)은 build/deploy 모두 성공했다. 배포 완료는 2026-10-07 15:56:04 KST다.
+
+Cloudflare는 Google 동의·기존 거부 기록·브라우저 저장소 접근 여부와 관계없이 수집하며, GA4만 명시적 동의 후 수집한다. 푸터와 동의 배너의 개인정보 안내·기본 통계 설정 링크를 제거하고 Google 동의·거부 및 설정 버튼은 유지했다. 운영 HOME·개인정보·Analysis에서 링크 제거와 로더가 검증한 빌드의 바이트와 일치함을 확인했다. 실제 운영 HTML/JS를 사용하는 데스크톱·모바일 브라우저 검증도 통과했다. 분석 vendor는 스텁으로 대체해 실제 수집 요청을 보내지 않았다.
 
 **2026-09-29 Cloudflare 기본 통계 추가의 main 푸시·GitHub Pages 운영 배포를 완료했다.** 구현 커밋은 `5ae28d766985458c9a594e0fcaafa8aec82d1076`, [배포 실행 36528911022](https://github.com/KMINGON/KMINGON.github.io/actions/runs/36528911022)은 build/deploy 모두 성공했다. 배포 완료는 2026-09-29 15:01:36 KST다. 운영 응답 + 실제 SDK 검증이 통과했고, 정상 HOME 조회의 Cloudflare 수집 POST 1건에서 실제 HTTP 204를 확인했다. 관리자 설정은 변경하지 않았으며 계정 대시보드·지역 설정·집계 반영은 미확인, 수동 스크립트의 지역 제외는 미구현이다.
 
@@ -147,7 +149,7 @@ GA4 계정 화면의 보고서 집계 확인은 아직 완료하지 못했다. �
 
 - production/development/preview/옛 github.io baseURL 빌드와 `scripts/check-analytics.mjs`가 모두 통과했다. 각 빌드의 HTML 298개에서 로더·호스트 제한과 제거된 UI를 확인했다.
 - `scripts/check-analytics-browser.mjs`가 Chromium 데스크톱 1365×900 / 모바일 390×844에서 통과했다. Google 미선택·거부·철회 후에도 CF module script는 문서당 1개이고, Google은 동의 후에만 GTM을 한 번 로드했다. 기존 CF 거부 기록·저장소 차단 상태의 기본 수집, 다른 탭의 Google 철회, 404·제외 호스트·JavaScript 비활성 환경도 확인했다.
-- 브라우저 검증은 로컬 HTML과 vendor 스텁을 사용하며 모든 네트워크 요청을 가로챘다. 실제 분석 서버 전송 및 운영 배포 검증은 수행하지 않았다.
+- 위 로컬 브라우저 검증은 로컬 HTML과 vendor 스텁을 사용하며 모든 네트워크 요청을 가로챘다. 별도 배포 후 검증에서는 실제 운영 HTML/JS를 받아 같은 데스크톱·모바일 시나리오를 통과했다. Google 미선택·거부·철회 시 Google 요청 0건, CF script 문서당 1개, 동의 후 GTM 1회 로드, 기존 CF 거부 기록·저장소 차단과 다른 탭의 Google 철회를 확인했다. 분석 vendor 요청은 모두 스텁으로 응답해 실제 분석 서버 전송은 0건이다.
 
 ## Cloudflare 검증 (2026-09-29)
 
