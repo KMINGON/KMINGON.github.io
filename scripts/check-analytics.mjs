@@ -80,27 +80,24 @@ assert.equal(unavailable.scripts.length, 1);
 const cfSource = fs.readFileSync('assets/js/cloudflare-analytics.js', 'utf8');
 const cfToken = 'ba6343dfd33a4e5998a37308989dd022';
 const cfKey = 'blog.basic-analytics-disabled.v1';
-function cloudflare({ disabled = null, origin = 'https://blog.mingon.dev', blocked = false, writeBlocked = false, existing = false, token = cfToken } = {}) {
-  const handlers = {}, scripts = [], values = new Map([[cfKey, disabled]]);
-  const config = { dataset: { token } }, status = { textContent: '' };
-  const button = { hidden: true, addEventListener: (_, fn) => { handlers.toggle = fn; } };
-  let reloads = 0;
+function cloudflare({ disabled = null, origin = 'https://blog.mingon.dev', blocked = false, existing = false, token = cfToken } = {}) {
+  const scripts = [], values = new Map([[cfKey, disabled]]);
+  const config = { dataset: { token } };
   const context = vm.createContext({
     document: {
-      getElementById: id => ({ 'blog-cloudflare': config, 'basic-analytics-toggle': button, 'basic-analytics-status': status }[id]),
+      getElementById: id => id === 'blog-cloudflare' ? config : null,
       querySelector: () => existing || scripts.length ? {} : null,
       createElement: () => ({ dataset: {} }), head: { appendChild: script => scripts.push(script) }
     },
-    window: { addEventListener: (name, fn) => { handlers[name] = fn; } },
-    location: { origin, reload: () => { reloads++; } },
+    location: { origin },
     localStorage: {
       getItem(key) { if (blocked) throw Error('blocked'); return values.get(key); },
-      setItem(key, value) { if (blocked || writeBlocked) throw Error('blocked'); values.set(key, value); }
+      setItem() { throw Error('Cloudflare must not write browser storage'); }
     }
   });
   const run = () => vm.runInContext(cfSource, context);
   run();
-  return { handlers, scripts, values, status, button, run, get reloads() { return reloads; } };
+  return { scripts, values, run };
 }
 const basic = cloudflare();
 basic.run();
@@ -108,32 +105,16 @@ assert.equal(basic.scripts.length, 1, 'Cloudflare loads once, outside GTM');
 assert.equal(basic.scripts[0].type, 'module');
 assert.equal(basic.scripts[0].src, 'https://static.cloudflareinsights.com/beacon.min.js');
 assert.deepEqual(JSON.parse(basic.scripts[0].dataset.cfBeacon), { token: cfToken });
-basic.handlers.toggle();
-assert.equal(basic.values.get(cfKey), '1');
-assert.equal(basic.reloads, 1, 'Opt-out reloads to unload the beacon');
-assert.ok(basic.button.textContent.includes('새로고침'));
 const optedOut = cloudflare({ disabled: '1' });
-assert.equal(optedOut.scripts.length, 0);
-optedOut.handlers.toggle();
-assert.equal(optedOut.values.get(cfKey), '0');
-assert.equal(optedOut.reloads, 1);
+assert.equal(optedOut.scripts.length, 1, 'Legacy Cloudflare opt-out no longer prevents collection');
+assert.equal(optedOut.values.get(cfKey), '1', 'Cloudflare does not modify saved choices');
 assert.equal(cloudflare({ disabled: '0' }).scripts.length, 1);
 for (const origin of ['http://blog.mingon.dev', 'https://blog.mingon.dev:1313', 'http://localhost:1313', 'https://preview.mingon.dev', 'https://kmingon.github.io', 'https://toy.mingon.dev']) {
   assert.equal(cloudflare({ origin }).scripts.length, 0, origin);
 }
 assert.equal(cloudflare({ existing: true }).scripts.length, 0, 'Do not add a second automatic/manual beacon');
 assert.equal(cloudflare({ token: 'invalid' }).scripts.length, 0);
-const blockedBasic = cloudflare({ blocked: true });
-assert.equal(blockedBasic.scripts.length, 0, 'Cannot read opt-out: do not load');
-assert.equal(blockedBasic.button.hidden, true);
-const writeFailure = cloudflare({ writeBlocked: true });
-writeFailure.handlers.toggle();
-assert.equal(writeFailure.reloads, 0);
-assert.ok(writeFailure.status.textContent.includes('변경이 적용되지 않았으므로'));
-basic.handlers.storage({ key: cfKey });
-assert.equal(basic.reloads, 2, 'Other tabs apply the basic analytics choice');
-basic.handlers.storage({ key: consentKey });
-assert.equal(basic.reloads, 2, 'Google choices do not change Cloudflare');
+assert.equal(cloudflare({ blocked: true }).scripts.length, 1, 'Cloudflare does not depend on browser storage');
 
 const build = process.argv[2] || 'public';
 const excluded = process.argv.includes('--excluded');
@@ -143,6 +124,7 @@ for (const name of fs.readdirSync(build, { recursive: true })) {
   const html = fs.readFileSync(path.join(build, name), 'utf8');
   assert.ok(!/googletagmanager\.com\/(?:gtag\/js|ns\.html)|cloudflareinsights\.com\/beacon/.test(html), name);
   assert.ok(!html.includes('GTM-W63DRPTG'), name);
+  assert.ok(!/basic-analytics|기본 통계 설정|개인정보 안내<\/a>/.test(html), name);
   if (!html.includes('name=generator') && !html.includes('name="generator"')) continue;
   if (/http-equiv=["']?refresh/i.test(html)) continue;
   const expected = excluded || name === '404.html' ? 0 : 1;
