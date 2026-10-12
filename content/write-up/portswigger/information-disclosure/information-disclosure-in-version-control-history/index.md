@@ -113,4 +113,4 @@ blob 36\0ADMIN_PASSWORD=gdm6xgq4wbdn1zpyro99
 
 현재 설정에서 비밀번호를 지웠어도 Git 오브젝트에는 이전 스냅샷이 남는다. 이 랩에서는 웹에 공개된 `.git` 디렉터리가 커밋 로그와 tree·blob 오브젝트를 모두 제공했고, 삭제 전 `admin.conf`까지 수동으로 복구할 수 있었다.
 
-진단에서는 `/.git/HEAD`와 디렉터리 노출을 확인하고, 민감한 변경 메시지가 있으면 과거 커밋과 diff를 살핀다. 근본 대응은 웹 루트에서 저장소 메타데이터를 제거하고, 한 번 커밋된 비밀값은 히스토리 삭제만으로 끝내지 말고 반드시 폐기·교체하는 것이다. 다른 노출 경로는 [Information Disclosure Note](/note/portswigger-information-disclosure/)에서 정리한다.
+진단에서는 `/.git/HEAD`와 디렉터리 노출을 확인하고, 민감한 변경 메시지가 있으면 과거 커밋과 diff를 살핀다. 근본 대응은 웹 루트에서 저장소 메타데이터를 제거하고, 한 번 커밋된 비밀값은 히스토리 삭제만으로 끝내지 말고 반드시 폐기·교체하는 것이다. 다른 노출 경로는 [Information Disclosure Lab](/lab/portswigger-information-disclosure/)에서 정리한다.

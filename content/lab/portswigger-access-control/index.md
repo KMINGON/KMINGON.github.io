@@ -1,11 +1,11 @@
 +++
 date = '2026-07-06T14:00:00+09:00'
 draft = false
-title = '[Note] PortSwigger - Access Control 토픽 정리 및 실습'
+title = '[Lab] PortSwigger - Access Control 토픽 정리 및 실습'
 summary = "Access Control의 세 축과 수직·수평·컨텍스트 분류, 미보호 기능·파라미터 기반·플랫폼 오구성·IDOR·다단계·Referer 등 유형별 우회 경로, 그리고 진단 방법과 대응 방안을 정리한 자료"
 toc = true
 tags = ["Access Control", "Authorization", "IDOR", "Privilege Escalation", "PortSwigger"]
-url = '/note/note-portswigger---access-control-토픽-정리-및-실습/'
+aliases = ['/note/note-portswigger---access-control-토픽-정리-및-실습/']
 +++
 
 ---

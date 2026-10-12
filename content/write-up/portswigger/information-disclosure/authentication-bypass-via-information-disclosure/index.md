@@ -66,4 +66,4 @@ X-Custom-IP-Authorization: 127.0.0.1
 
 공격 사슬은 두 단계다. 활성화된 `TRACE`가 프론트엔드가 붙이는 내부 헤더 이름을 노출했고, 관리자 접근 제어는 그 헤더가 신뢰할 수 있는 경로에서만 온다고 가정했다. 그러나 외부 요청에 같은 헤더를 직접 넣을 수 있어 `127.0.0.1`로 판정을 위조할 수 있었다.
 
-진단에서는 `TRACE` 같은 진단 기능이 내부 헤더를 반사하는지 확인한 뒤, 그 헤더를 외부 클라이언트가 공급하거나 덮어쓸 수 있는지 별도로 검증한다. 정보 노출과 신뢰 경계 점검은 [Information Disclosure Note](/note/portswigger-information-disclosure/)에서 이어서 다룬다.
+진단에서는 `TRACE` 같은 진단 기능이 내부 헤더를 반사하는지 확인한 뒤, 그 헤더를 외부 클라이언트가 공급하거나 덮어쓸 수 있는지 별도로 검증한다. 정보 노출과 신뢰 경계 점검은 [Information Disclosure Lab](/lab/portswigger-information-disclosure/)에서 이어서 다룬다.

@@ -11,11 +11,12 @@ Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었�
 |---|---|
 | **Review** | 실제 CVE·공개 리포트·컨퍼런스 발표를 분석하며 익스플로잇 체인과 근본 원인을 정리 |
 | **Analysis** | 특정 기법·브라우저 동작·표준 스펙을 파고들어 "왜 그렇게 동작하는가"를 규명한 심층 분석 |
-| **Note** | 취약점 토픽을 체계적으로 정리한 학습 노트와 참고 리소스 |
+| **Note** | 보안·개발 개념과 도구의 동작 원리, 경험과 참고 자료 |
+| **Lab** | 취약점 토픽의 개념과 실습에서 확인한 동작을 함께 정리한 학습 기록 |
 | **Playbook** | 취약점 진단 절차와 확인할 항목을 정리한 실무용 Cheat Sheet |
 | **Write-up** | PortSwigger·Dreamhack 등 취약점 실습·CTF 풀이를 플랫폼·주제별로 정리한 아카이브 |
 
-- **태그**로도 횡단 탐색이 가능합니다(예: `SQL Injection` 태그로 Review·Analysis·Note·Write-up을 한 번에).
+- **태그**로도 횡단 탐색이 가능합니다(예: `SQL Injection` 태그로 Review·Analysis·Lab·Write-up을 한 번에).
 - 태그 표기 규칙: `[대분류, 세부기법, 플랫폼/출처, 난이도, 기술스택]` 순서, 통제 어휘 사용.
 
 ### 대표 글
@@ -64,7 +65,7 @@ hugo --minify
 
 GitHub Actions 워크플로우가 main 브랜치 푸시 시 자동으로 Pages에 배포합니다.
 
-HOME에는 Analysis와 Review만 최신순으로 노출합니다. Note, Playbook, Write-up은 각 메뉴에서 탐색합니다.
+HOME에는 Analysis, Review, Note를 최신순으로 노출합니다. Lab, Playbook, Write-up은 각 메뉴에서 탐색합니다.
 
 방문 통계의 계정·컨테이너, 동의 처리와 배포 검증은 [분석 운영 문서](docs/analytics/README.md)를 참고합니다.
 배포 전에는 `node scripts/check-analytics.mjs public`으로 직접 GA 중복 삽입과 동의 처리도 확인합니다.
@@ -85,6 +86,7 @@ content/
 │           └── validation-vs-delivery.drawio
 ├── review/<글 이름>/index.md
 ├── note/<글 이름>/index.md
+├── lab/<토픽 이름>/index.md
 ├── playbook/<주제>/index.md
 └── write-up/<플랫폼>/<주제>/<문제 이름>/index.md
 ```
@@ -122,6 +124,7 @@ tags = []
 프로필·파비콘 등 사이트 공통 파일은 `static/`에 둡니다.
 `static/analysis/`, `static/review/`, `static/note/`, `static/writeup/`의 기존 파일은 이전 이미지 URL을 유지하는 호환용 복사본입니다. 새 글은 이 경로를 사용하지 않습니다.
 과거 파일명에 기반한 글 주소는 각 글의 `url` 값으로 고정되어 있으므로, 제목이나 폴더명을 바꿀 때도 유지합니다. `url`에는 `%EB...` 같은 인코딩 문자열 대신 디코딩된 경로를 기록합니다.
+섹션 이동으로 주소를 바꾸는 경우에는 기존 주소를 `aliases`에 남기고, 내부 링크는 새 주소로 갱신합니다. Note에서 Lab으로 옮긴 PortSwigger 토픽 글은 이 방식으로 이전 `/note/` 주소를 유지합니다.
 
 4. `hugo server -D`로 확인한 뒤 `draft = false`로 바꿔 발행합니다. 초안과 정식 글의 폴더 위치는 같습니다.
    기존 `draft/`·`temp/`는 Git에서 제외되는 임시 작업 공간이며, 보관할 글과 편집 원본은 번들 안에 둡니다.

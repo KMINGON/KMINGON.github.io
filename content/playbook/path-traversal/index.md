@@ -10,7 +10,7 @@ url = '/playbook/playbook-path-traversal-진단-cheat-sheet/'
 
 ---
 
-이 문서는 Path Traversal 진단 중 **입력이 파일 경로 조립에 참여하는지 확인하고, 걸려 있는 검증의 종류를 판별해 다음 시도를 고르기 위한 빠른 참고서**다. 검증별 상세 원리와 전체 풀이는 관련 Write-up과 [Path Traversal Note](/note/note-portswigger---path-traversal-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)로 연결한다.
+이 문서는 Path Traversal 진단 중 **입력이 파일 경로 조립에 참여하는지 확인하고, 걸려 있는 검증의 종류를 판별해 다음 시도를 고르기 위한 빠른 참고서**다. 검증별 상세 원리와 전체 풀이는 관련 Write-up과 [Path Traversal Lab](/lab/portswigger-path-traversal/)로 연결한다.
 
 > 승인된 테스트 환경과 실습에서만 사용한다. 파일 읽기는 되돌릴 수 없는 정보 노출이므로, 성립 여부는 `/etc/passwd`처럼 무해한 마커 파일로만 확인하고 자격 증명·키·개인정보가 담긴 경로는 승인 범위를 확인한 뒤에 접근한다. 같은 파라미터가 쓰기 경로에도 쓰인다면 파일을 생성·덮어쓸 수 있으므로 읽기 검증만으로 멈춘다.
 

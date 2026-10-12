@@ -10,7 +10,7 @@ url = '/playbook/playbook-authentication-진단-cheat-sheet/'
 
 ---
 
-이 문서는 Authentication 진단 중 **인증 표면 어디에 관찰 가능한 차이가 새고, 어떤 방어가 어떤 조건에서 우회되는지 판별해 다음 시도를 고르기 위한 빠른 참고서**다. 유형별 상세 원리와 전체 풀이는 관련 Write-up과 [Authentication Note](/note/note-portswigger---authentication-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)로 연결한다.
+이 문서는 Authentication 진단 중 **인증 표면 어디에 관찰 가능한 차이가 새고, 어떤 방어가 어떤 조건에서 우회되는지 판별해 다음 시도를 고르기 위한 빠른 참고서**다. 유형별 상세 원리와 전체 풀이는 관련 Write-up과 [Authentication Lab](/lab/portswigger-authentication/)로 연결한다.
 
 > 승인된 테스트 환경과 실습에서만 사용한다. 인증 진단은 성공하는 순간 실제 계정의 비밀번호·세션 상태를 바꾸므로(비밀번호 재설정·변경, 세션 탈취), 되돌릴 수 있는 대상과 본인 계정으로만 검증하고 브루트포스·계정 잠금 같은 파괴적·서비스 영향 행위는 실습 환경에 한정한다.
 

@@ -1,10 +1,11 @@
 +++
 date = '2026-09-17T21:10:00+09:00'
 draft = false
-title = '[Note] PortSwigger - Business Logic 토픽 정리 및 실습'
+title = '[Lab] PortSwigger - Business Logic 토픽 정리 및 실습'
 summary = "클라이언트 값 신뢰, 수량·금액의 경계값, 검증 시점과 처리 순서, 할인·상품권의 결합, 암호화 오라클과 이메일 파싱 차이로 발생하는 Business Logic 취약점의 원리와 진단·대응 방법을 정리한 자료"
 toc = true
 tags = ["Business Logic", "Logic Flaws", "Access Control", "PortSwigger"]
+aliases = ['/note/portswigger-business-logic/']
 +++
 
 ---

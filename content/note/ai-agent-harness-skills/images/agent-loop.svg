@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="440" viewBox="0 0 960 440" role="img" aria-labelledby="title desc">
+<title id="title">모델의 선택과 도구의 실행</title><desc id="desc">모델은 컨텍스트를 받아 호출을 요청하고 실행 결과는 다음 호출에 반영된다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#657183"/></marker></defs>
+<rect width="960" height="440" fill="#ffffff"/>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif">
+<text x="40" y="44" text-anchor="start" font-size="25" fill="#243347" font-weight="700">모델의 선택과 도구의 실행</text>
+<rect x="40" y="110" width="240" height="100" rx="8" fill="#f6f7f9" stroke="#707988" stroke-width="1.6"/>
+<text x="160.0" y="153.0" text-anchor="middle" font-size="20" fill="#384454" font-weight="700">현재 컨텍스트</text>
+<text x="160.0" y="181.0" text-anchor="middle" font-size="17" fill="#384454" font-weight="400">요청 · 지침 · 이전 결과</text>
+<rect x="360" y="110" width="240" height="100" rx="8" fill="#edf4fb" stroke="#416b96" stroke-width="1.6"/>
+<text x="480.0" y="153.0" text-anchor="middle" font-size="20" fill="#384454" font-weight="700">Model</text>
+<text x="480.0" y="181.0" text-anchor="middle" font-size="17" fill="#384454" font-weight="400">다음 행동 선택</text>
+<rect x="680" y="110" width="240" height="100" rx="8" fill="#fff5e9" stroke="#aa753c" stroke-width="1.6"/>
+<text x="800.0" y="153.0" text-anchor="middle" font-size="20" fill="#384454" font-weight="700">실행 프로그램 + Tool</text>
+<text x="800.0" y="181.0" text-anchor="middle" font-size="17" fill="#384454" font-weight="400">정책 확인 · 명령 실행</text>
+<path d="M280 160 L360 160" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="360,160 349.0,155.5 349.0,164.5" fill="#657183"/>
+<path d="M600 160 L680 160" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="680,160 669.0,155.5 669.0,164.5" fill="#657183"/>
+<text x="640" y="100" text-anchor="middle" font-size="16" fill="#384454" font-weight="400">호출 요청</text>
+<rect x="360" y="285" width="240" height="80" rx="8" fill="#eef6f1" stroke="#49785c" stroke-width="1.6"/>
+<text x="480.0" y="318.0" text-anchor="middle" font-size="20" fill="#384454" font-weight="700">실행 결과</text>
+<text x="480.0" y="346.0" text-anchor="middle" font-size="17" fill="#384454" font-weight="400">종료 코드 · 오류 · 관찰</text>
+<path d="M800 210 L800 325 L600 325" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="600,325 611.0,329.5 611.0,320.5" fill="#657183"/>
+<path d="M360 325 L160 325 L160 210" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="160,210 155.5,221.0 164.5,221.0" fill="#657183"/>
+<text x="167" y="355" text-anchor="middle" font-size="16" fill="#384454" font-weight="400">다음 호출에 반영</text>
+<text x="480" y="416" text-anchor="middle" font-size="16" fill="#667383" font-weight="400">한 번의 응답으로 끝나지 않고 관찰 결과를 다음 판단에 사용한다.</text>
+</g></svg>

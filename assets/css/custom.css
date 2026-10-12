@@ -7,6 +7,11 @@
   font-size: 0.9em;
 }
 
+/* 참고자료의 긴 URL이 작은 화면에서 인용 블록 밖으로 넘치지 않게 한다. */
+.post__content blockquote a {
+  overflow-wrap: anywhere;
+}
+
 .analytics-settings {
   background: none;
   border: 0;
@@ -56,6 +61,22 @@
     box-sizing: border-box;
     padding-left: 3%;
     padding-right: 3%;
+  }
+
+  /* 분류 메뉴가 본문 너비보다 길면 다음 줄로 이어서 표시한다. */
+  .nav__list {
+    min-width: 0;
+    flex-wrap: wrap;
+    row-gap: 16px;
+  }
+
+  .nav__list--end {
+    width: auto;
+    flex: none;
+  }
+
+  .nav__link--active {
+    padding-bottom: 4px;
   }
 }
 

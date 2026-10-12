@@ -10,7 +10,7 @@ url = '/playbook/playbook-access-control-진단-cheat-sheet/'
 
 ---
 
-이 문서는 Access Control 진단 중 **어떤 접근면에 권한 검사가 빠져 있고, 그 검사가 어느 조건에만 걸려 있는지 판별해 다음 시도를 고르기 위한 빠른 참고서**다. 유형별 상세 원리와 전체 풀이는 관련 Write-up과 [Access Control Note](/note/note-portswigger---access-control-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)로 연결한다.
+이 문서는 Access Control 진단 중 **어떤 접근면에 권한 검사가 빠져 있고, 그 검사가 어느 조건에만 걸려 있는지 판별해 다음 시도를 고르기 위한 빠른 참고서**다. 유형별 상세 원리와 전체 풀이는 관련 Write-up과 [Access Control Lab](/lab/portswigger-access-control/)로 연결한다.
 
 > 승인된 테스트 환경과 실습에서만 사용한다. 접근 제어 결함은 성공하는 순간 실제 계정·데이터의 상태가 바뀌므로(사용자 삭제, 역할 변경, 타인 데이터 열람), 되돌릴 수 있는 대상과 본인 계정으로만 검증하고 파괴적 행위(삭제·권한 부여)는 실습 환경에 한정한다.
 
@@ -108,7 +108,7 @@ url = '/playbook/playbook-access-control-진단-cheat-sheet/'
 
 | 상황 | 짧은 판단 기준 | 관련 글 |
 | --- | --- | --- |
-| IP·지역으로 차단됨 | 위치 기반 제어. VPN·프록시·`X-Forwarded-For`로 우회 | [WebSocket Note](/note/note-portswigger---websocket-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/) |
+| IP·지역으로 차단됨 | 위치 기반 제어. VPN·프록시·`X-Forwarded-For`로 우회 | [WebSocket Lab](/lab/portswigger-websocket/) |
 | 프런트엔드만 차단 | 백엔드 직접 접근·재작성 헤더로 계층 분리 | [URL-based](/write-up/portswigger/access-control/write-up-portswigger---url-based-access-control-can-be-circumvented/) |
 | 검사가 특정 메서드에만 | CSRF의 메서드 의존 검증과 동형 | [CSRF method](/write-up/portswigger/csrf/write-up-portswigger---csrf-where-token-validation-depends-on-request-method/) |
 | `Referer`만 보고 통과 | 위조 가능한 값을 근거로 삼음 | [CSRF referer](/write-up/portswigger/csrf/write-up-portswigger---csrf-with-broken-referer-validation/) |

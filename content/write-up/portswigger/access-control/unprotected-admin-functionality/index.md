@@ -64,4 +64,4 @@ Host: <lab-id>.web-security-academy.net
 
 진단 관점에서 남는 습관은 하나다. 관리자·내부 기능이 있으리라 짐작되면 **먼저 `robots.txt`와 사이트가 자동 생성하는 메타데이터 파일부터 확인**한다. 강제 브라우징(forced browsing)으로 `/admin`, `/administrator`, `/admin-panel` 같은 관례적 경로를 대입하는 것도 병행한다.
 
-방어는 반대 방향이어야 한다. 경로를 숨기는 대신, 공개할 의도가 없는 모든 리소스는 **기본적으로 접근을 거부(deny by default)**하고 관리자 권한을 명시적으로 확인해야 한다. 접근 제어 유형과 진단 흐름 전반은 [Access Control Note](/note/note-portswigger---access-control-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)와 [Access Control Playbook](/playbook/playbook-access-control-%EC%A7%84%EB%8B%A8-cheat-sheet/)에 정리했다.
+방어는 반대 방향이어야 한다. 경로를 숨기는 대신, 공개할 의도가 없는 모든 리소스는 **기본적으로 접근을 거부(deny by default)**하고 관리자 권한을 명시적으로 확인해야 한다. 접근 제어 유형과 진단 흐름 전반은 [Access Control Lab](/lab/portswigger-access-control/)와 [Access Control Playbook](/playbook/playbook-access-control-%EC%A7%84%EB%8B%A8-cheat-sheet/)에 정리했다.

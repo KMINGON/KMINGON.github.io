@@ -1,11 +1,11 @@
 +++
 date = '2026-07-12T14:00:00+09:00'
 draft = false
-title = '[Note] PortSwigger - Authentication 토픽 정리 및 실습'
+title = '[Lab] PortSwigger - Authentication 토픽 정리 및 실습'
 summary = "인증의 세 가지 요소와 인증·인가의 구분, 취약점이 생기는 두 갈래(취약한 브루트포스 방어·구현 로직 결함), Username 열거·브루트포스·MFA·세션 유지·비밀번호 재설정 등 유형별 우회 경로, 그리고 진단 방법과 대응 방안을 정리한 자료"
 toc = true
 tags = ["Authentication", "Username Enumeration", "Brute Force", "Multi-Factor Authentication", "PortSwigger"]
-url = '/note/note-portswigger---authentication-토픽-정리-및-실습/'
+aliases = ['/note/note-portswigger---authentication-토픽-정리-및-실습/']
 +++
 
 ---
@@ -45,7 +45,7 @@ Authentication(인증)은 "당신이 주장하는 그 사람이 맞는가"를 �
 | 인증(Authentication) | 당신은 누구인가? | `Carlos123`을 쓰는 사람이 실제 그 계정 주인인지 확인 |
 | 인가(Authorization) | 그 행위를 할 권한이 있는가? | 확인된 사용자가 무엇을 할 수 있는지 결정 |
 
-인증이 먼저고 인가가 그 위에 선다. 누구인지 확정돼야 무엇을 허용할지 정할 수 있기 때문이다. 인가 쪽 결함은 [Access Control Note](/note/note-portswigger---access-control-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)에서 별도로 정리했으며, 이 글은 "정문"인 인증 자체가 뚫리는 경로를 다룬다.
+인증이 먼저고 인가가 그 위에 선다. 누구인지 확정돼야 무엇을 허용할지 정할 수 있기 때문이다. 인가 쪽 결함은 [Access Control Lab](/lab/portswigger-access-control/)에서 별도로 정리했으며, 이 글은 "정문"인 인증 자체가 뚫리는 경로를 다룬다.
 
 ---
 

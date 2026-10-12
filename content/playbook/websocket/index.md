@@ -47,7 +47,7 @@ url = '/playbook/playbook-websocket-진단-cheat-sheet/'
 
 `Sec-WebSocket-Key`와 `Sec-WebSocket-Accept`는 규격상 핸드셰이크 확인용 값이며 인증이나 CSRF 방어 역할을 하지 않는다. 예측 불가능한 값처럼 보이지만 방어로 계산하지 않는다.
 
-- [개념: WebSocket 토픽 정리](/note/note-portswigger---websocket-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)
+- [개념: WebSocket 토픽 정리](/lab/portswigger-websocket/)
 
 ## 2. 클라이언트 측 처리 우회
 
@@ -157,7 +157,7 @@ WebSocket은 차단이 메시지 하나에 그치지 않고 연결 전체에 적
 | 라이브러리 래퍼 사용(Socket.IO 등) | 자체 프레임 형식을 유지해야 메시지가 파싱됨 | 라이브러리 프레임 규격 확인 |
 | 핸드셰이크가 `HTTP/2`로 표시 | 프록시 표기 차이이며 조작 방식은 동일 | [핸드셰이크 Write-up](/write-up/portswigger/websocket/write-up-portswigger---manipulating-the-websocket-handshake-to-exploit-vulnerabilities/) |
 | 메시지에 자체 인증 값이 포함 | 핸드셰이크가 아닌 메시지 단계 인증 여부 확인 | 재사용·만료 조건 확인 |
-| `ws://` 평문 연결 | 네트워크 구간 노출과 메시지 조작 가능성 | [개념: 대응 방안](/note/note-portswigger---websocket-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/) |
+| `ws://` 평문 연결 | 네트워크 구간 노출과 메시지 조작 가능성 | [개념: 대응 방안](/lab/portswigger-websocket/) |
 
 ## Quick Checklist
 

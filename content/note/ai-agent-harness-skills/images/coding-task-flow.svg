@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1030" viewBox="0 0 960 1030" role="img" aria-labelledby="title desc">
+<title id="title">로그인 테스트 수정 요청이 실행되는 과정</title><desc id="desc">모델이 이슈 조회, 테스트 실행, 코드 확인, 수정과 재검증을 선택한다. Harness는 도구를 실행하고 관찰 결과를 다음 호출에 전달한다. 설정된 Claude Code Hook은 파일 수정 뒤 포맷터를 실행한다.</desc>
+<rect width="960" height="1030" fill="#ffffff"/><g font-family="Malgun Gothic, Noto Sans KR, sans-serif" fill="#243347">
+<text x="40" y="44" font-size="25" font-weight="700" text-anchor="start" fill="#243347">로그인 테스트 수정 요청이 실행되는 과정</text>
+<rect x="40" y="68" width="880" height="58" rx="8" fill="#f6f7f9" stroke="#707988" stroke-width="1.5"/>
+<text x="480" y="94" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">“이슈 #42를 확인하고 실패하는 로그인 테스트를 고쳐줘.”</text>
+<text x="480" y="116" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">요청 + 프로젝트 지침 + 필요한 Skill + 사용 가능한 도구</text>
+<text x="215" y="158" font-size="18" font-weight="700" text-anchor="middle" fill="#243347">모델 · 받은 정보로 다음 행동 선택</text>
+<text x="730" y="158" font-size="18" font-weight="700" text-anchor="middle" fill="#243347">Harness · 도구 실행과 결과 반영</text>
+<rect x="40" y="184" width="350" height="82" rx="8" fill="#edf4fb" stroke="#416b96" stroke-width="1.5"/>
+<text x="215.0" y="225.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">① 재현 조건 조회 요청</text>
+<text x="215.0" y="251.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">get_issue(42)</text>
+<rect x="535" y="184" width="385" height="82" rx="8" fill="#fff5e9" stroke="#aa753c" stroke-width="1.5"/>
+<text x="727.5" y="225.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">MCP Client → Server → 이슈 API</text>
+<text x="727.5" y="251.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">이슈의 재현 조건 반환</text>
+<polyline points="390,225.0 535,225.0" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="535,225.0 525.0,229.5 525.0,220.5" fill="#657183"/>
+<text x="462" y="215.0" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">호출 요청</text>
+<polyline points="535,258 462,290 390,336" fill="none" stroke="#49785c" stroke-width="1.8"/>
+<polygon points="390,336 396.0,326.8 400.8,334.4" fill="#49785c"/>
+<text x="550" y="296" font-size="15" font-weight="400" text-anchor="start" fill="#49785c">결과 → 다음 입력</text>
+<rect x="40" y="324" width="350" height="82" rx="8" fill="#edf4fb" stroke="#416b96" stroke-width="1.5"/>
+<text x="215.0" y="365.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">② 실패한 테스트 실행 요청</text>
+<text x="215.0" y="391.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">run_command(...)</text>
+<rect x="535" y="324" width="385" height="82" rx="8" fill="#fff5e9" stroke="#aa753c" stroke-width="1.5"/>
+<text x="727.5" y="365.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">명령 실행 도구 → 테스트 실행</text>
+<text x="727.5" y="391.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">expected 401 / actual 200</text>
+<polyline points="390,365.0 535,365.0" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="535,365.0 525.0,369.5 525.0,360.5" fill="#657183"/>
+<text x="462" y="355.0" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">호출 요청</text>
+<polyline points="535,398 462,430 390,476" fill="none" stroke="#49785c" stroke-width="1.8"/>
+<polygon points="390,476 396.0,466.8 400.8,474.4" fill="#49785c"/>
+<text x="550" y="436" font-size="15" font-weight="400" text-anchor="start" fill="#49785c">결과 → 다음 입력</text>
+<rect x="40" y="464" width="350" height="82" rx="8" fill="#edf4fb" stroke="#416b96" stroke-width="1.5"/>
+<text x="215.0" y="505.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">③ 원인을 확인할 파일 선택</text>
+<text x="215.0" y="531.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">read_file(...)</text>
+<rect x="535" y="464" width="385" height="82" rx="8" fill="#fff5e9" stroke="#aa753c" stroke-width="1.5"/>
+<text x="727.5" y="505.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">파일 읽기 도구 → 코드 반환</text>
+<text x="727.5" y="531.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">세션 처리·시간 설정 확인</text>
+<polyline points="390,505.0 535,505.0" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="535,505.0 525.0,509.5 525.0,500.5" fill="#657183"/>
+<text x="462" y="495.0" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">호출 요청</text>
+<polyline points="535,538 462,570 390,616" fill="none" stroke="#49785c" stroke-width="1.8"/>
+<polygon points="390,616 396.0,606.8 400.8,614.4" fill="#49785c"/>
+<text x="550" y="576" font-size="15" font-weight="400" text-anchor="start" fill="#49785c">결과 → 다음 입력</text>
+<rect x="40" y="604" width="350" height="94" rx="8" fill="#edf4fb" stroke="#416b96" stroke-width="1.5"/>
+<text x="215.0" y="651.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">④ 확인한 코드의 수정 요청</text>
+<text x="215.0" y="677.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">수정할 경로와 변경 내용</text>
+<rect x="535" y="604" width="385" height="94" rx="8" fill="#fff5e9" stroke="#aa753c" stroke-width="1.5"/>
+<text x="727.5" y="651.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">편집 도구 → 파일 변경</text>
+<text x="727.5" y="677.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">Claude Code: 설정한 Hook → 포맷터</text>
+<polyline points="390,651.0 535,651.0" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="535,651.0 525.0,655.5 525.0,646.5" fill="#657183"/>
+<text x="462" y="641.0" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">호출 요청</text>
+<polyline points="535,690 462,722 390,768" fill="none" stroke="#49785c" stroke-width="1.8"/>
+<polygon points="390,768 396.0,758.8 400.8,766.4" fill="#49785c"/>
+<text x="550" y="728" font-size="15" font-weight="400" text-anchor="start" fill="#49785c">결과 → 다음 입력</text>
+<rect x="40" y="756" width="350" height="82" rx="8" fill="#edf4fb" stroke="#416b96" stroke-width="1.5"/>
+<text x="215.0" y="797.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">⑤ 수정 후 같은 테스트 재실행</text>
+<text x="215.0" y="823.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">run_command(...)</text>
+<rect x="535" y="756" width="385" height="82" rx="8" fill="#fff5e9" stroke="#aa753c" stroke-width="1.5"/>
+<text x="727.5" y="797.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">명령 실행 도구 → 재검증</text>
+<text x="727.5" y="823.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">테스트 결과 반환</text>
+<polyline points="390,797.0 535,797.0" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="535,797.0 525.0,801.5 525.0,792.5" fill="#657183"/>
+<text x="462" y="787.0" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">호출 요청</text>
+<polyline points="728,838 728,884" fill="none" stroke="#49785c" stroke-width="1.8"/>
+<polygon points="728,884 723.5,874.0 732.5,874.0" fill="#49785c"/>
+<text x="708" y="867" font-size="15" font-weight="400" text-anchor="end" fill="#49785c">결과 → 다음 입력</text>
+<rect x="40" y="884" width="880" height="64" rx="8" fill="#eef6f1" stroke="#49785c" stroke-width="1.5"/>
+<text x="480.0" y="923.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">⑥ 모델이 변경 내용과 검증 결과를 보고하고 Harness가 종료 처리</text>
+<text x="480" y="979" font-size="17" font-weight="400" text-anchor="middle" fill="#243347">관찰 결과에 따라 다음 행동을 고르는 반복이 Agent의 동작을 이룬다.</text>
+<text x="480" y="1006" font-size="15" font-weight="400" text-anchor="middle" fill="#667383">설명용 흐름 · 중간 호출은 달라질 수 있음 · Hook은 앞서 제시한 Claude Code 설정을 가정</text>
+</g></svg>

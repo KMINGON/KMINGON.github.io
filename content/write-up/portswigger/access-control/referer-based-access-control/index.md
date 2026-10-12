@@ -62,4 +62,4 @@ Referer: https://<lab-id>.web-security-academy.net/admin
 
 주목할 점은 이 방어가 흔적을 남긴다는 것이다. `Referer`를 검사한다는 것은 서버가 그 값을 읽고 있다는 뜻이고, 진단에서는 관리자 기능이 세션만으로는 막히는데 특정 조건에서 통과한다면 `Referer`·`Origin`·커스텀 헤더를 유지·제거·위조해 어떤 값이 판단에 쓰이는지 좁힌다. 여기서는 `Referer`를 `/admin`으로 유지하는 것이 열쇠였다.
 
-방어는 접근 제어를 위조 불가능한 근거, 즉 **서버 세션에 연결된 사용자의 권한**으로만 판단하는 것이다. `Referer`나 `Origin` 같은 헤더는 심층 방어의 보조 신호는 될 수 있어도 단독 근거가 될 수 없다. 접근 제어를 어디에 걸어야 하는지에 대한 정리는 [Access Control Note](/note/note-portswigger---access-control-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)에 담았다.
+방어는 접근 제어를 위조 불가능한 근거, 즉 **서버 세션에 연결된 사용자의 권한**으로만 판단하는 것이다. `Referer`나 `Origin` 같은 헤더는 심층 방어의 보조 신호는 될 수 있어도 단독 근거가 될 수 없다. 접근 제어를 어디에 걸어야 하는지에 대한 정리는 [Access Control Lab](/lab/portswigger-access-control/)에 담았다.

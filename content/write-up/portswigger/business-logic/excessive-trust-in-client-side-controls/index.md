@@ -66,4 +66,4 @@ productId=1&redir=PRODUCT&quantity=1&price=1
 
 상품을 식별하는 `productId`가 있어도 서버는 클라이언트가 보낸 `price`를 구매 가격으로 받아들였다. 화면에 표시된 가격을 사용자가 직접 편집할 수 없더라도, 요청에 실린 값은 바꿀 수 있다.
 
-가격은 서버가 상품 정보에서 결정하고 결제 시점에도 다시 계산해야 한다. 클라이언트 입력을 신뢰하는 다른 형태는 [Business Logic Note](/note/portswigger-business-logic/)에서 함께 정리한다.
+가격은 서버가 상품 정보에서 결정하고 결제 시점에도 다시 계산해야 한다. 클라이언트 입력을 신뢰하는 다른 형태는 [Business Logic Lab](/lab/portswigger-business-logic/)에서 함께 정리한다.

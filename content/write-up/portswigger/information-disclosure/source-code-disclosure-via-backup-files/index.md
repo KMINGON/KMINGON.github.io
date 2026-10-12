@@ -54,4 +54,4 @@ ConnectionBuilder connectionBuilder = ConnectionBuilder.from(
 
 백업 파일은 실행 대상에서 벗어나도 웹 루트 안에 남아 있으면 원본 소스를 그대로 공개할 수 있다. 이 랩에서는 디렉터리 인덱싱과 `robots.txt`가 위치를 알려 줬고, `.bak` 파일 안의 하드코딩된 자격증명이 최종 노출로 이어졌다.
 
-진단에서는 `robots.txt`와 디렉터리 목록을 확인하고, 발견한 소스 파일명에 `.bak`·`~` 같은 백업 형태가 남아 있는지 본다. 소스가 열리면 비밀번호·API 키·내부 호스트 같은 비밀값을 찾는다. 다른 주요 노출 경로는 [Information Disclosure Note](/note/portswigger-information-disclosure/)에서 정리한다.
+진단에서는 `robots.txt`와 디렉터리 목록을 확인하고, 발견한 소스 파일명에 `.bak`·`~` 같은 백업 형태가 남아 있는지 본다. 소스가 열리면 비밀번호·API 키·내부 호스트 같은 비밀값을 찾는다. 다른 주요 노출 경로는 [Information Disclosure Lab](/lab/portswigger-information-disclosure/)에서 정리한다.

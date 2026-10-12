@@ -9,7 +9,7 @@ tags = ["Information Disclosure", "Sensitive Data Exposure", "Playbook", "Cheat 
 
 ---
 
-이 문서는 Information Disclosure 진단 중 **응답에 남은 단서를 노출 경로별로 분류하고, 그 정보가 어떤 영향으로 연결되는지 판단해 다음 확인을 고르기 위한 빠른 참고서**다. 유형별 원리와 대응 방안은 [Information Disclosure Note](/note/portswigger-information-disclosure/)에 정리했다.
+이 문서는 Information Disclosure 진단 중 **응답에 남은 단서를 노출 경로별로 분류하고, 그 정보가 어떤 영향으로 연결되는지 판단해 다음 확인을 고르기 위한 빠른 참고서**다. 유형별 원리와 대응 방안은 [Information Disclosure Lab](/lab/portswigger-information-disclosure/)에 정리했다.
 
 ## 30초 진단 흐름
 

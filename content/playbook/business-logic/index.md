@@ -9,7 +9,7 @@ tags = ["Business Logic", "Logic Flaws", "Playbook", "Cheat Sheet", "Testing Wor
 
 ---
 
-이 문서는 Business Logic 진단 중 **서버가 어떤 값과 상태를 믿는지 확인하고, 업무 규칙이 깨지는 조건에 따라 다음 시도를 고르기 위한 빠른 참고서**다. 유형별 상세 원리와 전체 풀이는 관련 Write-up과 [Business Logic Note](/note/portswigger-business-logic/)로 연결한다.
+이 문서는 Business Logic 진단 중 **서버가 어떤 값과 상태를 믿는지 확인하고, 업무 규칙이 깨지는 조건에 따라 다음 시도를 고르기 위한 빠른 참고서**다. 유형별 상세 원리와 전체 풀이는 관련 Write-up과 [Business Logic Lab](/lab/portswigger-business-logic/)로 연결한다.
 
 ## 30초 진단 흐름
 

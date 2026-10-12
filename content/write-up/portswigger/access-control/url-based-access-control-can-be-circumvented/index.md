@@ -72,4 +72,4 @@ X-Original-URL: /admin/delete
 
 이는 Path Traversal의 이중 인코딩이나 request smuggling과 같은 계열의 문제다 — **하나의 요청을 두 컴포넌트가 다르게 해석**할 때 그 사이에서 우회가 성립한다. 진단에서는 `403`으로 차단되는 관리자 경로를 만나면 `X-Original-URL`·`X-Rewrite-URL`에 그 경로를 담아 요청 라인은 무해하게 두고 보내 보거나, 대소문자(`/ADMIN`)·후행 슬래시·`.` 접미사 같은 URL 매칭 불일치를 함께 시도한다.
 
-방어는 접근 제어를 프런트엔드의 경로 필터가 아니라 **기능을 실제로 수행하는 백엔드에서** 일관되게 적용하는 것이다. 그리고 애플리케이션이 필요로 하지 않는 `X-Original-URL` 같은 재작성 헤더는 신뢰하지 않아야 한다. 접근 제어를 걸어야 할 계층에 대한 논의는 [Access Control Note](/note/note-portswigger---access-control-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)에 정리했다.
+방어는 접근 제어를 프런트엔드의 경로 필터가 아니라 **기능을 실제로 수행하는 백엔드에서** 일관되게 적용하는 것이다. 그리고 애플리케이션이 필요로 하지 않는 `X-Original-URL` 같은 재작성 헤더는 신뢰하지 않아야 한다. 접근 제어를 걸어야 할 계층에 대한 논의는 [Access Control Lab](/lab/portswigger-access-control/)에 정리했다.

@@ -122,6 +122,6 @@ URL 디코딩한 대화 내역은 다음과 같다.
 
 서브도메인 자산의 보안 수준이 대체로 본 서비스보다 낮다는 점이 이 문제를 키운다. 이 랩의 CMS도 본 서비스와 별개로 운영되는 부속 시스템이며, 그 로그인 폼의 반사형 XSS 하나가 결국 본 서비스의 세션 보호를 무력화했다. 진단에서 `Strict` 쿠키를 확인했더라도 서브도메인 열거를 함께 수행해야 하는 이유이고, 여기서는 CORS 응답 헤더가 그 단서를 그대로 노출했다.
 
-또 하나 주목할 점은 CSWSH가 [일반적인 CSRF](/write-up/portswigger/csrf/write-up-portswigger---csrf-vulnerability-with-no-defenses/)와 달리 응답까지 읽어낸다는 것이다. WebSocket은 동일 출처 정책의 적용을 받지 않고 `Origin` 헤더만 전달하며, 연결이 수립되면 양방향 채널이 유지된다. 그래서 단방향 CSRF로는 불가능한 데이터 유출이 가능해진다. 이 부분은 [WebSocket 토픽 정리](/note/note-portswigger---websocket-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)와 [CSWSH Write-up](/write-up/portswigger/websocket/write-up-portswigger---cross-site-websocket-hijacking/)에서 더 다뤘다.
+또 하나 주목할 점은 CSWSH가 [일반적인 CSRF](/write-up/portswigger/csrf/write-up-portswigger---csrf-vulnerability-with-no-defenses/)와 달리 응답까지 읽어낸다는 것이다. WebSocket은 동일 출처 정책의 적용을 받지 않고 `Origin` 헤더만 전달하며, 연결이 수립되면 양방향 채널이 유지된다. 그래서 단방향 CSRF로는 불가능한 데이터 유출이 가능해진다. 이 부분은 [WebSocket 토픽 정리](/lab/portswigger-websocket/)와 [CSWSH Write-up](/write-up/portswigger/websocket/write-up-portswigger---cross-site-websocket-hijacking/)에서 더 다뤘다.
 
 방어는 세 층위로 나뉜다. 핸드셰이크에 예측 불가능한 토큰을 포함시키고 서버에서 `Origin`을 허용 목록과 대조해 same-site 요청이라도 무조건 신뢰하지 않는 것, 서브도메인의 XSS를 본 서비스와 같은 기준으로 제거하는 것, 그리고 신뢰 수준이 다른 기능은 아예 별도 사이트로 분리해 쿠키 경계를 나누는 것이다.

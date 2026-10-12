@@ -1,10 +1,11 @@
 +++
 date = '2026-08-01T15:30:00+09:00'
 draft = false
-title = '[Note] PortSwigger - Information Disclosure 토픽 정리 및 실습'
+title = '[Lab] PortSwigger - Information Disclosure 토픽 정리 및 실습'
 summary = "Information Disclosure의 의미와 발생 원인, 오류·디버그·백업·진단 기능·Git 히스토리에서 정보가 누출되는 구조, 진단 방법과 대응 방안을 정리한 자료"
 toc = true
 tags = ["Information Disclosure", "Sensitive Data Exposure", "Debugging", "Version Control", "PortSwigger"]
+aliases = ['/note/portswigger-information-disclosure/']
 +++
 
 ---

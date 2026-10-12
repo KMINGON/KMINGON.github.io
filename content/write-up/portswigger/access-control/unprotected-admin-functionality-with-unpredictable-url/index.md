@@ -70,4 +70,4 @@ Host: <lab-id>.web-security-academy.net
 
 진단에서는 관리자 기능이 짐작되는데 메타데이터 파일이 비어 있다면, **응답으로 내려오는 HTML·자바스크립트 전체에서 `admin`, `role`, `panel`, `internal` 같은 키워드를 검색**하는 습관이 유효하다. 조건부로만 노출되는 링크, 주석 처리된 경로, API 엔드포인트 목록이 여기서 자주 발견된다.
 
-방어는 조건을 클라이언트가 아니라 **서버에서** 판단하고, 관리자 경로 자체에 권한 검사를 두는 것이다. 링크를 그리느냐 마느냐는 UI 편의일 뿐 보안 경계가 될 수 없다. 관련 개념은 [Access Control Note](/note/note-portswigger---access-control-%ED%86%A0%ED%94%BD-%EC%A0%95%EB%A6%AC-%EB%B0%8F-%EC%8B%A4%EC%8A%B5/)에 정리했다.
+방어는 조건을 클라이언트가 아니라 **서버에서** 판단하고, 관리자 경로 자체에 권한 검사를 두는 것이다. 링크를 그리느냐 마느냐는 UI 편의일 뿐 보안 경계가 될 수 없다. 관련 개념은 [Access Control Lab](/lab/portswigger-access-control/)에 정리했다.

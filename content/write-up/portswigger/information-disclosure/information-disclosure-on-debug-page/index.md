@@ -54,4 +54,4 @@ SECRET_KEY=75kpwvsetpa4xwr5l9215ecgoziz9427
 
 이 랩에서는 일반적인 오류 응답이 조용했지만, HTML 주석이 디버그 엔드포인트의 위치를 알려 줬다. 공개된 `phpinfo()` 페이지는 그 경로에서 다시 비밀 환경 변수를 노출했다. 즉, 개발 주석과 운영 환경의 디버그 기능이 연결되면서 직접적인 비밀값 유출로 이어졌다.
 
-진단에서는 응답 본문의 주석과 숨겨진 링크를 먼저 찾고, 발견한 디버그·상태·진단 경로가 설정값이나 환경 변수를 반환하는지 확인한다. 관련 점검 흐름은 [Information Disclosure Note](/note/portswigger-information-disclosure/)에서 이어서 다룬다.
+진단에서는 응답 본문의 주석과 숨겨진 링크를 먼저 찾고, 발견한 디버그·상태·진단 경로가 설정값이나 환경 변수를 반환하는지 확인한다. 관련 점검 흐름은 [Information Disclosure Lab](/lab/portswigger-information-disclosure/)에서 이어서 다룬다.

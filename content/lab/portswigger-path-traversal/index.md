@@ -1,11 +1,11 @@
 +++
 date = '2026-06-30T14:00:00+09:00'
 draft = false
-title = '[Note] PortSwigger - Path Traversal 토픽 정리 및 실습'
+title = '[Lab] PortSwigger - Path Traversal 토픽 정리 및 실습'
 summary = "Path Traversal의 성립 조건과 경로가 해석되는 과정, 차단 목록·시퀀스 제거·접두 검증·확장자 검증 네 가지 방어와 각각의 우회 경로, 그리고 진단 방법과 대응 방안을 정리한 자료"
 toc = true
 tags = ["Path Traversal", "Directory Traversal", "Filter Bypass", "Canonicalization", "PortSwigger"]
-url = '/note/note-portswigger---path-traversal-토픽-정리-및-실습/'
+aliases = ['/note/note-portswigger---path-traversal-토픽-정리-및-실습/']
 +++
 
 ---

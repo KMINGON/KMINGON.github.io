@@ -47,4 +47,4 @@ Host: <lab-id>.web-security-academy.net
 
 정상적인 숫자 입력에서는 보이지 않던 내부 정보가 예상하지 않은 문자열 하나로 노출됐다. 원인은 예외 자체가 아니라, 서버가 예외를 운영 환경의 응답에 그대로 포함한 데 있다. 상세 스택 트레이스에는 프레임워크 이름과 정확한 버전처럼 후속 공격의 기준이 되는 정보가 함께 담길 수 있다.
 
-진단에서는 숫자·날짜·열거형 파라미터에 다른 자료형을 넣어 보고, 오류 응답의 클래스명·파일 경로·제품명·버전을 확인한다. 다른 노출 지점과 대응 방법은 [Information Disclosure Note](/note/portswigger-information-disclosure/)에서 정리한다.
+진단에서는 숫자·날짜·열거형 파라미터에 다른 자료형을 넣어 보고, 오류 응답의 클래스명·파일 경로·제품명·버전을 확인한다. 다른 노출 지점과 대응 방법은 [Information Disclosure Lab](/lab/portswigger-information-disclosure/)에서 정리한다.

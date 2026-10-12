@@ -1,11 +1,11 @@
 +++
 date = '2026-06-26T14:00:00+09:00'
 draft = false
-title = '[Note] PortSwigger - Cross-Site Request Forgery(CSRF) 토픽 정리 및 실습'
+title = '[Lab] PortSwigger - Cross-Site Request Forgery(CSRF) 토픽 정리 및 실습'
 summary = "CSRF의 성립 조건과 공격 구성 방식, XSS와의 차이, CSRF 토큰·SameSite·Referer 세 가지 방어와 각각의 우회 경로, 그리고 진단 방법과 대응 방안을 정리한 자료"
 toc = true
 tags = ["CSRF", "SameSite", "PortSwigger"]
-url = '/note/note-portswigger---cross-site-request-forgerycsrf-토픽-정리/'
+aliases = ['/note/note-portswigger---cross-site-request-forgerycsrf-토픽-정리/']
 +++
 
 ---

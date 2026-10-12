@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-labelledby="title desc">
+<title id="title">기존 서비스를 MCP 도구로 연결하기</title><desc id="desc">Host 내부의 모델이 도구 호출을 요청하면 실행 계층의 MCP Client가 Server에 전달한다. Server는 기존 서비스의 API를 호출하고 결과를 반환한다.</desc>
+<rect width="960" height="480" fill="#ffffff"/><g font-family="Malgun Gothic, Noto Sans KR, sans-serif" fill="#243347">
+<text x="40" y="44" font-size="25" font-weight="700" text-anchor="start" fill="#243347">기존 서비스를 MCP 도구로 연결하기</text>
+<text x="40" y="76" font-size="17" font-weight="400" text-anchor="start" fill="#667383">기능을 선택하는 모델과 서비스를 호출하는 실행 경로</text>
+<rect x="40" y="108" width="370" height="286" rx="8" fill="#f6f7f9" stroke="#707988" stroke-width="1.5"/>
+<text x="225" y="137" font-size="20" font-weight="700" text-anchor="middle" fill="#243347">Host · AI 애플리케이션</text>
+<rect x="65" y="154" width="320" height="68" rx="8" fill="#edf4fb" stroke="#416b96" stroke-width="1.5"/>
+<text x="225.0" y="188.0" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">Model</text>
+<text x="225.0" y="214.0" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">get_issue(42) 호출 요청</text>
+<polyline points="225,222 225,270" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="225,270 220.5,260.0 229.5,260.0" fill="#657183"/>
+<text x="243" y="251" font-size="15" font-weight="400" text-anchor="start" fill="#243347">도구 이름 · 인자</text>
+<rect x="65" y="270" width="320" height="85" rx="8" fill="#fff5e9" stroke="#aa753c" stroke-width="1.5"/>
+<text x="225.0" y="312.5" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">실행 계층 / MCP Client</text>
+<text x="225.0" y="338.5" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">호출 전달 · 반환 결과 처리</text>
+<rect x="515" y="270" width="170" height="85" rx="8" fill="#eef6f1" stroke="#49785c" stroke-width="1.5"/>
+<text x="600.0" y="312.5" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">MCP Server</text>
+<text x="600.0" y="338.5" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">get_issue 구현</text>
+<rect x="785" y="270" width="135" height="85" rx="8" fill="#f6f7f9" stroke="#707988" stroke-width="1.5"/>
+<text x="852.5" y="312.5" font-size="19" font-weight="700" text-anchor="middle" fill="#243347">이슈 서비스</text>
+<text x="852.5" y="338.5" font-size="16" font-weight="400" text-anchor="middle" fill="#243347">기존 API</text>
+<polyline points="385,290 515,290" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="515,290 505.0,294.5 505.0,285.5" fill="#657183"/>
+<text x="450" y="275" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">tools/call</text>
+<polyline points="515,335 385,335" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="385,335 395.0,330.5 395.0,339.5" fill="#657183"/>
+<text x="450" y="361" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">도구 결과</text>
+<polyline points="685,290 785,290" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="785,290 775.0,294.5 775.0,285.5" fill="#657183"/>
+<text x="735" y="275" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">API 호출</text>
+<polyline points="785,335 685,335" fill="none" stroke="#657183" stroke-width="1.8"/>
+<polygon points="685,335 695.0,330.5 695.0,339.5" fill="#657183"/>
+<text x="735" y="361" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">이슈 내용</text>
+<text x="225" y="381" font-size="15" font-weight="400" text-anchor="middle" fill="#243347">반환된 내용을 다음 모델 입력에 반영</text>
+<text x="480" y="434" font-size="17" font-weight="400" text-anchor="middle" fill="#243347">Host는 연결된 서버의 도구 목록을 확인하고 모델에 사용할 도구를 제공한다.</text>
+<text x="480" y="460" font-size="15" font-weight="400" text-anchor="middle" fill="#667383">설명용 구조 · 서버 위치, 인증, 상세 통신은 생략</text>
+</g></svg>
