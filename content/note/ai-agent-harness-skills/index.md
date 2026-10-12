@@ -1,7 +1,7 @@
 +++
 date = '2026-09-25T21:00:00+09:00'
 draft = false
-title = '[Note] Agent, Harness, Skills 이해하기 — Codex와 Claude Code로 보는 AI 에이전트의 구조'
+title = '[Note] Agent, Harness, Skills 이해하기'
 summary = '텍스트를 생성하는 모델이 실제 작업을 수행하기까지의 연결을 따라 Tool Calling, Agent·Workflow, Harness, Skills, MCP와 Hooks의 역할을 살펴본다.'
 toc = true
 tags = ['AI', 'Agent', 'Harness', 'Skills', 'Codex', 'Claude Code']
