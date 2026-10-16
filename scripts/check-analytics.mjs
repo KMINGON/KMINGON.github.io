@@ -1,4 +1,4 @@
-// Run after `hugo --minify`: node scripts/check-analytics.mjs public
+// Run after `bash scripts/run.sh hugo --minify`: bash scripts/run.sh node scripts/check-analytics.mjs public
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';

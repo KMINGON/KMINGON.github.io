@@ -161,20 +161,20 @@ GA4 계정 화면의 보고서 집계 확인은 아직 완료하지 못했다. �
 - [스텁 브라우저 검증 결과](cloudflare-validation-2026-09-29.json). **외부 vendor 스크립트 자체의 실제 payload나 RUM HTTP 수신·계정 집계는 이 테스트로 검증하지 않는다.** 이전 2026-09-23 실제 GA HTTP 204 기록과 구분한다.
 
 ```bash
-PATH="$HOME/.local/dart-sass:$PATH" hugo --minify --destination /tmp/blog-cf-production
-node scripts/check-analytics.mjs /tmp/blog-cf-production
-PATH="$HOME/.local/dart-sass:$PATH" hugo --environment development --destination /tmp/blog-cf-development
-node scripts/check-analytics.mjs /tmp/blog-cf-development --excluded
-PATH="$HOME/.local/dart-sass:$PATH" hugo --minify --baseURL https://preview.mingon.dev/ --destination /tmp/blog-cf-preview
-node scripts/check-analytics.mjs /tmp/blog-cf-preview --excluded
-PATH="$HOME/.local/dart-sass:$PATH" hugo --minify --baseURL https://kmingon.github.io/ --destination /tmp/blog-cf-legacy
-node scripts/check-analytics.mjs /tmp/blog-cf-legacy --excluded
+bash scripts/run.sh hugo --minify --destination /tmp/blog-cf-production
+bash scripts/run.sh node scripts/check-analytics.mjs /tmp/blog-cf-production
+bash scripts/run.sh hugo --environment development --destination /tmp/blog-cf-development
+bash scripts/run.sh node scripts/check-analytics.mjs /tmp/blog-cf-development --excluded
+bash scripts/run.sh hugo --minify --baseURL https://preview.mingon.dev/ --destination /tmp/blog-cf-preview
+bash scripts/run.sh node scripts/check-analytics.mjs /tmp/blog-cf-preview --excluded
+bash scripts/run.sh hugo --minify --baseURL https://kmingon.github.io/ --destination /tmp/blog-cf-legacy
+bash scripts/run.sh node scripts/check-analytics.mjs /tmp/blog-cf-legacy --excluded
 
 # 브라우저 검증 도구는 저장소 의존성을 늘리지 않고 임시 경로에 설치한다.
 npm install --prefix /tmp/blog-analytics-test --no-save playwright
 /tmp/blog-analytics-test/node_modules/.bin/playwright install chromium
 BLOG_PLAYWRIGHT_MODULE=file:///tmp/blog-analytics-test/node_modules/playwright/index.mjs \
-  node scripts/check-analytics-browser.mjs /tmp/blog-cf-production
+  bash scripts/run.sh node scripts/check-analytics-browser.mjs /tmp/blog-cf-production
 # 설치된 Chromium을 재사용할 때는 BLOG_CHROMIUM_EXECUTABLE에 실행 파일 경로를 지정한다.
 ```
 
@@ -211,8 +211,8 @@ BLOG_PLAYWRIGHT_MODULE=file:///tmp/blog-analytics-test/node_modules/playwright/i
 - **남은 확인:** GA4 보고서 집계 반영 여부. 배포 전 최초 실시간 확인에는 데이터가 없었고, 배포 후에는 Orca 실행 경로 오류로 계정 화면에 접근하지 못했다. 보고서 수신 완료로 기록하지 않는다.
 
 ```bash
-PATH="$HOME/.local/dart-sass:$PATH" hugo --minify
-node scripts/check-analytics.mjs public
+bash scripts/run.sh hugo --minify
+bash scripts/run.sh node scripts/check-analytics.mjs public
 ```
 
 CI에서도 빌드 다음에 동일한 검증을 실행한다. 컨테이너를 수정할 때는 게시 전후 JSON을 비교하고 개인정보 안내와 이 문서를 함께 갱신한다. ID를 바꾸는 것만으로 태그 설정이 이관되지는 않는다.

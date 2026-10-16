@@ -3,4 +3,5 @@
 .hugo_build.lock
 /draft
 /temp
+/.cache
 /.agents/skills/mingon-blog-writing/

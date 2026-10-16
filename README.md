@@ -39,26 +39,28 @@ Hugo 정적 사이트 생성기와 Anatole 테마를 기반으로 제작되었�
 ## 실행 방법
 
 ### 최초 1회 셋업 (새 로컬)
-새로 clone한 환경에서는 CI와 동일한 버전의 Hugo Extended / Dart Sass / Go 가 필요합니다.
-아래 스크립트가 `~/.local` 에 설치하고 PATH까지 등록합니다 (sudo 불필요, WSL2 x86_64 기준).
+아래 스크립트가 Hugo Extended 0.149.0 / Dart Sass 1.91.0 / Go 1.24.6을 이 저장소의 `.cache/toolchain/`에 설치합니다. CI도 같은 스크립트를 사용합니다. Linux x86_64에서 Bash, curl, tar가 필요하며 분석 검사는 기존 Node.js로 실행합니다.
+
 ```bash
 bash scripts/setup.sh
-source ~/.bashrc   # 또는 새 터미널
+bash scripts/check-toolchain.sh
 ```
+
+`scripts/run.sh`는 실행하는 명령에만 전용 PATH와 Go/Hugo 캐시(`.cache/`)를 적용하고 저장소 루트에서 실행합니다. 사용자 홈의 도구·`.bashrc`와 다른 프로젝트는 수정하지 않습니다. 환경 분리이며 파일 접근을 제한하는 보안 샌드박스는 아닙니다.
 
 ### 로컬 개발 서버
 ```bash
-# 의존성 초기화
-hugo mod tidy
-
 # 초안 포함 개발 서버 실행
-hugo server -D
+bash scripts/run.sh hugo server -D
 ```
 → http://localhost:1313 에서 확인 가능
 
+모듈 의존성을 변경할 때만 `bash scripts/run.sh hugo mod tidy`를 실행합니다.
+
 ### 배포용 빌드
 ```bash
-hugo --minify
+bash scripts/run.sh hugo --minify
+bash scripts/run.sh node scripts/check-analytics.mjs public
 ```
 
 → public/ 디렉터리에 정적 파일 생성
@@ -68,7 +70,7 @@ GitHub Actions 워크플로우가 main 브랜치 푸시 시 자동으로 Pages�
 HOME에는 Analysis, Review, Note를 최신순으로 노출합니다. Lab, Playbook, Write-up은 각 메뉴에서 탐색합니다.
 
 방문 통계의 계정·컨테이너, 동의 처리와 배포 검증은 [분석 운영 문서](docs/analytics/README.md)를 참고합니다.
-배포 전에는 `node scripts/check-analytics.mjs public`으로 직접 GA 중복 삽입과 동의 처리도 확인합니다.
+배포 전에는 위 분석 검사로 직접 GA 중복 삽입과 동의 처리도 확인합니다.
 
 ### 포스팅 방법
 
@@ -97,7 +99,7 @@ content/
 1. 섹션을 선택하고 초안을 생성합니다.
 
 ```bash
-hugo new content note/my-first-note/index.md
+bash scripts/run.sh hugo new content note/my-first-note/index.md
 ```
 
 2. Front Matter를 수정합니다. 작성 중에는 `draft = true`를 유지합니다.
@@ -126,7 +128,7 @@ tags = []
 과거 파일명에 기반한 글 주소는 각 글의 `url` 값으로 고정되어 있으므로, 제목이나 폴더명을 바꿀 때도 유지합니다. `url`에는 `%EB...` 같은 인코딩 문자열 대신 디코딩된 경로를 기록합니다.
 섹션 이동으로 주소를 바꾸는 경우에는 기존 주소를 `aliases`에 남기고, 내부 링크는 새 주소로 갱신합니다. Note에서 Lab으로 옮긴 PortSwigger 토픽 글은 이 방식으로 이전 `/note/` 주소를 유지합니다.
 
-4. `hugo server -D`로 확인한 뒤 `draft = false`로 바꿔 발행합니다. 초안과 정식 글의 폴더 위치는 같습니다.
+4. `bash scripts/run.sh hugo server -D`로 확인한 뒤 `draft = false`로 바꿔 발행합니다. 초안과 정식 글의 폴더 위치는 같습니다.
    기존 `draft/`·`temp/`는 Git에서 제외되는 임시 작업 공간이며, 보관할 글과 편집 원본은 번들 안에 둡니다.
 
 5. 변경한 글 폴더를 커밋하고 푸시합니다.
