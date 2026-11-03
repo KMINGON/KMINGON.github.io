@@ -1,6 +1,6 @@
 {{/*
   로컬 오버라이드: _vendor/github.com/lxndrblz/anatole/layouts/partials/sidebar.html
-  변경점 = 소셜 아이콘 <ul> 아래 "사이드바 태그 목록" 블록 1개 추가.
+  변경점 = 사이드바 태그 목록 추가, 프로필 이미지 내용 해시로 캐시 갱신.
   테마 업데이트 시 원본과 diff 하여 이 파일을 갱신할 것.
 */}}
 <div
@@ -12,9 +12,10 @@
 >
   <div class="sidebar__content">
     <div class="sidebar__introduction">
+      {{ $profileVersion := sha256 (readFile (printf "static/%s" .Site.Params.profilePicture)) }}
       <img
         class="sidebar__introduction-profileimage"
-        src="{{ .Site.Params.profilePicture | relURL }}"
+        src="{{ .Site.Params.profilePicture | relURL }}?v={{ $profileVersion }}"
         alt="profile picture"
       />
       {{ if .IsHome }}
