@@ -4,5 +4,6 @@
 /draft
 /temp
 /.cache
+/.local/
 /.agents/
 *:Zone.Identifier
